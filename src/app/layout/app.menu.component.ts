@@ -24,43 +24,56 @@ export class AppMenuComponent {
     getMenu(user: Auth) {
         const dashboard = {
             label: 'Dashboard',
-            icon: 'pi pi-fw pi-home',
+            icon: 'fa-solid fa-chart-line',
             routerLink: ['/dashboard'],
         }
-        const trabajadores = {
-            label: 'Trabajadores',
-            icon: 'pi pi-fw pi-user',
+
+        const ot = {
+            label: 'Ordenes de Trabajo',
+            icon: 'fa-solid fa-paste',
             routerLink: ['/trabajadores/listado'],
         }
 
-        const propiedades = {
-            label: 'Propiedades',
-            icon: 'pi pi-fw pi-building',
+        const facturas = {
+            label: 'Facturas',
+            icon: 'fa-solid fa-file',
             routerLink: ['/propiedades/listado'],
         }
 
-        const propietarios = {
-            label: 'Propietarios',
-            icon: 'pi pi-fw pi-id-card',
+        const catalogo = {
+            label: 'Catálogo',//Productos-servicios-unidades
+            icon: 'fa-solid fa-list',
             routerLink: ['/propietarios/listado'],
         }
 
-        const arrendatarios = {
-            label: 'Arrendatarios',
-            icon: 'pi pi-fw pi-users',
+        const fabricantes = {
+            label: 'Fabricantes',
+            icon: 'fa-solid fa-industry',
             routerLink: ['/arrendatarios/listado'],
         }
 
-        const arriendos = {
-            label: 'Arriendos',
-            icon: 'pi pi-fw pi-money-bill',
+        const clientes = {
+            label: 'Clientes',
+            icon: 'fa-solid fa-users',
             routerLink: ['/arriendos/listado'],
         }
 
-        const usuarios = {
-            label: 'Usuarios',
-            icon: 'pi pi-fw pi-lock',
+        const reportes = {
+            label: 'Reportes', //Ordenes de trabajo
+            icon: 'fa-solid fa-chevron-down',
             routerLink: ['/usuarios/listado'],
+        }
+
+        const configuracion = {
+          label: 'Configuración', //Ordenes de trabajo
+          icon: 'fa-solid fa-gears',
+          routerLink: ['/usuarios/listado'],
+        }
+
+        const administrar = {
+          label: 'Administrar accesos', //Grupos de usuarios - usuarios
+          icon: 'fa-solid fa-eye',
+          routerLink: ['/usuarios/listado'],
         }
 
 
@@ -68,11 +81,11 @@ export class AppMenuComponent {
             return [
                 {
                     label: 'Administracion',
-                    items: [dashboard, trabajadores, propiedades, propietarios, arrendatarios, arriendos]
+                    items: [dashboard, ot, facturas, catalogo, fabricantes, clientes, reportes]
                 },
                 {
                     label: 'Seguridad',
-                    items: [usuarios]
+                    items: [administrar, configuracion]
                 }
             ]
         }
@@ -80,7 +93,7 @@ export class AppMenuComponent {
             return [
                 {
                     label: 'Administracion',
-                    items: [dashboard, trabajadores, propiedades, propietarios, arrendatarios, arriendos]
+                    items: [dashboard, ot, facturas, catalogo, fabricantes, clientes, reportes]
                 },
             ]
         } else {
