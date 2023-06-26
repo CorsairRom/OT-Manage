@@ -1,0 +1,64 @@
+[
+    {
+      "id": 1,
+      "rut_arr": "11.111.111-1",
+      "pri_nom_arr": "Juan",
+      "seg_nom_arr": "Carlos",
+      "pri_ape_arr": "Pérez",
+      "seg_ape_arr": "González",
+      "contancto_arr": "+56912345678",
+      "correo_arr": "juanperez@mail.com",
+      "estado": true,
+      "saldo": 100000,
+      "cuenta": 123456789
+    },
+    {
+      "id": 2,
+      "rut_arr": "22.222.222-2",
+      "pri_nom_arr": "María",
+      "seg_nom_arr": null,
+      "pri_ape_arr": "García",
+      "seg_ape_arr": "Rodríguez",
+      "contancto_arr": "+56987654321",
+      "correo_arr": "mariagarcia@mail.com",
+      "estado": true,
+      "saldo": 50000
+    },
+    {
+      "id": 3,
+      "rut_arr": "33.333.333-3",
+      "pri_nom_arr": "Pedro",
+      "seg_nom_arr": "Antonio",
+      "pri_ape_arr": "Sánchez",
+      "seg_ape_arr": null,
+      "contancto_arr": "+56924681012",
+      "correo_arr": "pedrosanchez@mail.com",
+      "estado": false,
+      "saldo": 0
+    },
+    {
+      "id": 4,
+      "rut_arr": "44.444.444-4",
+      "pri_nom_arr": "Luis",
+      "seg_nom_arr": null,
+      "pri_ape_arr": "Fernández",
+      "seg_ape_arr": "Martínez",
+      "contancto_arr": "+56936912151",
+      "correo_arr": "luisfernandez@mail.com",
+      "estado": true,
+      "saldo": 200000
+    },
+    {
+      "id": 5,
+      "rut_arr": "55.555.555-5",
+      "pri_nom_arr": "Ana",
+      "seg_nom_arr": "Isabel",
+      "pri_ape_arr": "Hernández",
+      "seg_ape_arr": null,
+      "contancto_arr": "+56975395128",
+      "correo_arr": "anahernandez@mail.com",
+      "estado": true,
+      "saldo": 150000
+    }
+  ]
+  

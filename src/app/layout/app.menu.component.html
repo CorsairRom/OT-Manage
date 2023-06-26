@@ -1,0 +1,11 @@
+<ul class="layout-menu"  *ngIf="model$ | async as items">
+    <ng-container *ngFor="let item of items; let i = index">
+        <li
+            app-menuitem
+            [item]="item"
+            [index]="i"
+            [root]="true"
+        ></li>
+        
+    </ng-container>
+</ul>

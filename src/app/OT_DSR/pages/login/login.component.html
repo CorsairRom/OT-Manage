@@ -1,0 +1,36 @@
+<div class="page">
+    <form class="form" [formGroup]="form" (ngSubmit)="login()">
+        <div class="text-center text-900 text-2xl font-medium mb-3">
+            Acceso administración
+        </div>
+        <p-messages [(value)]="messages" [enableService]="false"></p-messages>
+        <label for="usuario">Usuario</label>
+        <input
+            id="usuario"
+            type="text"
+            placeholder="Usuario"
+            pInputText
+            formControlName="username"
+        />
+
+        <label for="password1">Contraseña</label>
+        <p-password
+            id="password1"
+            placeholder="Contraseña"
+            [toggleMask]="true"
+            [feedback]="false"
+            formControlName="password"
+            [inputStyle]="{ width: '100%' }"
+            styleClass="p-password p-component p-inputwrapper p-input-icon-right mb-3"
+            [style]="{ width: '100%' }"
+        ></p-password>
+
+        <button
+            type="submit"
+            pButton
+            pRipple
+            label="Acceder"
+            [disabled]="loading"
+        ></button>
+    </form>
+</div>
