@@ -3,7 +3,7 @@ import { MenuItem } from 'primeng/api';
 import { Product } from './api/product';
 import { ProductService } from './service/product.service';
 import { Subscription } from 'rxjs';
-import { LayoutService } from 'src/app/layout/service/app.layout.service';
+import { LayoutService } from 'src/app/shared/service/app.layout.service';
 
 // import { PropiedadesService } from '../propiedades/propiedades.service';
 import { TipoPropiedadesService } from '../core/services/tipo-propiedades.service';

@@ -1,6 +1,6 @@
 import { RouterModule } from '@angular/router';
 import { NgModule, inject } from '@angular/core';
-import { AppLayoutComponent } from './layout/app.layout.component';
+import { AppLayoutComponent } from './shared/app.layout.component';
 import { NotFoundComponent } from './OT_DSR/pages/not-found/not-found.component';
 import { authGuard } from './OT_DSR/core/guards/auth.guard';
 import { AuthService } from './OT_DSR/core/services/auth.service';
