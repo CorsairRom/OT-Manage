@@ -6,6 +6,7 @@ import { AuthService } from '../../../OT_DSR/core/services/auth.service';
 import { Subscription, filter, map } from 'rxjs';
 import { Auth } from '../../../OT_DSR/core/models/auth.model';
 
+
 @Component({
     selector: 'app-menu',
     templateUrl: './menu.component.html',
@@ -25,56 +26,91 @@ export class MenuComponent {
     getMenu(user: Auth) {
         const dashboard = {
             label: 'Dashboard',
-            icon: 'fa-solid fa-chart-line',
-            routerLink: ['/dashboard'],
+            icon: 'bi bi-graph-up-arrow',
+            routerLink: ['/dashboard']
         }
 
         const ot = {
             label: 'Ordenes de Trabajo',
-            icon: 'fa-solid fa-paste',
+            icon: 'bi bi-wrench-adjustable-circle',
             routerLink: ['/trabajadores/listado'],
         }
 
         const facturas = {
             label: 'Facturas',
-            icon: 'fa-solid fa-file',
+            icon: 'bi bi-receipt',
             routerLink: ['/propiedades/listado'],
         }
 
         const catalogo = {
-            label: 'Catálogo',//Productos-servicios-unidades
-            icon: 'fa-solid fa-list',
-            routerLink: ['/propietarios/listado'],
+            label: 'Catálogo',
+            icon: 'bi bi-archive',
+            items:[
+              {
+                label: 'Productos',
+                icon: 'bi bi-upc-scan',
+                routerLink: ['/productos/listado']
+              },
+              {
+                label: 'Servicios',
+                icon: 'bi bi-clipboard-minus',
+                routerLink: ['/servicios/listado']
+              },
+              {
+                label: 'Unidades',
+                icon: 'bi bi-box-seam',
+                routerLink: ['/unidades/listado']
+              }
+            ]
+
         }
 
         const fabricantes = {
             label: 'Fabricantes',
-            icon: 'fa-solid fa-industry',
+            icon: 'bi bi-briefcase',
             routerLink: ['/arrendatarios/listado'],
         }
 
         const clientes = {
             label: 'Clientes',
-            icon: 'fa-solid fa-users',
+            icon: 'bi bi-person-gear',
             routerLink: ['/arriendos/listado'],
         }
 
         const reportes = {
-            label: 'Reportes', //Ordenes de trabajo
-            icon: 'fa-solid fa-chevron-down',
-            routerLink: ['/usuarios/listado'],
+            label: 'Reportes',
+            icon: 'bi bi-clipboard2-pulse',
+            items:[
+              {
+                label: 'Ordenes de trabajo',
+                icon: 'bi bi-clipboard-check',
+                routerLink: ['/ot/listado']
+              }
+            ]
+
         }
 
         const configuracion = {
-          label: 'Configuración', //Ordenes de trabajo
-          icon: 'fa-solid fa-gears',
+          label: 'Configuración',
+          icon: 'bi bi-gear',
           routerLink: ['/usuarios/listado'],
         }
 
         const administrar = {
-          label: 'Administrar accesos', //Grupos de usuarios - usuarios
-          icon: 'fa-solid fa-eye',
-          routerLink: ['/usuarios/listado'],
+          label: 'Administrar accesos',
+          icon: 'bi bi-pc-display',
+          items:[
+            {
+              label: 'Usuarios',
+              icon: 'bi bi-person',
+              routerLink: ['/usuarios/listado']
+            },
+            {
+              label: 'Grupos de usuarios',
+              icon: 'bi bi-people',
+              routerLink: ['/grupo/listado']
+            },
+          ]
         }
 
 
