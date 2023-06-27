@@ -1,15 +1,16 @@
 import { inject } from '@angular/core';
 import { Component } from '@angular/core';
-import { LayoutService } from './service/app.layout.service';
-import { AuthService } from '../OT_DSR/core/services/auth.service';
+import { LayoutService } from '../../service/app.layout.service';
+
+import { AuthService } from '../../../OT_DSR/core/services/auth.service';
 import { Subscription, filter, map } from 'rxjs';
-import { Auth } from '../OT_DSR/core/models/auth.model';
+import { Auth } from '../../../OT_DSR/core/models/auth.model';
 
 @Component({
     selector: 'app-menu',
-    templateUrl: './app.menu.component.html',
+    templateUrl: './menu.component.html',
 })
-export class AppMenuComponent {
+export class MenuComponent {
 
     layoutService = inject(LayoutService)
     authService = inject(AuthService)

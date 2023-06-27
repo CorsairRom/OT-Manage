@@ -9,23 +9,25 @@ import { BadgeModule } from 'primeng/badge';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { RippleModule } from 'primeng/ripple';
-import { AppMenuComponent } from './app.menu.component';
-import { AppMenuitemComponent } from './app.menuitem.component';
 import { RouterModule } from '@angular/router';
 import { TooltipModule } from 'primeng/tooltip';
-import { AppTopBarComponent } from './app.topbar.component';
-import { AppSidebarComponent } from './app.sidebar.component';
-import { AppLayoutComponent } from './app.layout.component';
-import { AppFooterComponent } from './app.footer.component';
 
+
+import { AppLayoutComponent } from './app.layout.component';
+
+import { MenuComponent } from './components/menu/menu.component';
+import { MenuitemComponent } from './components/menu-item/menuitem.component';
+import { TopBarComponent } from './components/topbar/topbar.component'
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
     declarations: [
-        AppMenuitemComponent,
-        AppMenuComponent,
-        AppSidebarComponent,
-        AppLayoutComponent,
-        AppTopBarComponent,
+        MenuComponent,
+        SidebarComponent,
+        MenuitemComponent,
+        TopBarComponent,
+        AppLayoutComponent
     ],
     imports: [
         BrowserModule,
@@ -40,7 +42,7 @@ import { AppFooterComponent } from './app.footer.component';
         RippleModule,
         RouterModule,
         TooltipModule,
-        AppFooterComponent,
+        FooterComponent
     ],
     exports: [AppLayoutComponent],
 })

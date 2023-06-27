@@ -3,8 +3,8 @@ import { NavigationEnd, Router } from '@angular/router';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
-import { MenuService } from './app.menu.service';
-import { LayoutService } from './service/app.layout.service';
+import { MenuService } from '../../service/menu.service';
+import { LayoutService } from '../../service/app.layout.service';
 
 @Component({
     // eslint-disable-next-line @angular-eslint/component-selector
@@ -18,9 +18,9 @@ import { LayoutService } from './service/app.layout.service';
 				<span class="layout-menuitem-text">{{item.label}}</span>
 				<i class="pi pi-fw pi-angle-down layout-submenu-toggler" *ngIf="item.items"></i>
 			</a>
-			<a *ngIf="(item.routerLink && !item.items) && item.visible !== false" (click)="itemClick($event)" [ngClass]="item.class" 
+			<a *ngIf="(item.routerLink && !item.items) && item.visible !== false" (click)="itemClick($event)" [ngClass]="item.class"
 			   [routerLink]="item.routerLink" routerLinkActive="active-route" [routerLinkActiveOptions]="item.routerLinkActiveOptions||{ paths: 'exact', queryParams: 'ignored', matrixParams: 'ignored', fragment: 'ignored' }"
-               [fragment]="item.fragment" [queryParamsHandling]="item.queryParamsHandling" [preserveFragment]="item.preserveFragment" 
+               [fragment]="item.fragment" [queryParamsHandling]="item.queryParamsHandling" [preserveFragment]="item.preserveFragment"
                [skipLocationChange]="item.skipLocationChange" [replaceUrl]="item.replaceUrl" [state]="item.state" [queryParams]="item.queryParams"
                [attr.target]="item.target" tabindex="0" pRipple>
 				<i [ngClass]="item.icon" class="layout-menuitem-icon"></i>
@@ -47,7 +47,7 @@ import { LayoutService } from './service/app.layout.service';
         ])
     ]
 })
-export class AppMenuitemComponent implements OnInit, OnDestroy {
+export class MenuitemComponent implements OnInit, OnDestroy {
 
     @Input() item: any;
 
@@ -131,7 +131,7 @@ export class AppMenuitemComponent implements OnInit, OnDestroy {
         return this.root ? 'expanded' : (this.active ? 'expanded' : 'collapsed');
     }
 
-    @HostBinding('class.active-menuitem') 
+    @HostBinding('class.active-menuitem')
     get activeClass() {
         return this.active && !this.root;
     }

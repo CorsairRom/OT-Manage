@@ -1,13 +1,13 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { MenuItem } from 'primeng/api';
-import { LayoutService } from './service/app.layout.service';
-import { AuthService } from '../OT_DSR/core/services/auth.service';
+import { LayoutService } from '../../service/app.layout.service';
+import { AuthService } from '../../../OT_DSR/core/services/auth.service';
 
 @Component({
     selector: 'app-topbar',
-    templateUrl: './app.topbar.component.html',
+    templateUrl: './topbar.component.html',
 })
-export class AppTopBarComponent {
+export class TopBarComponent {
     items!: MenuItem[];
 
     @ViewChild('menubutton') menuButton!: ElementRef;
