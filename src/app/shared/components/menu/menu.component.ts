@@ -103,12 +103,12 @@ export class MenuComponent {
             {
               label: 'Usuarios',
               icon: 'bi bi-person',
-              routerLink: ['administrar/usuarios/listado']
+              routerLink: ['administrar-accesos/usuarios/listado']
             },
             {
               label: 'Grupos de usuarios',
               icon: 'bi bi-people',
-              routerLink: ['administrar/grupo/listado']
+              routerLink: ['administrar-accesos/Grupo-usuarios/listado']
             },
           ]
         }

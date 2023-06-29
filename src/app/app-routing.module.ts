@@ -48,6 +48,10 @@ import { AuthService } from './OT_DSR/core/services/auth.service';
                             loadChildren: () => import( '../app/OT_DSR/reportes/reportes.module').then((m) => m.ReportesModule),
                         },
                         {
+                            path: 'administrar-accesos',
+                            loadChildren: () => import( '../app/OT_DSR/administrar-accesos/administrar-accesos.module').then((m) => m.AdministrarAccesosModule),
+                        },
+                        {
                             path: 'empty',
                             loadComponent: () => import('./OT_DSR/pages/empty/empty.component').then(m => m.EmptyComponent)
                         },
