@@ -84,7 +84,7 @@ export class MenuComponent {
               {
                 label: 'Ordenes de trabajo',
                 icon: 'bi bi-clipboard-check',
-                routerLink: ['reportes/ot/listado']
+                routerLink: ['reportes/reporte-ot/listado']
               }
             ]
 

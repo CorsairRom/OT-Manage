@@ -40,6 +40,14 @@ import { AuthService } from './OT_DSR/core/services/auth.service';
                             loadChildren: () => import( '../app/OT_DSR/fabricantes/fabricantes.module').then((m) => m.FabricantesModule),
                         },
                         {
+                            path: 'clientes',
+                            loadChildren: () => import( '../app/OT_DSR/clientes/clientes.module').then((m) => m.ClientesModule),
+                        },
+                        {
+                            path: 'reportes',
+                            loadChildren: () => import( '../app/OT_DSR/reportes/reportes.module').then((m) => m.ReportesModule),
+                        },
+                        {
                             path: 'empty',
                             loadComponent: () => import('./OT_DSR/pages/empty/empty.component').then(m => m.EmptyComponent)
                         },
