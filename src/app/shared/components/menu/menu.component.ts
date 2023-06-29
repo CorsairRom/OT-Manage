@@ -93,7 +93,7 @@ export class MenuComponent {
         const configuracion = {
           label: 'Configuración',
           icon: 'bi bi-gear',
-          routerLink: ['/configuracion/listado'],
+          routerLink: ['/configuraciones/profile'],
         }
 
         const administrar = {
