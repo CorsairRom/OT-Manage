@@ -49,17 +49,17 @@ export class MenuComponent {
               {
                 label: 'Productos',
                 icon: 'bi bi-upc-scan',
-                routerLink: ['/productos/listado']
+                routerLink: ['catalogo/productos/listado']
               },
               {
                 label: 'Servicios',
                 icon: 'bi bi-clipboard-minus',
-                routerLink: ['/servicios/listado']
+                routerLink: ['catalogo/servicios/listado']
               },
               {
                 label: 'Unidades',
                 icon: 'bi bi-box-seam',
-                routerLink: ['/unidades/listado']
+                routerLink: ['catalogo/unidades/listado']
               }
             ]
 

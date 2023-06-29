@@ -23,13 +23,10 @@ import { AuthService } from './OT_DSR/core/services/auth.service';
                             ],
                             loadChildren: () => import( './OT_DSR/dashboard/dashboard.module' ).then((m) => m.DashboardModule),
                         },
-                        // {
-                        //     path: 'usuarios',
-                        //     canActivate: [
-                        //         () => inject(AuthService).isSuperuser()
-                        //     ],
-                        //     loadChildren: () => import( './propiedades-alegria/usuarios/usuarios.routes').then((m) => m.USUARIO_ROUTES),
-                        // },
+                        {
+                            path: 'catalogo',
+                            loadChildren: () => import( '../app/OT_DSR/catalogo/catalogo.module').then((m) => m.CatalogoModule),
+                        },
                         {
                             path: 'empty',
                             loadComponent: () => import('./OT_DSR/pages/empty/empty.component').then(m => m.EmptyComponent)
