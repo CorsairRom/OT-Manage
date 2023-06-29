@@ -68,13 +68,13 @@ export class MenuComponent {
         const fabricantes = {
             label: 'Fabricantes',
             icon: 'bi bi-briefcase',
-            routerLink: ['/arrendatarios/listado'],
+            routerLink: ['/fabricantes/listado'],
         }
 
         const clientes = {
             label: 'Clientes',
             icon: 'bi bi-person-gear',
-            routerLink: ['/arriendos/listado'],
+            routerLink: ['/clientes/listado'],
         }
 
         const reportes = {
@@ -84,7 +84,7 @@ export class MenuComponent {
               {
                 label: 'Ordenes de trabajo',
                 icon: 'bi bi-clipboard-check',
-                routerLink: ['/ot/listado']
+                routerLink: ['reportes/ot/listado']
               }
             ]
 
@@ -93,7 +93,7 @@ export class MenuComponent {
         const configuracion = {
           label: 'Configuración',
           icon: 'bi bi-gear',
-          routerLink: ['/usuarios/listado'],
+          routerLink: ['/configuracion/listado'],
         }
 
         const administrar = {
@@ -103,12 +103,12 @@ export class MenuComponent {
             {
               label: 'Usuarios',
               icon: 'bi bi-person',
-              routerLink: ['/usuarios/listado']
+              routerLink: ['administrar/usuarios/listado']
             },
             {
               label: 'Grupos de usuarios',
               icon: 'bi bi-people',
-              routerLink: ['/grupo/listado']
+              routerLink: ['administrar/grupo/listado']
             },
           ]
         }

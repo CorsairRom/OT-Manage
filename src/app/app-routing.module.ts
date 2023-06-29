@@ -36,6 +36,10 @@ import { AuthService } from './OT_DSR/core/services/auth.service';
                             loadChildren: () => import( '../app/OT_DSR/catalogo/catalogo.module').then((m) => m.CatalogoModule),
                         },
                         {
+                            path: 'fabricantes',
+                            loadChildren: () => import( '../app/OT_DSR/fabricantes/fabricantes.module').then((m) => m.FabricantesModule),
+                        },
+                        {
                             path: 'empty',
                             loadComponent: () => import('./OT_DSR/pages/empty/empty.component').then(m => m.EmptyComponent)
                         },
