@@ -24,6 +24,10 @@ import { AuthService } from './OT_DSR/core/services/auth.service';
                             loadChildren: () => import( './OT_DSR/dashboard/dashboard.module' ).then((m) => m.DashboardModule),
                         },
                         {
+                            path: 'ordenes-trabajo',
+                            loadChildren: () => import( '../app/OT_DSR/ordenes-trabajo/ordenes-trabajo.module').then((m) => m.OrdenesTrabajoModule),
+                        },
+                        {
                             path: 'catalogo',
                             loadChildren: () => import( '../app/OT_DSR/catalogo/catalogo.module').then((m) => m.CatalogoModule),
                         },

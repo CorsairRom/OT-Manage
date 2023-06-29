@@ -33,13 +33,13 @@ export class MenuComponent {
         const ot = {
             label: 'Ordenes de Trabajo',
             icon: 'bi bi-wrench-adjustable-circle',
-            routerLink: ['/trabajadores/listado'],
+            routerLink: ['/ordenes-trabajo/listado'],
         }
 
         const facturas = {
             label: 'Facturas',
             icon: 'bi bi-receipt',
-            routerLink: ['/propiedades/listado'],
+            routerLink: ['/facturas/listado'],
         }
 
         const catalogo = {
