@@ -28,6 +28,10 @@ import { AuthService } from './OT_DSR/core/services/auth.service';
                             loadChildren: () => import( '../app/OT_DSR/ordenes-trabajo/ordenes-trabajo.module').then((m) => m.OrdenesTrabajoModule),
                         },
                         {
+                            path: 'facturas',
+                            loadChildren: () => import( '../app/OT_DSR/facturas/facturas.module').then((m) => m.FacturasModule),
+                        },
+                        {
                             path: 'catalogo',
                             loadChildren: () => import( '../app/OT_DSR/catalogo/catalogo.module').then((m) => m.CatalogoModule),
                         },
