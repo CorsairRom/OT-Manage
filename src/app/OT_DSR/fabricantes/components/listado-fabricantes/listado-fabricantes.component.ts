@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Fabricantes } from '../../interfaces/fabricantes.model';
+import { Table } from 'primeng/table';
 
 @Component({
   selector: 'app-listado-fabricantes',
@@ -13,6 +14,7 @@ export class ListadoFabricantesComponent {
   @Output() registrarEvent = new EventEmitter()
   @Output() detalleEvent = new EventEmitter<number>()
 
+  filterFields: string[] = ['nombre']
 
   registrar() {
     this.registrarEvent.emit()
@@ -22,4 +24,9 @@ export class ListadoFabricantesComponent {
   detalle(fabricante: Fabricantes) {
     this.detalleEvent.emit(fabricante.id)
   }
+
+  clear(table: Table) {
+    table.clear();
+  }
+
 }

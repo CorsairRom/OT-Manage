@@ -7,10 +7,11 @@ import { DetalleFabricantePageComponent } from './pages/detalle-fabricante-page/
 import { ActualizarFabricantePageComponent } from './pages/actualizar-fabricante-page/actualizar-fabricante-page.component';
 import { RegistroFabricantePageComponent } from './pages/registro-fabricante-page/registro-fabricante-page.component';
 import { ListadoFabricantesComponent } from './components/listado-fabricantes/listado-fabricantes.component';
-
+import {InputTextModule} from 'primeng/inputtext';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { TagModule } from 'primeng/tag';
+import { FormularioFabricanteComponent } from './components/formulario-fabricante/formulario-fabricante.component';
 
 @NgModule({
   declarations: [
@@ -18,14 +19,16 @@ import { TagModule } from 'primeng/tag';
     DetalleFabricantePageComponent,
     ActualizarFabricantePageComponent,
     RegistroFabricantePageComponent,
-    ListadoFabricantesComponent
+    ListadoFabricantesComponent,
+    FormularioFabricanteComponent
   ],
   imports: [
     CommonModule,
     FabricantesRoutingModule,
     ButtonModule,
     TableModule,
-    TagModule
+    TagModule,
+    InputTextModule
   ]
 })
 export class FabricantesModule { }

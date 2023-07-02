@@ -1,4 +1,11 @@
-<p-table [value]="fabricantes" [tableStyle]="{ 'min-width': '50rem' }">
+<p-table
+    #fabricantesTable
+    [value]="fabricantes"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    [globalFilterFields]="filterFields"
+    [paginator]="true"
+    [rows]="7"
+    >
   <ng-template pTemplate="caption">
       <!-- Botón REGISTRAR -->
       <button pButton pRipple
@@ -8,6 +15,22 @@
           label="Registrar"
           (click)="registrar()">
       </button>
+      <div class="caption-filter">
+        <span class="p-input-icon-left ml-auto">
+            <i class="pi pi-search"></i>
+            <input pInputText type="text"
+                (input)="fabricantesTable.filterGlobal($any($event.target).value, 'contains')"
+                placeholder="Nombre" />
+        </span>
+        <!-- Botón LIMPIAR -->
+        <button pButton pRipple
+            icon="pi pi-filter-slash"
+            class="p-button-outlined mr-2"
+            style="color: #006C86;"
+            label="Limpiar"
+            (click)="clear(fabricantesTable)">
+        </button>
+    </div>
   </ng-template>
   <ng-template pTemplate="header">
       <tr>
