@@ -1,1 +1,8 @@
-<p>listado-fabricantes-page works!</p>
+<div class="card">
+  <h4>Fabricantes</h4>
+  <app-listado-fabricantes
+  *ngIf="fabricantes$ | async as fabricantes"
+  [fabricantes]="fabricantes"
+  (registrarEvent)="handleRegistrarEvent()"
+  ></app-listado-fabricantes>
+</div>

@@ -1,0 +1,44 @@
+<p-table [value]="fabricantes" [tableStyle]="{ 'min-width': '50rem' }">
+  <ng-template pTemplate="caption">
+      <!-- Botón REGISTRAR -->
+      <button pButton pRipple
+          icon="pi pi-plus"
+          class="p-button mr-2"
+          style="background-color:#F78E00"
+          label="Registrar"
+          (click)="registrar()">
+      </button>
+  </ng-template>
+  <ng-template pTemplate="header">
+      <tr>
+          <th class="font-bold">ID</th>
+          <th class="font-bold">Nombre</th>
+          <th class="font-bold">Estado</th>
+          <th class="font-bold">Fecha</th>
+          <th class="font-bold">Numero Productos</th>
+      </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-fabricante>
+      <tr>
+          <td>{{fabricante.id}}</td>
+          <td>{{fabricante.nombre}}
+          <td>{{fabricante.estado}}
+          <td>{{fabricante.fecha | date:'dd/MM/yyyy'}}</td>
+          <td>${{fabricante.num_productos | number}}</td>
+
+          <td>
+              <!-- Botón VER DETALLE -->
+              <div class="flex">
+                  <button pButton pRipple
+                  icon="pi pi-search"
+                  class="p-button-rounded mr-2"
+                  style="background-color:#006C86; width: 120px;"
+                  label="Ver detalle"
+                  (click)="detalle(fabricante)">
+              </button>
+              </div>
+
+          </td>
+      </tr>
+  </ng-template>
+</p-table>

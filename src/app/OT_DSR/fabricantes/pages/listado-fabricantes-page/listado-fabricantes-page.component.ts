@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+import { FabricanteServices } from '../../services/fabricantes.service';
+import { ListadoFabricantesComponent } from "../../components/listado-fabricantes/listado-fabricantes.component";
 
 @Component({
   selector: 'app-listado-fabricantes-page',
@@ -6,5 +10,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./listado-fabricantes-page.component.scss']
 })
 export class ListadoFabricantesPageComponent {
+  fabricanteService = inject(FabricanteServices)
+  router = inject(Router)
 
+  fabricantes$ = this.fabricanteService.getFabricantes()
+  handleRegistrarEvent() {
+    this.router.navigate(['fabricantes', 'registro'])
+  }
 }
