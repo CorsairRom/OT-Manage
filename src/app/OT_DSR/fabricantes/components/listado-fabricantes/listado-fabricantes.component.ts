@@ -15,9 +15,9 @@ export class ListadoFabricantesComponent {
   @Output() detalleEvent = new EventEmitter<number>()
 
   filterFields: string[] = ['nombre']
-
-  registrar() {
-    this.registrarEvent.emit()
+  valorRecibido: string ='';
+  registrar(txt: string) {
+    this.registrarEvent.emit(txt)
   }
 
 

@@ -12,6 +12,9 @@ import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { TagModule } from 'primeng/tag';
 import { FormularioFabricanteComponent } from './components/formulario-fabricante/formulario-fabricante.component';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { DialogModule } from 'primeng/dialog';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,10 @@ import { FormularioFabricanteComponent } from './components/formulario-fabricant
     ButtonModule,
     TableModule,
     TagModule,
-    InputTextModule
+    InputTextModule,
+    OverlayPanelModule,
+    DialogModule,
+    FormsModule
   ]
 })
 export class FabricantesModule { }

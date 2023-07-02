@@ -1,1 +1,52 @@
-<p>formulario-fabricante works!</p>
+
+
+
+
+<p-dialog
+  header="Registro Fabricante"
+  [(visible)]="display"
+  [modal]="true"
+  showEffect="fade"
+  [style]="{ width: '30vw' }"
+  [breakpoints]="{ '960px': '75vw' }"
+>
+
+  <div class="col-12 mb-2 lg:col-4 lg:mb-0 " >
+    <span class="p-float-label">
+      <input type="text" id="fabInput" pInputText [(ngModel)]="inputTextFabricante" style="width: 300px;">
+      <label for="fabInput">Nombre</label>
+    </span>
+  </div>
+  <ng-template pTemplate="footer">
+    <button
+      pButton
+      icon="pi pi-check"
+      (click)="display = false"
+      label="Cancelar"
+      class="p-button-raised p-button-danger"
+    ></button>
+    <button
+      pButton
+      icon="pi pi-check"
+      (click)="enviarValor()"
+      label="Registrar"
+      class="p-button-raised p-button-success"
+    ></button>
+  </ng-template>
+
+</p-dialog>
+<div class="grid">
+  <div class="col-12">
+    <button
+      #btnOverlay
+      (click)="display = true"
+      pButton
+      pRipple
+      class="p-button mr-2"
+      style="background-color: #f78e00"
+      icon="pi pi-plus"
+      label="Registrar"
+    ></button>
+  </div>
+</div>
+

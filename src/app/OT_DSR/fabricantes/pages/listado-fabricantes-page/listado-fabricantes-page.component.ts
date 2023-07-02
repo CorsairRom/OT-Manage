@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { FabricanteServices } from '../../services/fabricantes.service';
 import { ListadoFabricantesComponent } from "../../components/listado-fabricantes/listado-fabricantes.component";
+import { FabricanteForm, Fabricantes } from '../../interfaces/fabricantes.model';
+
 
 @Component({
   selector: 'app-listado-fabricantes-page',
@@ -13,8 +15,16 @@ export class ListadoFabricantesPageComponent {
   fabricanteService = inject(FabricanteServices)
   router = inject(Router)
 
+  fabricanteData: FabricanteForm = {
+    nombre: ''
+  };
+
   fabricantes$ = this.fabricanteService.getFabricantes()
-  handleRegistrarEvent() {
-    this.router.navigate(['fabricantes', 'registro'])
+  handleRegistrarEvent(nombre: string) {
+    this.fabricanteData.nombre=nombre
+    this.fabricanteService.createFabricante(this.fabricanteData).subscribe(()=>{
+      window.location.reload();
+    })
+    console.log(nombre);
   }
 }

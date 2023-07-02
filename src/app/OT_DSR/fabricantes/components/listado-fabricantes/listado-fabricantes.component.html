@@ -1,67 +1,78 @@
 <p-table
-    #fabricantesTable
-    [value]="fabricantes"
-    [tableStyle]="{ 'min-width': '50rem' }"
-    [globalFilterFields]="filterFields"
-    [paginator]="true"
-    [rows]="7"
-    >
+  #fabricantesTable
+  [value]="fabricantes"
+  [tableStyle]="{ 'min-width': '50rem' }"
+  [globalFilterFields]="filterFields"
+  [paginator]="true"
+  [rows]="7"
+>
   <ng-template pTemplate="caption">
-      <!-- Botón REGISTRAR -->
+    <!-- Botón REGISTRAR
       <button pButton pRipple
           icon="pi pi-plus"
           class="p-button mr-2"
           style="background-color:#F78E00"
           label="Registrar"
           (click)="registrar()">
-      </button>
+      </button> -->
       <div class="caption-filter">
-        <span class="p-input-icon-left ml-auto">
-            <i class="pi pi-search"></i>
-            <input pInputText type="text"
-                (input)="fabricantesTable.filterGlobal($any($event.target).value, 'contains')"
-                placeholder="Nombre" />
-        </span>
-        <!-- Botón LIMPIAR -->
-        <button pButton pRipple
-            icon="pi pi-filter-slash"
-            class="p-button-outlined mr-2"
-            style="color: #006C86;"
-            label="Limpiar"
-            (click)="clear(fabricantesTable)">
-        </button>
+      <app-formulario-fabricante
+      (InputFabricanteEmit) = "registrar($event)"
+      ></app-formulario-fabricante>
+      <span class="p-input-icon-left ml-auto">
+        <i class="pi pi-search"></i>
+        <input
+          pInputText
+          type="text"
+          (input)="
+            fabricantesTable.filterGlobal($any($event.target).value, 'contains')
+          "
+          placeholder="Nombre"
+        />
+      </span>
+      <!-- Botón LIMPIAR -->
+      <button
+        pButton
+        pRipple
+        icon="pi pi-filter-slash"
+        class="p-button-outlined mr-2"
+        style="color: #006c86"
+        label="Limpiar"
+        (click)="clear(fabricantesTable)"
+      ></button>
     </div>
   </ng-template>
   <ng-template pTemplate="header">
-      <tr>
-          <th class="font-bold">ID</th>
-          <th class="font-bold">Nombre</th>
-          <th class="font-bold">Estado</th>
-          <th class="font-bold">Fecha</th>
-          <th class="font-bold">Numero Productos</th>
-      </tr>
+    <tr>
+      <th class="font-bold">ID</th>
+      <th class="font-bold">Nombre</th>
+      <th class="font-bold">Estado</th>
+      <th class="font-bold">Fecha</th>
+      <th class="font-bold">Numero Productos</th>
+    </tr>
   </ng-template>
   <ng-template pTemplate="body" let-fabricante>
-      <tr>
-          <td>{{fabricante.id}}</td>
-          <td>{{fabricante.nombre}}
-          <td>{{fabricante.estado}}
-          <td>{{fabricante.fecha | date:'dd/MM/yyyy'}}</td>
-          <td>${{fabricante.num_productos | number}}</td>
+    <tr>
+      <td>{{ fabricante.id }}</td>
+      <td>{{ fabricante.nombre }}</td>
+      <td>{{ fabricante.estado }}</td>
+      <td>{{ fabricante.fecha | date : "dd/MM/yyyy" }}</td>
+      <td>${{ fabricante.num_productos | number }}</td>
 
-          <td>
-              <!-- Botón VER DETALLE -->
-              <div class="flex">
-                  <button pButton pRipple
-                  icon="pi pi-search"
-                  class="p-button-rounded mr-2"
-                  style="background-color:#006C86; width: 120px;"
-                  label="Ver detalle"
-                  (click)="detalle(fabricante)">
-              </button>
-              </div>
-
-          </td>
-      </tr>
+      <td>
+        <!-- Botón VER DETALLE -->
+        <div class="flex">
+          <button
+            pButton
+            pRipple
+            icon="pi pi-search"
+            class="p-button-rounded mr-2"
+            style="background-color: #006c86; width: 120px"
+            label="Ver detalle"
+            (click)="detalle(fabricante)"
+          ></button>
+        </div>
+      </td>
+    </tr>
   </ng-template>
 </p-table>

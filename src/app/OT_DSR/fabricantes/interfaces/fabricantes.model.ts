@@ -1,14 +1,11 @@
 export interface Fabricantes {
-  id: number;
+  id?: number;
   nombre: string;
   estado: boolean;
   fecha: Date;
-  num_productos: number;
+  num_productos: number | null;
 }
 
-export interface FabricanteForm{
+export interface FabricanteForm {
   nombre: string;
-  estado: boolean;
-  fecha: Date;
-  num_productos: number;
 }

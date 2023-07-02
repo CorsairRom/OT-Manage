@@ -3,6 +3,6 @@
   <app-listado-fabricantes
   *ngIf="fabricantes$ | async as fabricantes"
   [fabricantes]="fabricantes"
-  (registrarEvent)="handleRegistrarEvent()"
+  (registrarEvent)="handleRegistrarEvent($event)"
   ></app-listado-fabricantes>
 </div>
