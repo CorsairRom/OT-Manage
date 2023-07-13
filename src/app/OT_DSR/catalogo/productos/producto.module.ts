@@ -10,6 +10,8 @@ import { ListadoProductosPageComponent } from './pages/listado-productos-page/li
 import { RegistroProductoPageComponent } from './pages/registro-producto-page/registro-producto-page.component';
 import { TablaProductosComponent } from './components/tabla-productos/tabla-productos.component';
 import { PrimeNGModule } from '../../prime-ng/prime-ng.module';
+import { FormularioProductoComponent } from './components/formulario-producto/formulario-producto.component';
+
 
 @NgModule({
 	imports: [
@@ -24,7 +26,8 @@ import { PrimeNGModule } from '../../prime-ng/prime-ng.module';
     DetalleProductoPageComponent,
     ListadoProductosPageComponent,
     RegistroProductoPageComponent,
-    TablaProductosComponent
+    TablaProductosComponent,
+    FormularioProductoComponent
   ]
 })
 export class ProductoModule{

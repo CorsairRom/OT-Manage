@@ -10,7 +10,10 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { TableModule } from 'primeng/table';
 import { TagModule } from 'primeng/tag';
 import { ToolbarModule } from 'primeng/toolbar';
-
+import { SelectButtonModule } from 'primeng/selectbutton';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { DropdownModule } from 'primeng/dropdown';
 
 
 @NgModule({
@@ -26,6 +29,10 @@ import { ToolbarModule } from 'primeng/toolbar';
     TableModule,
     TagModule,
     ToolbarModule,
+    SelectButtonModule,
+    InputTextareaModule,
+    InputNumberModule,
+    DropdownModule
   ]
 })
 export class PrimeNGModule { }

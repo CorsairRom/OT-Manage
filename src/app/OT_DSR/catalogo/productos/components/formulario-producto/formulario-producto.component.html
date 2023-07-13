@@ -1,0 +1,122 @@
+<div class="grid nested-grid">
+  <div class="col">
+    <div class="card">Imagen</div>
+  </div>
+<form [formGroup]="form">
+  <div class="grid mb-3">
+      <div class="col-12 flex flex-column gap-2">
+          <span class="p-float-label">
+              <input
+                  type="text"
+                  pInputText
+                  formControlName="codigo"
+                  autofocus
+                  placeholder="LA12345"
+                  [style]="{ width: '100%' }" />
+              <label>Codigo Producto *</label>
+          </span>
+          <!-- <small>Rut con puntos y con guión,
+              <strong> Ej: 11.625.443-8</strong>
+          </small> -->
+      </div>
+
+      <div class="col-12 flex flex-column gap-2">
+          <span class="p-float-label">
+              <input type="email" pInputText formControlName="modelo" placeholder="Conectors"
+                  [style]="{ width: '100%' }" />
+              <label>Modelo Producto *</label>
+          </span>
+      </div>
+  </div>
+
+  <div class="grid mb-3">
+      <div class="col-12 flex flex-column gap-2">
+          <span class="p-float-label">
+              <input type="text" pInputText formControlName="nombre" placeholder="Banana Conector"
+                  [style]="{ width: '100%' }" />
+              <label>Nombre Producto *</label>
+          </span>
+      </div>
+      <div class="col-12 flex flex-column gap-2">
+          <span class="p-float-label">
+            <textarea rows="5" cols="30" pInputTextarea [autoResize]="true" [style]="{ width: '100%' }" formControlName="nota"></textarea>
+              <!-- <input type="text" pInputText formControlName="seg_nom_arr" placeholder="Gomez"
+                  [style]="{ width: '100%' }" /> -->
+              <label>Nota</label>
+          </span>
+      </div>
+  </div>
+
+  <div class="grid mb-3">
+      <div class="col flex flex-column gap-2">
+        <p-dropdown formControlName="fabricante" [options]="fabricantesNombres" optionLabel="nombre" [style]="{ width: '100%' }" ></p-dropdown>
+      </div>
+  </div>
+
+  <div class="grid mb-3">
+      <div class="col flex flex-column gap-2">
+          <span class="p-float-label">
+            <p-inputNumber
+              placeholder="$ 199.123 *"
+              formControlName="precio"
+              prefix="$ "
+              [style]="{ width: '100%' }"
+              inputId="integeronly">
+            </p-inputNumber>
+              <label>Precio de venta *</label>
+          </span>
+      </div>
+      <div class="col flex flex-column gap-2">
+        <span class="p-float-label">
+          <p-inputNumber
+            placeholder="1 *"
+            formControlName="stock"
+            [style]="{ width: '100%' }"
+            inputId="integeronly">
+          </p-inputNumber>
+            <label>Stock*</label>
+        </span>
+    </div>
+  </div>
+
+  <div class="grid mb-3">
+      <div class="col flex flex-column gap-2">
+          <span class="p-float-label">
+              <input pInputText formControlName="imagen"
+                  [style]="{ width: '100%' }" />
+              <label>Imagen *</label>
+          </span>
+          <!-- <small>Solo números son permitidos,
+              <strong>Ej: 93526734</strong></small> -->
+      </div>
+
+  </div>
+
+  <div class="grid mb-4">
+      <div class="col flex flex-column gap-2">
+          <p-selectButton
+              [options]="opcionesEstadoProducto"
+              formControlName="estado"
+              optionLabel="label"
+              optionValue="value">
+          </p-selectButton>
+      </div>
+      <div class="col flex flex-column gap-2"></div>
+  </div>
+
+
+  <div class="flex">
+      <p-button
+          styleClass="mr-3"
+          [disabled]="form.invalid"
+          label="Guardar"
+          (click)="onSubmit()"
+      ></p-button>
+      <p-button
+          label="Cancelar"
+          styleClass="p-button-danger"
+          (click)="cancel()"
+      ></p-button>
+  </div>
+</form>
+</div>
