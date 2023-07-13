@@ -7,14 +7,6 @@
   [rows]="7"
 >
   <ng-template pTemplate="caption">
-    <!-- Botón REGISTRAR
-      <button pButton pRipple
-          icon="pi pi-plus"
-          class="p-button mr-2"
-          style="background-color:#F78E00"
-          label="Registrar"
-          (click)="registrar()">
-      </button> -->
       <div class="caption-filter">
       <app-formulario-fabricante
       (InputFabricanteEmit) = "registrar($event)"
@@ -49,15 +41,18 @@
       <th class="font-bold">Estado</th>
       <th class="font-bold">Fecha</th>
       <th class="font-bold">Numero Productos</th>
+      <th class="font-bold">Acciones</th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-fabricante>
     <tr>
       <td>{{ fabricante.id }}</td>
       <td>{{ fabricante.nombre }}</td>
-      <td>{{ fabricante.estado }}</td>
+      <td><span [ngClass]="{'estado-activo': fabricante.estado, 'estado-inactivo': !fabricante.estado}">
+        {{ fabricante.estado ? 'activo' : 'inactivo' }}
+      </span></td>
       <td>{{ fabricante.fecha | date : "dd/MM/yyyy" }}</td>
-      <td>${{ fabricante.num_productos | number }}</td>
+      <td>{{ fabricante.num_productos | number }}</td>
 
       <td>
         <!-- Botón VER DETALLE -->

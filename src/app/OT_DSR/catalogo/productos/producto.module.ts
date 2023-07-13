@@ -9,6 +9,10 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { MessagesModule } from 'primeng/messages';
 import { MultiSelectModule } from 'primeng/multiselect';
+import { ActualizarProductoPageComponent } from './pages/actualizar-producto-page/actualizar-producto-page.component';
+import { DetalleProductoPageComponent } from './pages/detalle-producto-page/detalle-producto-page.component';
+import { ListadoProductosPageComponent } from './pages/listado-productos-page/listado-productos-page.component';
+import { RegistroProductoPageComponent } from './pages/registro-producto-page/registro-producto-page.component';
 
 @NgModule({
 	imports: [
@@ -21,7 +25,14 @@ import { MultiSelectModule } from 'primeng/multiselect';
     ConfirmPopupModule,
     MessagesModule,
     MultiSelectModule,
-	]
+    ProductoRoutingModule
+	],
+  declarations: [
+    ActualizarProductoPageComponent,
+    DetalleProductoPageComponent,
+    ListadoProductosPageComponent,
+    RegistroProductoPageComponent
+  ]
 })
 export class ProductoModule{
 

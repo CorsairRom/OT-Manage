@@ -7,7 +7,7 @@ import { RegistroProductoPageComponent } from '../productos/pages/registro-produ
 @NgModule({
 	imports: [RouterModule.forChild([
     {path: 'listado', component: ListadoServiciosPageComponent},
-    {path: 'registro', component: RegistroProductoPageComponent}
+    {path: 'registro', component: RegistroProductoPageComponent}//reparar
 	])],
 	exports: [RouterModule]
 })

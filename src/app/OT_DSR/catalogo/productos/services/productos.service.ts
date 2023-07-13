@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({providedIn: 'root'})
-export class ServiceNameService {
+export class ProductosService {
   constructor() { }
 
 }

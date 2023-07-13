@@ -37,3 +37,19 @@ td:nth-child(6) {
 td:last-child {
   width: 10%;
 }
+
+.estado-activo {
+  display: inline-block;
+  background-color: green;
+  color: white;
+  border-radius: 30px;
+  padding: 5px 10px;
+}
+
+.estado-inactivo {
+  display: inline-block;
+  background-color: red;
+  color: white;
+  border-radius: 30px;
+  padding: 5px 10px;
+}
