@@ -2,9 +2,9 @@
 <div class="grid nested-grid">
   <div class="col">
 
-    <div class="card flex justify-content-center" >
+    <div class="card flex justify-content-center" [style]="{ height: '300px' }"  >
       <p-image *ngIf="!imagenSeleccionada"  [src]="['assets/img/product.png']" alt="Image" width="250"></p-image>
-      <p-image *ngIf="imagenSeleccionada" [src]="imagenSeleccionada" alt="Image" width="250"></p-image>
+      <p-image *ngIf="imagenSeleccionada" class="flex align-items-center" [src]="imagenSeleccionada" alt="Image" width="250"></p-image>
     </div>
   </div>
 <form [formGroup]="form" enctype="multipart/form-data" >
