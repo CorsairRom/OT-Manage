@@ -1,8 +1,11 @@
 <div class="grid nested-grid">
   <div class="col">
-    <div class="card">Imagen</div>
+
+    <div class="card flex justify-content-center" >
+      <p-image [src]="imagenSeleccionada" alt="Image" width="250"></p-image>
+    </div>
   </div>
-<form [formGroup]="form">
+<form [formGroup]="form" enctype="multipart/form-data" >
   <div class="grid mb-3">
       <div class="col-12 flex flex-column gap-2">
           <span class="p-float-label">
@@ -80,14 +83,10 @@
   </div>
 
   <div class="grid mb-3">
+
       <div class="col flex flex-column gap-2">
-          <span class="p-float-label">
-              <input pInputText formControlName="imagen"
-                  [style]="{ width: '100%' }" />
-              <label>Imagen *</label>
-          </span>
-          <!-- <small>Solo números son permitidos,
-              <strong>Ej: 93526734</strong></small> -->
+        <label for="imagen">Imagen</label>
+        <p-fileUpload mode="basic" chooseLabel="Buscar" accept="image/*" name="imagen" id="imagen" [customUpload]="true" (uploadHandler)="onFileSelect($event)"></p-fileUpload>
       </div>
 
   </div>

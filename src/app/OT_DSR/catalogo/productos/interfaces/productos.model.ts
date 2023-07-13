@@ -6,11 +6,11 @@ export interface Producto{
   modelo: string | null;
   nombre: string;
   nota: string | null;
-  fabricante: Fabricantes;
+  fabricante: number;
   precio: number;
   estado?: boolean;
-  fecha: Date;
-  imagen: string | null;
+  fecha?: Date;
+  imagen: string | null | File;
   stock: number;
 }
 
@@ -31,7 +31,7 @@ export interface ProductosResponse {
 }
 
 export interface ProductoForm{
-  // id?: string;
+  id?: string;
   codigo: string;
   modelo: string | null;
   nombre: string;
@@ -40,6 +40,6 @@ export interface ProductoForm{
   precio: number;
   estado?: boolean;
   fecha?: Date;
-  imagen: string | null;
+  imagen: File | null;
   stock: number;
 }

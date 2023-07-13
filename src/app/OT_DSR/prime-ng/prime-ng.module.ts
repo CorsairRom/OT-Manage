@@ -14,7 +14,9 @@ import { SelectButtonModule } from 'primeng/selectbutton';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { DropdownModule } from 'primeng/dropdown';
-
+import { FileUploadModule } from 'primeng/fileupload';
+import { ToastModule } from 'primeng/toast';
+import { ImageModule } from 'primeng/image';
 
 @NgModule({
 
@@ -32,7 +34,10 @@ import { DropdownModule } from 'primeng/dropdown';
     SelectButtonModule,
     InputTextareaModule,
     InputNumberModule,
-    DropdownModule
+    DropdownModule,
+    FileUploadModule,
+    ToastModule,
+    ImageModule
   ]
 })
 export class PrimeNGModule { }

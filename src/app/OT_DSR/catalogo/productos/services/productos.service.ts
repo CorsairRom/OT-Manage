@@ -1,6 +1,6 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { throwError } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { MensajeService } from 'src/app/OT_DSR/core/services/message.service';
 import { environment } from 'src/environments/environment';
 import { Producto } from '../interfaces/productos.model';
@@ -25,6 +25,12 @@ export class ProductosService {
   }
   getProductos(query: {} = {}) {
     return this.http.get<Producto[]>(`${this.apiUrl}/`, {params: query});
+  }
+
+  addProducto(productoFormData: FormData): Observable<any>  {
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'multipart/form-data');
+    return this.http.post<Producto>(`${this.apiUrl}/`, productoFormData, {headers});
   }
 
 }
