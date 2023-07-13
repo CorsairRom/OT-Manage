@@ -5,7 +5,7 @@ import { Table } from 'primeng/table';
 import { Producto } from '../../interfaces/productos.model';
 
 @Component({
-  selector: 'app-tabla-productos',
+  selector: 'tabla-productos',
   templateUrl: './tabla-productos.component.html',
   styleUrls: ['./tabla-productos.component.scss']
 })

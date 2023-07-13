@@ -1,1 +1,8 @@
-<h1>listado producto works</h1>
+<div class="card">
+  <h4>Productos</h4>
+  <tabla-productos
+    *ngIf="productos$ | async as productos"
+    [productos]="productos"
+
+  ></tabla-productos>
+</div>
