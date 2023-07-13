@@ -3,7 +3,7 @@ import { Injectable, inject } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { MensajeService } from 'src/app/OT_DSR/core/services/message.service';
 import { environment } from 'src/environments/environment';
-import { Producto } from '../interfaces/productos.model';
+import { Producto, ProductosResponse } from '../interfaces/productos.model';
 
 @Injectable({ providedIn: 'root' })
 export class ProductosService {
@@ -24,13 +24,17 @@ export class ProductosService {
     return throwError(() => new Error(msg));
   }
   getProductos(query: {} = {}) {
-    return this.http.get<Producto[]>(`${this.apiUrl}/`, {params: query});
+    return this.http.get<ProductosResponse[]>(`${this.apiUrl}/`, {params: query});
   }
 
   addProducto(productoFormData: FormData): Observable<any>  {
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'multipart/form-data');
     return this.http.post<Producto>(`${this.apiUrl}/`, productoFormData, {headers});
+  }
+
+  deleteProducto(id: number){
+    return this.http.delete<Producto>(`${this.apiUrl}/${id}`);
   }
 
 }

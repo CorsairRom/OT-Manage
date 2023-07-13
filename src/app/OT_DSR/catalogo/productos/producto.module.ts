@@ -13,13 +13,15 @@ import { PrimeNGModule } from '../../prime-ng/prime-ng.module';
 import { FormularioProductoComponent } from './components/formulario-producto/formulario-producto.component';
 
 
+
 @NgModule({
 	imports: [
 		CommonModule,
     FormsModule,
     ProductoRoutingModule,
     PrimeNGModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+
 	],
   declarations: [
     ActualizarProductoPageComponent,

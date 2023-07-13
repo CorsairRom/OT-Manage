@@ -59,6 +59,10 @@ import { AuthService } from './OT_DSR/core/services/auth.service';
                             path: 'empty',
                             loadComponent: () => import('./OT_DSR/pages/empty/empty.component').then(m => m.EmptyComponent)
                         },
+                        {
+                          path: '**',
+                          redirectTo: 'dashboard'
+                        }
                     ],
                 },
                 {
@@ -72,6 +76,8 @@ import { AuthService } from './OT_DSR/core/services/auth.service';
                 },
                 { path: 'notfound', component: NotFoundComponent },
                 { path: '**', redirectTo: '/notfound' },
+
+
             ],
             {
                 scrollPositionRestoration: 'enabled',

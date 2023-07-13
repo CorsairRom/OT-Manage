@@ -1,8 +1,8 @@
 <div class="card">
   <h4>Productos</h4>
   <tabla-productos
-    *ngIf="productos$ | async as productos"
-    [productos]="productos"
-
+    *ngIf="productos$"
+    [productos]="productos$"
+    (eliminarEvent)="eliminar($event)"
   ></tabla-productos>
 </div>

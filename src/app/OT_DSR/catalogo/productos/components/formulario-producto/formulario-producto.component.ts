@@ -15,6 +15,7 @@ interface fabricanteSelect{
   selector: 'formulario-producto',
   templateUrl: './formulario-producto.component.html',
   styleUrls: ['./formulario-producto.component.scss']
+
 })
 export class FormularioProductoComponent implements OnInit {
 
@@ -106,7 +107,7 @@ export class FormularioProductoComponent implements OnInit {
     if (this.file) {
       formData.append('imagen', this.file);
     }
-
+    this.form.reset();
     // this.productosServices.addProducto(formData).subscribe(data => console.log(data));
     this.submitEvent.emit(formData);
   }

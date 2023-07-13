@@ -1,3 +1,4 @@
+<p-toast></p-toast>
 <p-table
     #productosTable
     [value]="productos"
@@ -48,7 +49,7 @@
             <th class="font-bold">Acciones</th>
         </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-productos>
+    <ng-template pTemplate="body" let-productos let-i>
         <tr>
             <td>{{productos.codigo}}</td>
             <td>
@@ -66,10 +67,24 @@
                     <!-- Botón VER DETALLE -->
                     <button pButton pRipple
                         icon="pi pi-search"
-                        class="p-button-rounded mr-2"
-                        style="background-color:#006C86; width: 120px;"
-                        label="Ver detalle"
+                        class="p-button-rounded mr-1"
+                        style="background-color:#006C86;"
+
                         >
+                    </button>
+                    <button pButton pRipple
+                        icon="pi pi-pencil"
+                        class="p-button-rounded mr-1"
+                        style="background-color:#0d9135;"
+
+                        >
+                    </button>
+                    <p-confirmDialog [key]=i.id.toString() acceptButtonStyleClass="p-button-text p-button-danger" rejectButtonStyleClass="p-button-text "></p-confirmDialog>
+                    <button pButton pRipple
+                        (click)="eliminar($event, i.id)"
+                        icon="pi pi-trash"
+                        class="p-button-rounded p-button-danger mr-1"
+                    >
                     </button>
                 </div>
             </td>
