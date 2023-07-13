@@ -1,75 +1,109 @@
-<h4 class="pb-3">{{title}}</h4>
+<h4 class="pb-3">{{ title }}</h4>
 <div class="grid nested-grid">
   <div class="col pt-0">
-
-    <div class="card flex justify-content-center" [style]="{ height: '300px' }"  >
-      <p-image *ngIf="!imagenSeleccionada"  [src]="['assets/img/product.png']" alt="Image" width="250"></p-image>
-      <p-image *ngIf="imagenSeleccionada" class="flex align-items-center" [src]="imagenSeleccionada" alt="Image" width="250"></p-image>
+    <div class="card flex justify-content-center" [style]="{ height: '300px' }">
+      <p-image
+        *ngIf="!imagenSeleccionada"
+        [src]="['assets/img/product.png']"
+        alt="Image"
+        width="250"
+      ></p-image>
+      <p-image
+        *ngIf="imagenSeleccionada"
+        class="flex align-items-center"
+        [src]="imagenSeleccionada"
+        alt="Image"
+        width="250"
+      ></p-image>
     </div>
   </div>
-<form [formGroup]="form" enctype="multipart/form-data" >
-  <div class="grid mb-3">
+  <form [formGroup]="form" enctype="multipart/form-data">
+    <div class="grid mb-3">
       <div class="col-12 flex flex-column gap-2">
-          <span class="p-float-label">
-              <input
-                  type="text"
-                  pInputText
-                  formControlName="codigo"
-                  autofocus
-                  placeholder="LA12345"
-                  [style]="{ width: '100%' }" />
-              <label>Codigo Producto *</label>
-          </span>
-          <!-- <small>Rut con puntos y con guión,
+        <span class="p-float-label">
+          <input
+            type="text"
+            pInputText
+            formControlName="codigo"
+            autofocus
+            placeholder="LA12345"
+            [style]="{ width: '100%' }"
+          />
+          <label>Codigo Producto *</label>
+        </span>
+        <!-- <small>Rut con puntos y con guión,
               <strong> Ej: 11.625.443-8</strong>
           </small> -->
       </div>
 
       <div class="col-12 flex flex-column gap-2">
-          <span class="p-float-label">
-              <input type="email" pInputText formControlName="modelo" placeholder="Conectors"
-                  [style]="{ width: '100%' }" />
-              <label>Modelo Producto *</label>
-          </span>
+        <span class="p-float-label">
+          <input
+            type="email"
+            pInputText
+            formControlName="modelo"
+            placeholder="Conectors"
+            [style]="{ width: '100%' }"
+          />
+          <label>Modelo Producto *</label>
+        </span>
       </div>
-  </div>
+    </div>
 
-  <div class="grid mb-3">
+    <div class="grid mb-3">
       <div class="col-12 flex flex-column gap-2">
-          <span class="p-float-label">
-              <input type="text" pInputText formControlName="nombre" placeholder="Banana Conector"
-                  [style]="{ width: '100%' }" />
-              <label>Nombre Producto *</label>
-          </span>
+        <span class="p-float-label">
+          <input
+            type="text"
+            pInputText
+            formControlName="nombre"
+            placeholder="Banana Conector"
+            [style]="{ width: '100%' }"
+          />
+          <label>Nombre Producto *</label>
+        </span>
       </div>
       <div class="col-12 flex flex-column gap-2">
-          <span class="p-float-label">
-            <textarea rows="5" cols="30" pInputTextarea [autoResize]="true" [style]="{ width: '100%' }" formControlName="nota"></textarea>
-              <!-- <input type="text" pInputText formControlName="seg_nom_arr" placeholder="Gomez"
+        <span class="p-float-label">
+          <textarea
+            rows="5"
+            cols="30"
+            pInputTextarea
+            [autoResize]="true"
+            [style]="{ width: '100%' }"
+            formControlName="nota"
+          ></textarea>
+          <!-- <input type="text" pInputText formControlName="seg_nom_arr" placeholder="Gomez"
                   [style]="{ width: '100%' }" /> -->
-              <label>Nota</label>
-          </span>
+          <label>Nota</label>
+        </span>
       </div>
-  </div>
+    </div>
 
-  <div class="grid mb-3">
+    <div class="grid mb-3">
       <div class="col flex flex-column gap-2">
-        <p-dropdown formControlName="fabricante" [options]="fabricantesNombres" optionLabel="nombre" [style]="{ width: '100%' }" ></p-dropdown>
+        <p-dropdown
+          formControlName="fabricante"
+          [options]="fabricantesNombres"
+          optionLabel="nombre"
+          [style]="{ width: '100%' }"
+        ></p-dropdown>
       </div>
-  </div>
+    </div>
 
-  <div class="grid mb-3">
+    <div class="grid mb-3">
       <div class="col flex flex-column gap-2">
-          <span class="p-float-label">
-            <p-inputNumber
-              placeholder="$ 199.123 *"
-              formControlName="precio"
-              prefix="$ "
-              [style]="{ width: '100%' }"
-              inputId="integeronly">
-            </p-inputNumber>
-              <label>Precio de venta *</label>
-          </span>
+        <span class="p-float-label">
+          <p-inputNumber
+            placeholder="$ 199.123 *"
+            formControlName="precio"
+            prefix="$ "
+            [style]="{ width: '100%' }"
+            inputId="integeronly"
+          >
+          </p-inputNumber>
+          <label>Precio de venta *</label>
+        </span>
       </div>
       <div class="col flex flex-column gap-2">
         <span class="p-float-label">
@@ -77,47 +111,54 @@
             placeholder="1 *"
             formControlName="stock"
             [style]="{ width: '100%' }"
-            inputId="integeronly">
+            inputId="integeronly"
+          >
           </p-inputNumber>
-            <label>Stock*</label>
+          <label>Stock*</label>
         </span>
-    </div>
-  </div>
-
-  <div class="grid mb-3">
-
-      <div class="col flex flex-column gap-2">
-        <label for="imagen">Imagen</label>
-        <p-fileUpload mode="basic" chooseLabel="Buscar" accept="image/*" name="imagen" id="imagen" [customUpload]="true" (uploadHandler)="onFileSelect($event)"></p-fileUpload>
       </div>
+    </div>
 
-  </div>
-
-  <div class="grid mb-4">
+    <div class="grid mb-3">
       <div class="col flex flex-column gap-2">
-          <p-selectButton
-              [options]="opcionesEstadoProducto"
-              formControlName="estado"
-              optionLabel="label"
-              optionValue="value">
-          </p-selectButton>
+        <p-fileUpload
+          mode="basic"
+          chooseLabel="Buscar imagen"
+          accept="image/*"
+          name="imagen"
+          id="imagen"
+          [style]="{ width: '100%' }"
+          [customUpload]="true"
+          (uploadHandler)="onFileSelect($event)"
+        ></p-fileUpload>
+      </div>
+    </div>
+
+    <div class="grid mb-4">
+      <div class="col flex flex-column gap-2">
+        <p-selectButton
+          [options]="opcionesEstadoProducto"
+          formControlName="estado"
+          optionLabel="label"
+          optionValue="value"
+        >
+        </p-selectButton>
       </div>
       <div class="col flex flex-column gap-2"></div>
-  </div>
+    </div>
 
-
-  <div class="flex">
+    <div class="flex">
       <p-button
-          styleClass="mr-3"
-          [disabled]="form.invalid"
-          label="Guardar"
-          (click)="submit()"
+        styleClass="mr-3"
+        [disabled]="form.invalid"
+        label="Guardar"
+        (click)="submit()"
       ></p-button>
       <p-button
-          label="Cancelar"
-          styleClass="p-button-danger"
-          (click)="cancel()"
+        label="Cancelar"
+        styleClass="p-button-danger"
+        (click)="cancel()"
       ></p-button>
-  </div>
-</form>
+    </div>
+  </form>
 </div>

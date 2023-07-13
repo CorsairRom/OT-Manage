@@ -21,6 +21,7 @@ export class RegistroProductoPageComponent {
   }
   //TODO: Agregar otro boton para agregar varios productos
   //y ademas una ventana de retroalimentacion cuando el producto este agregado
+  //TODO: Agregar https://www.npmjs.com/package/jsbarcode
 
   cancel() {
     this.location.back();
