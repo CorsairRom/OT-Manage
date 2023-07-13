@@ -51,7 +51,10 @@
     <ng-template pTemplate="body" let-productos>
         <tr>
             <td>{{productos.codigo}}</td>
-            <td>{{productos.imagen}}</td>
+            <td>
+              <p-image
+               [src]="productos.imagen" alt="Image" width="65" ></p-image>
+            </td>
             <td>{{productos.modelo}}</td>
             <td>{{productos.nombre}}</td>
             <td>{{productos.fabricante}}</td>

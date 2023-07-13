@@ -1,4 +1,8 @@
 <div class="card">
-  <h4>Registro Producto</h4>
-  <formulario-producto></formulario-producto>
+  <formulario-producto
+  title="Registro Producto"
+  (submitEvent)="submit($event)"
+  (cancelEvent)="cancel()"
+
+  ></formulario-producto>
 </div>

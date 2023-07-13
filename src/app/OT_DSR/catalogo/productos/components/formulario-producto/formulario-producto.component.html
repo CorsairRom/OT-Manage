@@ -1,8 +1,10 @@
+<h4 class="pb-2">{{title}}</h4>
 <div class="grid nested-grid">
   <div class="col">
 
     <div class="card flex justify-content-center" >
-      <p-image [src]="imagenSeleccionada" alt="Image" width="250"></p-image>
+      <p-image *ngIf="!imagenSeleccionada"  [src]="['assets/img/product.png']" alt="Image" width="250"></p-image>
+      <p-image *ngIf="imagenSeleccionada" [src]="imagenSeleccionada" alt="Image" width="250"></p-image>
     </div>
   </div>
 <form [formGroup]="form" enctype="multipart/form-data" >
@@ -109,7 +111,7 @@
           styleClass="mr-3"
           [disabled]="form.invalid"
           label="Guardar"
-          (click)="onSubmit()"
+          (click)="submit()"
       ></p-button>
       <p-button
           label="Cancelar"

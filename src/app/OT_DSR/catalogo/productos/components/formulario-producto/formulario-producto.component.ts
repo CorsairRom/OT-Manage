@@ -19,8 +19,9 @@ interface fabricanteSelect{
 export class FormularioProductoComponent implements OnInit {
 
   @Input() producto? : ProductosResponse
+  @Input() title? : string
 
-  @Output() submitEvent = new EventEmitter<ProductoForm>()
+  @Output() submitEvent = new EventEmitter<FormData>()
   @Output() cancelEvent = new EventEmitter<void>()
 
   opcionesEstadoProducto: {label: string; value: boolean}[] = [
@@ -30,7 +31,7 @@ export class FormularioProductoComponent implements OnInit {
 
   fabricantesNombres: fabricanteSelect[] = [];
   file:File | null = null;
-  imagenSeleccionada!: string;
+  imagenSeleccionada?: string;
 
   fb = inject(FormBuilder)
   fabricantesServices = inject(FabricanteServices)
@@ -88,7 +89,7 @@ export class FormularioProductoComponent implements OnInit {
   //   // this.submitEvent.emit(productoForm);
   // }
 
-  onSubmit(): void {
+  submit(): void {
     console.log(this.form);
     if (this.form.invalid) return;
 
@@ -106,11 +107,8 @@ export class FormularioProductoComponent implements OnInit {
       formData.append('imagen', this.file);
     }
 
-    console.log('Formulario:', this.form.value);
-    console.log('Imagen:', this.file);
-    console.log(formData);
-    this.productosServices.addProducto(formData).subscribe(data => console.log(data));
-    // this.submitEvent.emit(productoForm);
+    // this.productosServices.addProducto(formData).subscribe(data => console.log(data));
+    this.submitEvent.emit(formData);
   }
 
 
