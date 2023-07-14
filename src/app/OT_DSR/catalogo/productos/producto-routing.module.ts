@@ -5,11 +5,13 @@ import { RegistroProductoPageComponent } from './pages/registro-producto-page/re
 import { ActualizarProductoPageComponent } from './pages/actualizar-producto-page/actualizar-producto-page.component';
 
 
+
 @NgModule({
 	imports: [RouterModule.forChild([
 		{ path: 'listado', component:ListadoProductosPageComponent },
 		{ path: 'registro', component:RegistroProductoPageComponent },
-    { path: ':id/editar', component: ActualizarProductoPageComponent}
+    { path: ':id/editar', component: ActualizarProductoPageComponent},
+
 	])],
 	exports: [RouterModule]
 })

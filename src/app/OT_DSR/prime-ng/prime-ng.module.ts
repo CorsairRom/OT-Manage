@@ -18,8 +18,8 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { ToastModule } from 'primeng/toast';
 import { ImageModule } from 'primeng/image';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
-
-
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { CardModule } from 'primeng/card';
 @NgModule({
 
   exports: [
@@ -40,7 +40,9 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     FileUploadModule,
     ToastModule,
     ImageModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    DynamicDialogModule,
+    CardModule
   ]
 })
 export class PrimeNGModule { }

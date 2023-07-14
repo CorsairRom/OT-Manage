@@ -11,6 +11,7 @@ import { RegistroProductoPageComponent } from './pages/registro-producto-page/re
 import { TablaProductosComponent } from './components/tabla-productos/tabla-productos.component';
 import { PrimeNGModule } from '../../prime-ng/prime-ng.module';
 import { FormularioProductoComponent } from './components/formulario-producto/formulario-producto.component';
+import { DetalleDialogComponent } from './components/detalle-dialog/detalle-dialog.component';
 
 
 
@@ -29,7 +30,8 @@ import { FormularioProductoComponent } from './components/formulario-producto/fo
     ListadoProductosPageComponent,
     RegistroProductoPageComponent,
     TablaProductosComponent,
-    FormularioProductoComponent
+    FormularioProductoComponent,
+    DetalleDialogComponent
   ]
 })
 export class ProductoModule{
