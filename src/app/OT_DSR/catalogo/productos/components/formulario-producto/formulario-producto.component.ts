@@ -1,15 +1,15 @@
 import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
-import { Producto, ProductosResponse, ProductoForm } from '../../interfaces/productos.model';
+import { Producto, ProductosResponse, ProductoForm, Fabricante } from '../../interfaces/productos.model';
 import { FormBuilder, Validators } from '@angular/forms';
 import { FabricanteServices } from 'src/app/OT_DSR/fabricantes/services/fabricantes.service';
 import { map, switchMap } from 'rxjs';
 import { ProductosService } from '../../services/productos.service';
 import { HttpHeaders } from '@angular/common/http';
 
-interface fabricanteSelect{
-  id: number;
-  nombre: string;
-}
+// interface fabricanteSelect{
+//   id: number;
+//   nombre: string;
+// }
 
 @Component({
   selector: 'formulario-producto',
@@ -22,15 +22,15 @@ export class FormularioProductoComponent implements OnInit {
   @Input() producto? : ProductosResponse
   @Input() title? : string
 
-  @Output() submitEvent = new EventEmitter<FormData>()
-  @Output() cancelEvent = new EventEmitter<void>()
+  @Output() submitEvent = new EventEmitter<FormData>();
+  @Output() cancelEvent = new EventEmitter<void>();
 
   opcionesEstadoProducto: {label: string; value: boolean}[] = [
     { label: 'Activo', value: true },
     { label: 'Inactivo', value: false },
   ]
-
-  fabricantesNombres: fabricanteSelect[] = [];
+  update:boolean = false;
+  fabricantesNombres: Fabricante[] = [];
   file:File | null = null;
   imagenSeleccionada?: string;
 
@@ -38,16 +38,14 @@ export class FormularioProductoComponent implements OnInit {
   fabricantesServices = inject(FabricanteServices)
   productosServices = inject(ProductosService)
 
-
-
   ngOnInit(): void {
     this.fabricantesServices.getFabricantes().pipe(
       map(fabricantes => {
         this.fabricantesNombres = fabricantes.map(fabricante => ({ id: fabricante.id!, nombre: fabricante.nombre }));
-        // console.log(this.fabricantesNombres);
+
       })
     ).subscribe(result => {}, error => console.log(error));
-      // console.log(this.producto);
+
     if(this.producto){
       this.imagenSeleccionada = this.producto.imagen!
       this.form.patchValue({
@@ -59,7 +57,7 @@ export class FormularioProductoComponent implements OnInit {
         estado: this.producto.estado,
         imagen: this.imagenSeleccionada,
         stock: this.producto.stock,
-        fabricante_id: null, //enviar desde el backend id y nombre
+        fabricante_id: {id: this.producto.fabricante.id, nombre: this.producto.fabricante.nombre}, //enviar desde el backend id y nombre
       })
     }
   }
@@ -73,12 +71,12 @@ export class FormularioProductoComponent implements OnInit {
     estado: this.fb.control<boolean>(true, [ Validators.required]),
     imagen: this.fb.control<File | null | string>(null),
     stock: this.fb.control<number>(0, [Validators.required, Validators.min(1), Validators.max(999999)]),
-    fabricante_id: this.fb.control<fabricanteSelect | null >(null, [Validators.required]),
+    fabricante_id: this.fb.control<Fabricante | null >(null, [Validators.required]),
   })
 
 
   submit(): void {
-    console.log(this.form);
+
     if (this.form.invalid) return;
 
     const formData = new FormData();
@@ -94,7 +92,11 @@ export class FormularioProductoComponent implements OnInit {
     if (this.file) {
       formData.append('imagen', this.file);
     }
+    if(this.producto?.id){
+      formData.append('id', String(this.producto!.id))
+    }
     this.form.reset();
+
 
     this.submitEvent.emit(formData);
   }
@@ -102,8 +104,6 @@ export class FormularioProductoComponent implements OnInit {
 
   onFileSelect(event: any): void {
     const file = event.files[0];
-
-    console.log(file);
     this.file = file;
     const reader = new FileReader();
 

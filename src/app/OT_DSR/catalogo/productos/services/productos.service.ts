@@ -41,4 +41,10 @@ export class ProductosService {
     return this.http.get<ProductosResponse>(`${this.apiUrl}/${id}`);
   }
 
+  updateProducto(productoFormData: FormData, id:number){
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'multipart/form-data');
+    return this.http.put<ProductoForm>(`${this.apiUrl}/${id}/`, productoFormData, {headers});
+  }
+
 }

@@ -23,7 +23,8 @@ export class ActualizarProductoPageComponent {
   )
 
   submit(formData: FormData){
-    this.productService.addProducto(formData).subscribe(data => this.router.navigate(['catalogo/productos/listado']));
+    let id:number = Number(formData.get('id'))
+    this.productService.updateProducto(formData, id).subscribe(data => this.router.navigate(['catalogo/productos/listado']));
 
   }
   //TODO: Agregar otro boton para agregar varios productos
