@@ -44,12 +44,25 @@ export class FormularioProductoComponent implements OnInit {
     this.fabricantesServices.getFabricantes().pipe(
       map(fabricantes => {
         this.fabricantesNombres = fabricantes.map(fabricante => ({ id: fabricante.id!, nombre: fabricante.nombre }));
-        console.log(this.fabricantesNombres);
+        // console.log(this.fabricantesNombres);
       })
     ).subscribe(result => {}, error => console.log(error));
+      // console.log(this.producto);
+    if(this.producto){
+      this.imagenSeleccionada = this.producto.imagen!
+      this.form.patchValue({
+        codigo: this.producto.codigo,
+        modelo: this.producto.modelo,
+        nombre: this.producto.nombre,
+        nota: this.producto.nota,
+        precio: this.producto.precio,
+        estado: this.producto.estado,
+        imagen: this.imagenSeleccionada,
+        stock: this.producto.stock,
+        fabricante_id: null, //enviar desde el backend id y nombre
+      })
+    }
   }
-
-
 
   form = this.fb.group({
     codigo: this.fb.control<string>('',[Validators.required, Validators.maxLength(12)] ),
@@ -58,37 +71,11 @@ export class FormularioProductoComponent implements OnInit {
     nota: this.fb.control<string | null>(null, [Validators.maxLength(500)] ),//final textField
     precio: this.fb.control<number>(0, [Validators.required, Validators.min(0), Validators.max(999999999)] ),
     estado: this.fb.control<boolean>(true, [ Validators.required]),
-    imagen: this.fb.control<File | null>(null),
+    imagen: this.fb.control<File | null | string>(null),
     stock: this.fb.control<number>(0, [Validators.required, Validators.min(1), Validators.max(999999)]),
-    fabricante: this.fb.control<fabricanteSelect | null>(null, [Validators.required]),
+    fabricante_id: this.fb.control<fabricanteSelect | null >(null, [Validators.required]),
   })
 
-  //TODO: setear el estado del producto cuando se necesita modificar
-  // onSubmit():void{
-  //   console.log(this.form);
-  //   if(this.form.invalid) return;
-
-  //   const values = this.form.getRawValue();
-
-  //   const productoForm: ProductoForm = {
-  //     codigo: values.codigo!,
-  //     modelo: values.modelo,
-  //     nombre: values.modelo!,
-  //     nota: values.nota,
-  //     precio: values.precio!,
-  //     estado: values.estado!,
-  //     imagen: this.file,
-  //     stock: values.stock!,
-  //     fabricante: values.fabricante?.id!
-  //   }
-
-
-  //   console.log(values.imagen);
-  //   console.log('Imagen: ',this.file);
-
-  //   this.productosServices.addProducto(productoForm).subscribe(data=> console.log(data))
-  //   // this.submitEvent.emit(productoForm);
-  // }
 
   submit(): void {
     console.log(this.form);
@@ -102,13 +89,13 @@ export class FormularioProductoComponent implements OnInit {
     formData.append('precio', String(this.form.value.precio));
     formData.append('estado', String(this.form.value.estado));
     formData.append('stock', String(this.form.value.stock));
-    formData.append('fabricante', this.form.value.fabricante?.id?.toString() || '');
+    formData.append('fabricante_id', this.form.value.fabricante_id?.id?.toString() || '');
 
     if (this.file) {
       formData.append('imagen', this.file);
     }
     this.form.reset();
-    // this.productosServices.addProducto(formData).subscribe(data => console.log(data));
+
     this.submitEvent.emit(formData);
   }
 

@@ -1,6 +1,3 @@
-import { Fabricantes } from "../../../fabricantes/interfaces/fabricantes.model";
-
-
 export interface Producto{
   codigo: string;
   modelo: string | null;
@@ -18,16 +15,21 @@ export interface Producto{
 
 export interface ProductosResponse {
   id:         number;
+  fabricante: Fabricante;
   codigo:     string;
-  modelo:     string | null;
+  modelo:     null | string;
   nombre:     string;
   nota:       string | null;
   precio:     number;
   estado:     boolean;
   fecha:      string;
-  imagen:     string | null;
+  imagen:     null | string;
   stock:      number;
-  fabricante: number;
+}
+
+export interface Fabricante {
+  id:     number;
+  nombre: string;
 }
 
 export interface ProductoForm{
@@ -36,10 +38,12 @@ export interface ProductoForm{
   modelo: string | null;
   nombre: string;
   nota: string | null;
-  fabricante: number;
+  fabricante_id: number;
   precio: number;
   estado?: boolean;
   fecha?: Date;
   imagen: File | null;
   stock: number;
 }
+
+

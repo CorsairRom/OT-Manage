@@ -3,7 +3,7 @@ import { environment } from "src/environments/environment";
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams, HttpParamsOptions } from "@angular/common/http";
 import { MensajeService } from "src/app/OT_DSR/core/services/message.service";
 import { catchError, tap, throwError } from "rxjs";
-import { Fabricantes, FabricanteForm } from "../interfaces/fabricantes.model";
+import { Fabricantes, FabricanteForm} from "../interfaces/fabricantes.model";
 
 @Injectable({
   providedIn: 'root'

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductosService } from '../../services/productos.service';
 import { Table } from 'primeng/table';
@@ -11,17 +11,26 @@ import { ConfirmationService, MessageService, ConfirmEventType } from 'primeng/a
   styleUrls: ['./tabla-productos.component.scss'],
   providers: [ConfirmationService, MessageService]
 })
-export class TablaProductosComponent {
+export class TablaProductosComponent implements OnInit {
+
   @Input() productos: ProductosResponse[] = [];
   @Output() eliminarEvent = new EventEmitter<number>();
 
+  filterFields: string[] = ['codigo', 'nombre', 'fabricante']
+
+  ngOnInit(): void {
+    throw new Error('Method not implemented.');
+  }
+
+
   confimService = inject(ConfirmationService);
   messageService = inject(MessageService)
-  filterFields: string[] = ['codigo', 'nombre', 'fabricante']
+  router = inject(Router)
 
   clear(table: Table) {
     table.clear();
   }
+
   eliminar(event: Event, index: number) {
     console.log(index);
     this.confimService.confirm({
@@ -35,6 +44,10 @@ export class TablaProductosComponent {
       key: index.toString()
 
     });
+  }
+
+  editar(id:number){
+    this.router.navigate(['catalogo','productos', id, 'editar'])
   }
 
 }

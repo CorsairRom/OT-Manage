@@ -58,7 +58,7 @@
             </td>
             <td>{{productos.modelo}}</td>
             <td>{{productos.nombre}}</td>
-            <td>{{productos.fabricante}}</td>
+            <td>{{productos.fabricante.nombre}}</td>
             <td><p-tag [value]="productos.estado ? 'Activo': 'Inactivo'" [severity]="productos.estado ? 'success': 'danger'"></p-tag></td>
             <td>{{productos.precio}}</td>
             <td>{{productos.stock}}</td>
@@ -74,6 +74,7 @@
                     </button>
                     <button pButton pRipple
                         icon="pi pi-pencil"
+                        (click)="editar(i.id)"
                         class="p-button-rounded mr-1"
                         style="background-color:#0d9135;"
 
