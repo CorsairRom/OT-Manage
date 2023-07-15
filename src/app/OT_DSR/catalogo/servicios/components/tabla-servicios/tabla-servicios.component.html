@@ -51,8 +51,8 @@
             <td>{{servicios.codigo}}</td>
             <td>{{servicios.nombre}}</td>
             <td><p-tag [value]="servicios.estado ? 'Activo': 'Inactivo'" [severity]="servicios.estado ? 'success': 'danger'"></p-tag></td>
-            <td>{{servicios.fecha}}</td>
-            <td>{{servicios.precio}}</td>
+            <td>{{servicios.fecha | date: 'dd/MM/yyyy'}}</td>
+            <td>{{servicios.precio | currency:"USD":'symbol' : '1.0-0'}}</td>
             <td>
                 <div class="flex">
                     <!-- Botón VER DETALLE -->
