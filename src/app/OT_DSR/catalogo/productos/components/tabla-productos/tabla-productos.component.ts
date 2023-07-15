@@ -19,7 +19,7 @@ export class TablaProductosComponent {
   @Input() productos: ProductosResponse[] = [];
   @Output() eliminarEvent = new EventEmitter<number>();
 
-  filterFields: string[] = ['codigo', 'nombre', 'fabricante']
+  filterFields: string[] = ['codigo', 'nombre']
 
   confimService = inject(ConfirmationService);
   messageService = inject(MessageService)
