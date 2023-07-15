@@ -1,7 +1,8 @@
 <div class="card">
   <h4>Servicios</h4>
   <tabla-servicios
-
+    *ngIf="servicios$"
+    [servicios]="servicios$"
   >
   </tabla-servicios>
 </div>
