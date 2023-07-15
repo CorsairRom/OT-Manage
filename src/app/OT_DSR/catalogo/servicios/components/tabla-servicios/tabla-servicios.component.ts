@@ -17,13 +17,19 @@ import { FormularioServiciosComponent } from '../formulario-servicios/formulario
 export class TablaServiciosComponent {
   @Input() servicios: ServiciosResponse[] = [];
   @Output() eliminarEvent = new EventEmitter<string>();
+  @Output() serv: ServiciosResponse | undefined;
 
   filterFields: string[] = ['codigo', 'nombre', 'fabricante']
+  btnDisabled: boolean = true;
+  constructor(
+    private confirmationService: ConfirmationService,
+    private messageService: MessageService,
+    private router: Router,
+    private dialogService: DialogService
+  ){
 
-  confimService = inject(ConfirmationService);
-  messageService = inject(MessageService)
-  router = inject(Router)
-  dialogService = inject(DialogService)
+  }
+
 
   ref: DynamicDialogRef | undefined;
 
@@ -37,7 +43,7 @@ export class TablaServiciosComponent {
 
   eliminar(event: Event, codigo: string) {
     console.log(codigo);
-    this.confimService.confirm({
+    this.confirmationService.confirm({
       target: event.target || new EventTarget(),
       message: `¿Estas segur@ de eliminar este producto?`,
       icon: 'pi pi-exclamation-triangle',
@@ -58,12 +64,18 @@ export class TablaServiciosComponent {
       data: {
         id: codigo
       },
-      header: 'Select a Product',
+      header: 'Servicio',
+      resizable:false,
       width: '50%',
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
       maximizable: true
     });
+    this.ref.onClose.subscribe((data:ServiciosResponse ) =>{
+      if(data){
+        this.servicios.push(data)
+      }
+    })
 }
 
 }

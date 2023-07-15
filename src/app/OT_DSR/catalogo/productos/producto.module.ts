@@ -18,9 +18,9 @@ import { DetalleDialogComponent } from './components/detalle-dialog/detalle-dial
 @NgModule({
 	imports: [
 		CommonModule,
-    FormsModule,
-    ProductoRoutingModule,
     PrimeNGModule,
+    ProductoRoutingModule,
+    FormsModule,
     ReactiveFormsModule,
 
 	],

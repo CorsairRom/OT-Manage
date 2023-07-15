@@ -8,13 +8,16 @@ import { RegistroServicioPageComponent } from './pages/registro-servicio-page/re
 import { TablaServiciosComponent } from './components/tabla-servicios/tabla-servicios.component';
 import { FormularioServiciosComponent } from './components/formulario-servicios/formulario-servicios.component';
 import { PrimeNGModule } from '../../prime-ng/prime-ng.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
 	imports: [
 		CommonModule,
     ServicioRoutingModule,
-    PrimeNGModule
+    PrimeNGModule,
+    FormsModule,
+    ReactiveFormsModule,
 	],
 	declarations: [
    ActualizarServicioPageComponent,

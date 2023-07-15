@@ -2,8 +2,8 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { MensajeService } from 'src/app/OT_DSR/core/services/message.service';
 import { environment } from 'src/environments/environment';
-import { Observable, throwError } from 'rxjs';
-import { ServiciosResponse } from '../interfaces/servicio.interface';
+import { Observable, catchError, tap, throwError } from 'rxjs';
+import { ServiciosForm, ServiciosResponse } from '../interfaces/servicio.interface';
 
 @Injectable({ providedIn: 'root' })
 export class ServicioService {
@@ -27,8 +27,16 @@ export class ServicioService {
     return this.http.get<ServiciosResponse[]>(`${this.apiUrl}/`, {params: query});
   }
 
-  addProducto(servicioData: ServiciosResponse): Observable<ServiciosResponse>  {
-    return this.http.post<ServiciosResponse>(`${this.apiUrl}/`, servicioData);
+  addProducto(servicioData: ServiciosForm): Observable<ServiciosResponse>  {
+    return this.http.post<ServiciosResponse>(`${this.apiUrl}/`, servicioData).pipe(
+      tap(() => {
+          this.messageService.addMessage({
+              details: ['Servicio registrado exitosamente!'],
+              role: 'success'
+          })
+      }),
+      catchError((err: HttpErrorResponse) => this.handleError(err))
+  )
   }
 
 }

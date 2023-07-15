@@ -55,14 +55,8 @@
             <td>{{servicios.precio | currency:"USD":'symbol' : '1.0-0'}}</td>
             <td>
                 <div class="flex">
-                    <!-- Botón VER DETALLE -->
-                    <button pButton pRipple
-                        icon="pi pi-search"
-                        class="p-button-rounded mr-1"
-                        style="background-color:#006C86;"
-                        (click)="show(i.codigo)"
-                        >
-                    </button>
+
+
                     <button pButton pRipple
                         icon="pi pi-pencil"
                         (click)="editar(i.codigo)"
@@ -76,6 +70,7 @@
                         (click)="eliminar($event, i.codigo)"
                         icon="pi pi-trash"
                         class="p-button-rounded p-button-danger mr-1"
+                        [disabled]="btnDisabled"
                     >
                     </button>
                 </div>

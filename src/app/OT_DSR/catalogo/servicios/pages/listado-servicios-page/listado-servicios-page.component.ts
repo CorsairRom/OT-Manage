@@ -1,21 +1,35 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { ServicioService } from '../../services/servicio.service';
 import { ServiciosResponse } from '../../interfaces/servicio.interface';
+import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 
 @Component({
   selector: 'app-listado-servicios-page',
   templateUrl: './listado-servicios-page.component.html',
-  styleUrls: ['./listado-servicios-page.component.scss']
+  styleUrls: ['./listado-servicios-page.component.scss'],
+  providers: [DynamicDialogRef, DynamicDialogConfig]
 })
 export class ListadoServiciosPageComponent implements OnInit {
-  serviciosServices = inject( ServicioService )
+
   servicios$: ServiciosResponse[] = [];
+
+
+
+  constructor(
+    private serviciosServices: ServicioService,
+    private config: DynamicDialogConfig,
+  ){
+
+  }
+
+
 
   ngOnInit(): void {
     this.obtenerServicios();
   }
 
   obtenerServicios(): void {
+    if (this.servicios$.length>0) return;
     this.serviciosServices.getServicios().subscribe(
       servicios => {
         this.servicios$ = servicios;
