@@ -6,6 +6,7 @@ import { DetalleUnidadPageComponent } from './pages/detalle-unidad-page/detalle-
 import { ListadoUnidadesPageComponent } from './pages/listado-unidades-page/listado-unidades-page.component';
 import { RegistroUnidadPageComponent } from './pages/registro-unidad-page/registro-unidad-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PrimeNGModule } from '../../prime-ng/prime-ng.module';
 
 
 
@@ -16,6 +17,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     UnidadesRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    PrimeNGModule
 
 	],
 	declarations: [
