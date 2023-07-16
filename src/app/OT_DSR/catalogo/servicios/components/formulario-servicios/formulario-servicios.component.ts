@@ -1,24 +1,31 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ServicioService } from '../../services/servicio.service';
 import { ServiciosForm, ServiciosResponse } from '../../interfaces/servicio.interface';
-import { DynamicDialogRef } from 'primeng/dynamicdialog';
+import { DynamicDialogRef, DynamicDialogConfig } from 'primeng/dynamicdialog';
+import { tap } from 'rxjs';
 
 @Component({
   selector: 'app-formulario-servicios',
   templateUrl: './formulario-servicios.component.html',
   styleUrls: ['./formulario-servicios.component.scss']
 })
-export class FormularioServiciosComponent {
+export class FormularioServiciosComponent implements OnInit {
+
   opcionesEstadoServicio: {label: string; value: boolean}[] = [
     { label: 'Activo', value: true },
     { label: 'Inactivo', value: false },
   ]
-  fb = inject(FormBuilder)
-  servicioService = inject(ServicioService)
-  ref = inject(DynamicDialogRef)
+
   public title?: string;
   data: ServiciosResponse | undefined ;
+
+
+  fb = inject(FormBuilder)
+  config = inject(DynamicDialogConfig)
+  servicioService = inject(ServicioService)
+  ref = inject(DynamicDialogRef)
+
 
   form = this.fb.group({
     codigo: this.fb.control<string>('',[Validators.required,Validators.minLength(5), Validators.maxLength(12)] ),
@@ -27,9 +34,33 @@ export class FormularioServiciosComponent {
     precio: this.fb.control<number>(0, [Validators.required, Validators.min(1), Validators.max(999999999)] )
   })
 
+
+  ngOnInit(): void {
+    if (this.config.data.id > 0) {
+      this.servicioService.getServicioById(this.config.data.id).subscribe(
+        data => this.addDataForm(data)
+      );
+    };
+
+  }
+
+  addDataForm(data:ServiciosResponse){
+    if(!data) return;
+    this.form.controls['codigo'].disable();
+    this.form.patchValue({
+      codigo: data.codigo,
+      servicio: data.nombre,
+      estado: data.estado,
+      precio: data.precio
+    })
+    this.data = data;
+
+  }
+
   submit(){
     if (this.form.invalid) return;
     const values = this.form.getRawValue();
+
 
     const servicioForm: ServiciosForm = {
       codigo: values.codigo!,
@@ -37,8 +68,18 @@ export class FormularioServiciosComponent {
       estado: values.estado!,
       precio: values.precio!
     }
+    console.log(this.form.pristine);
+    console.log(this.form.touched);
 
-    this.servicioService.addProducto(servicioForm).subscribe( res => this.ref.close(res));
+
+
+    if (this.data?.id && !this.form.pristine) {
+      this.servicioService.updateServicio( servicioForm, this.data.id ).subscribe();
+    } else {
+      this.servicioService.addProducto(servicioForm).subscribe( res => this.ref.close(res));
+    }
+
+
 
 
 

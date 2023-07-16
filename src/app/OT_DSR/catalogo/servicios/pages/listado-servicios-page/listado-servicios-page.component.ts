@@ -2,6 +2,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { ServicioService } from '../../services/servicio.service';
 import { ServiciosResponse } from '../../interfaces/servicio.interface';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-listado-servicios-page',
@@ -12,7 +13,7 @@ import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 export class ListadoServiciosPageComponent implements OnInit {
 
   servicios$: ServiciosResponse[] = [];
-
+  private subscription?: Subscription;
 
 
   constructor(
@@ -22,22 +23,23 @@ export class ListadoServiciosPageComponent implements OnInit {
 
   }
 
+  ngOnInit() {
+    // Suscribirse a los cambios en los servicios
+    this.subscription = this.serviciosServices.servicios$.subscribe(servicios => {
+      this.servicios$ = servicios;
+    });
 
-
-  ngOnInit(): void {
-    this.obtenerServicios();
+    // Obtener los servicios iniciales
+    this.serviciosServices.getServicios().subscribe(servicios => {
+      this.servicios$ = servicios;
+    });
   }
 
-  obtenerServicios(): void {
-    if (this.servicios$.length>0) return;
-    this.serviciosServices.getServicios().subscribe(
-      servicios => {
-        this.servicios$ = servicios;
-      },
-      error => {
-        console.log('Error al obtener los productos:', error);
-      }
-    );
+
+
+  ngOnDestroy() {
+    // Asegurarse de cancelar la suscripción al destruir el componente
+    this.subscription?.unsubscribe();
   }
 
   //TODO: Si el servicio se encuentra en una OT este no se puede eliminar sino solo editar

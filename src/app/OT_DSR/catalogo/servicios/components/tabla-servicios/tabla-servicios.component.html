@@ -59,7 +59,7 @@
 
                     <button pButton pRipple
                         icon="pi pi-pencil"
-                        (click)="editar(i.codigo)"
+                        (click)="editar(i.id)"
                         class="p-button-rounded mr-1"
                         style="background-color:#0d9135;"
 
@@ -67,7 +67,7 @@
                     </button>
                     <p-confirmDialog [key]=i.id.toString() acceptButtonStyleClass="p-button-text p-button-danger" rejectButtonStyleClass="p-button-text "></p-confirmDialog>
                     <button pButton pRipple
-                        (click)="eliminar($event, i.codigo)"
+                        (click)="eliminar($event, i.id)"
                         icon="pi pi-trash"
                         class="p-button-rounded p-button-danger mr-1"
                         [disabled]="btnDisabled"

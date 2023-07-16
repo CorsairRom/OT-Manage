@@ -21,24 +21,20 @@ export class TablaServiciosComponent {
 
   filterFields: string[] = ['codigo', 'nombre', 'fabricante']
   btnDisabled: boolean = true;
+  ref: DynamicDialogRef | undefined;
+
   constructor(
     private confirmationService: ConfirmationService,
     private messageService: MessageService,
-    private router: Router,
     private dialogService: DialogService
-  ){
-
-  }
-
-
-  ref: DynamicDialogRef | undefined;
+  ){}
 
   clear(table: Table) {
     table.clear();
   }
 
   agregar(){
-    this.show('');
+    this.show(0);
   }
 
   eliminar(event: Event, codigo: string) {
@@ -55,14 +51,14 @@ export class TablaServiciosComponent {
 
     });
   }
-  editar(codigo:string){
-    this.show(codigo);
+  editar(id:number){
+    this.show(id);
   }
 
-  show(codigo:string) {
+  show(id:number) {
     this.ref = this.dialogService.open(FormularioServiciosComponent, {
       data: {
-        id: codigo
+        id: id
       },
       header: 'Servicio',
       resizable:false,
