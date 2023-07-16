@@ -1,9 +1,11 @@
 import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ConfirmationService, MessageService, ConfirmEventType } from 'primeng/api';
-import { ServiciosResponse } from '../../interfaces/servicio.interface';
-import { Router } from '@angular/router';
 import { Table } from 'primeng/table';
+
+import { ServiciosResponse } from '../../interfaces/servicio.interface';
 import { FormularioServiciosComponent } from '../formulario-servicios/formulario-servicios.component';
 
 
@@ -19,7 +21,7 @@ export class TablaServiciosComponent {
   @Output() eliminarEvent = new EventEmitter<string>();
   @Output() serv: ServiciosResponse | undefined;
 
-  filterFields: string[] = ['codigo', 'nombre', 'fabricante']
+  filterFields: string[] = ['codigo', 'nombre']
   btnDisabled: boolean = true;
   ref: DynamicDialogRef | undefined;
 
