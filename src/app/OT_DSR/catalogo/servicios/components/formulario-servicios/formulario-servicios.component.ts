@@ -68,20 +68,14 @@ export class FormularioServiciosComponent implements OnInit {
       estado: values.estado!,
       precio: values.precio!
     }
-    console.log(this.form.pristine);
-    console.log(this.form.touched);
-
-
 
     if (this.data?.id && !this.form.pristine) {
       this.servicioService.updateServicio( servicioForm, this.data.id ).subscribe();
+      this.ref.close();
     } else {
       this.servicioService.addProducto(servicioForm).subscribe( res => this.ref.close(res));
+      this.ref.close();
     }
-
-
-
-
 
   }
   cancel(){
