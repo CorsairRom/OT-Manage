@@ -7,6 +7,7 @@ import { ListadoUnidadesPageComponent } from './pages/listado-unidades-page/list
 import { RegistroUnidadPageComponent } from './pages/registro-unidad-page/registro-unidad-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PrimeNGModule } from '../../prime-ng/prime-ng.module';
+import { TablaUnidadesComponent } from './components/tabla-unidades/tabla-unidades.component';
 
 
 
@@ -24,7 +25,8 @@ import { PrimeNGModule } from '../../prime-ng/prime-ng.module';
     ActualizarUnidadPageComponent,
     DetalleUnidadPageComponent,
     ListadoUnidadesPageComponent,
-    RegistroUnidadPageComponent
+    RegistroUnidadPageComponent,
+    TablaUnidadesComponent
   ]
 })
 export class UnidadesModule { }
