@@ -5,6 +5,7 @@ import { ActualizarUnidadPageComponent } from './pages/actualizar-unidad-page/ac
 import { DetalleUnidadPageComponent } from './pages/detalle-unidad-page/detalle-unidad-page.component';
 import { ListadoUnidadesPageComponent } from './pages/listado-unidades-page/listado-unidades-page.component';
 import { RegistroUnidadPageComponent } from './pages/registro-unidad-page/registro-unidad-page.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -12,7 +13,10 @@ import { RegistroUnidadPageComponent } from './pages/registro-unidad-page/regist
 @NgModule({
 	imports: [
 		CommonModule,
-    UnidadesRoutingModule
+    UnidadesRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+
 	],
 	declarations: [
     ActualizarUnidadPageComponent,
