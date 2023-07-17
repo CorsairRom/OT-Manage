@@ -1,11 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild, inject } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { ConfirmationService, MessageService, ConfirmEventType, MenuItem } from 'primeng/api';
+import { ConfirmationService, MessageService, MenuItem } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { UnidadesResponse } from '../../interfaces/unidades.interface';
 import { FormularioUnidadesComponent } from '../formulario-unidades/formulario-unidades.component';
-import { TiredMenuComponent } from "src/app/shared/components/tired-menu/tired-menu.component";
+import { items } from "./menu-item";
 
 
 @Component({
@@ -17,63 +17,91 @@ import { TiredMenuComponent } from "src/app/shared/components/tired-menu/tired-m
 export class TablaUnidadesComponent implements OnInit {
   @Input() unidades: UnidadesResponse[] = [];
   @Output() eliminarEvent = new EventEmitter<string>();
-  @ViewChild('tiredmenu') tiredMenu: any;
 
-
-
+  selectedItem:UnidadesResponse | undefined;
   filterFields: string[] = ['codigo', 'nombre']
   btnDisabled: boolean = true;
   ref: DynamicDialogRef | undefined;
   items: MenuItem[] | undefined;
+
   constructor(
     private confirmationService: ConfirmationService,
     private messageService: MessageService,
     private dialogService: DialogService
   ){}
+
   ngOnInit(): void {
     this.items = [
       {
-          label: 'File',
+          label: 'Unidad',
           icon: 'pi pi-fw pi-file',
           items: [
               {
-                  label: 'New',
-                  icon: 'pi pi-fw pi-plus',
-                  items: [
-                      {
-                          label: 'Bookmark',
-                          icon: 'pi pi-fw pi-bookmark'
-                      },
-                      {
-                          label: 'Video',
-                          icon: 'pi pi-fw pi-video'
-                      }
-                  ]
+                  label: 'Editar',
+                  icon: 'pi pi-fw pi-trash',
+                  command: (event) => {
+                    this.addUnidad(this.selectedItem!)
+                  }
               },
               {
-                  label: 'Delete',
-                  icon: 'pi pi-fw pi-trash'
-              },
-              {
-                  separator: true
-              },
-              {
-                  label: 'Export',
+                  label: 'Eliminar',
                   icon: 'pi pi-fw pi-external-link'
               }
           ]
-      }]
+      },
+      {
+          label: 'Subunidad',
+          icon: 'pi pi-fw pi-pencil',
+          items: [
+              {
+                  label: 'Agregar',
+                  icon: 'pi pi-fw pi-align-left',
+                  command: (event) => {
+                    this.show(this.selectedItem?.codigo!)
+                  }
+
+              },
+              {
+                  label: 'Editar',
+                  icon: 'pi pi-fw pi-align-left'
+              },
+              {
+                  label: 'Eliminar',
+                  icon: 'pi pi-fw pi-align-right'
+              },
+
+          ]
+      }
+
+    ];
+
   }
+
+  addUnidad(selectItem:UnidadesResponse){
+    this.show(selectItem.codigo!)
+  }
+
+  addSubunidad(selectItem:any){
+    console.log(selectItem);
+  }
+
+
   clear(table: Table) {
     table.clear();
   }
 
   agregar(){
-    this.show(0);
+    this.show('');
 
   }
 
+  onMenuItemClick(event: Event){
+    console.log(event);
+  }
 
+  public addNewUnidad(event: any){
+    alert("click")
+  }
 
 
 
@@ -91,14 +119,12 @@ export class TablaUnidadesComponent implements OnInit {
 
     });
   }
-  editar(id:number){
-    this.show(id);
-  }
 
-  show(id:number) {
+
+  show(codigo:string) {
     this.ref = this.dialogService.open(FormularioUnidadesComponent, {
       data: {
-        id: id
+        codigo: codigo
       },
       header: 'Servicio',
       resizable:false,

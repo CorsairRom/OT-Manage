@@ -14,7 +14,7 @@
                 icon="pi pi-plus"
                 class="p-button mr-2"
                 style="background-color:#F78E00"
-                label="Registrar"
+                label="Registrar Unidad"
                 (click)="agregar()">
             </button>
 
@@ -57,9 +57,9 @@
             <td><p-tag [value]="unidades.estado ? 'Activo': 'Inactivo'" [severity]="unidades.estado ? 'success': 'danger'"></p-tag></td>
             <td>
 
-              <app-tired-menu
-              [codigo]=unidades.codigo
-              ></app-tired-menu>
+
+              <button #btn type="button" pButton icon="pi pi-bars"  (click)="selectedItem = unidades;menu.toggle($event)"></button>
+              <p-tieredMenu #menu [model]="items!" [popup]="true"  appendTo="body" ></p-tieredMenu>
 
             </td>
         </tr>

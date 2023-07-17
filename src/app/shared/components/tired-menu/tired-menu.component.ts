@@ -1,6 +1,7 @@
-import {  Component,  Input,  OnInit } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MenuItem } from 'primeng/api';
-
+import { TieredMenu } from 'primeng/tieredmenu';
+import { items } from "src/app/OT_DSR/catalogo/unidades/components/tabla-unidades/menu-item";
 
 @Component({
   selector: 'app-tired-menu',
@@ -17,9 +18,16 @@ import { MenuItem } from 'primeng/api';
     `
   ]
 })
-export class TiredMenuComponent implements OnInit {
+export class TiredMenuComponent implements OnInit, AfterViewInit {
+  ngAfterViewInit(): void {
+    console.log(this.menu.model);
+
+  }
 
   @Input() codigo!:string;
+  @Input() event!:Event;
+
+  @ViewChild( 'menu' ) menu!: TieredMenu;
 
   items: MenuItem[] | undefined;
   ngOnInit() {
@@ -31,7 +39,8 @@ export class TiredMenuComponent implements OnInit {
             items: [
                 {
                     label: 'Editar',
-                    icon: 'pi pi-fw pi-trash'
+                    icon: 'pi pi-fw pi-trash',
+                    command: () => this.addNewUser(),
                 },
                 {
                     label: 'Eliminar',
@@ -58,6 +67,8 @@ export class TiredMenuComponent implements OnInit {
 
     ];
 }
+addNewUser(){
 
+}
 
 }
