@@ -65,8 +65,8 @@ export class FormularioUnidadesComponent implements OnInit {
 
 
     const UnidadesForm: UnidadesResponse = {
-      codigo: values.codigo!,
-      nombre: values.nombre!,
+      codigo: values.codigo!.toUpperCase(),
+      nombre: values.nombre!.toUpperCase(),
       estado: values.estado!,
       subunidades:[]
     }

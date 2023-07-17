@@ -134,10 +134,10 @@ export class TablaUnidadesComponent implements OnInit {
       baseZIndex: 10000,
       maximizable: true
     });
-    // this.ref.onClose.subscribe((data:ServiciosResponse ) =>{
-    //   if(data){
-    //     this.servicios.push(data)
-    //   }
-    // })
+    this.ref.onClose.subscribe((data:UnidadesResponse ) =>{
+      if(data){
+        this.unidades.push(data)
+      }
+    })
 }
 }
