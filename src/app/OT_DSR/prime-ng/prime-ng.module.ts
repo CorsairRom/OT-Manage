@@ -20,6 +20,9 @@ import { ImageModule } from 'primeng/image';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { CardModule } from 'primeng/card';
+import { TieredMenuModule } from 'primeng/tieredmenu';
+import { MenuModule } from 'primeng/menu';
+
 @NgModule({
 
   exports: [
@@ -42,7 +45,9 @@ import { CardModule } from 'primeng/card';
     ImageModule,
     ConfirmDialogModule,
     DynamicDialogModule,
-    CardModule
+    CardModule,
+    TieredMenuModule,
+    MenuModule
   ]
 })
 export class PrimeNGModule { }

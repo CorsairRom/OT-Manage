@@ -17,11 +17,8 @@ export class ListadoServiciosPageComponent implements OnInit {
 
 
   constructor(
-    private serviciosServices: ServicioService,
-    private config: DynamicDialogConfig,
-  ){
-
-  }
+    private serviciosServices: ServicioService
+  ){}
 
   ngOnInit() {
     // Suscribirse a los cambios en los servicios

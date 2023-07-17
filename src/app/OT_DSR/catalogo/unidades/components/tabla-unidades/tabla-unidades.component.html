@@ -38,11 +38,10 @@
     </ng-template>
     <ng-template pTemplate="header">
         <tr>
-            <th class="font-bold">Cod</th>
-            <th class="font-bold">Servicio</th>
+            <th class="font-bold">Codigo</th>
+            <th class="font-bold">Nombre</th>
+            <th class="font-bold">subunidad</th>
             <th class="font-bold">Estado</th>
-            <th class="font-bold">Agregado</th>
-            <th class="font-bold">Precio</th>
             <th class="font-bold">Acciones</th>
         </tr>
     </ng-template>
@@ -50,30 +49,18 @@
         <tr>
             <td>{{unidades.codigo}}</td>
             <td>{{unidades.nombre}}</td>
-            <td><p-tag [value]="unidades.estado ? 'Activo': 'Inactivo'" [severity]="unidades.estado ? 'success': 'danger'"></p-tag></td>
-            <td>{{unidades.fecha | date: 'dd/MM/yyyy'}}</td>
-            <td>{{unidades.precio | currency:"USD":'symbol' : '1.0-0'}}</td>
             <td>
-                <div class="flex">
+              <li *ngFor="let subunidades of unidades.subunidades" >
+                {{subunidades.nombre}}
+              </li>
+            </td>
+            <td><p-tag [value]="unidades.estado ? 'Activo': 'Inactivo'" [severity]="unidades.estado ? 'success': 'danger'"></p-tag></td>
+            <td>
 
+              <app-tired-menu
+              [codigo]=unidades.codigo
+              ></app-tired-menu>
 
-                    <button pButton pRipple
-                        icon="pi pi-pencil"
-                        (click)="editar(i.id)"
-                        class="p-button-rounded mr-1"
-                        style="background-color:#0d9135;"
-
-                        >
-                    </button>
-                    <p-confirmDialog [key]=i.id.toString() acceptButtonStyleClass="p-button-text p-button-danger" rejectButtonStyleClass="p-button-text "></p-confirmDialog>
-                    <button pButton pRipple
-                        (click)="eliminar($event, i.id)"
-                        icon="pi pi-trash"
-                        class="p-button-rounded p-button-danger mr-1"
-                        [disabled]="btnDisabled"
-                    >
-                    </button>
-                </div>
             </td>
         </tr>
     </ng-template>

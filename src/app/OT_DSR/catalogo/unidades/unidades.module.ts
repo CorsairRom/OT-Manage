@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PrimeNGModule } from '../../prime-ng/prime-ng.module';
 import { TablaUnidadesComponent } from './components/tabla-unidades/tabla-unidades.component';
 import { FormularioUnidadesComponent } from './components/formulario-unidades/formulario-unidades.component';
+import { TiredMenuComponent } from 'src/app/shared/components/tired-menu/tired-menu.component';
 
 
 
@@ -28,7 +29,8 @@ import { FormularioUnidadesComponent } from './components/formulario-unidades/fo
     ListadoUnidadesPageComponent,
     RegistroUnidadPageComponent,
     TablaUnidadesComponent,
-    FormularioUnidadesComponent
+    FormularioUnidadesComponent,
+    TiredMenuComponent
   ]
 })
 export class UnidadesModule { }

@@ -1,1 +1,10 @@
-<tabla-unidades></tabla-unidades>
+
+<div class="card">
+  <h4>Servicios</h4>
+  <tabla-unidades
+    *ngIf="unidades$"
+    [unidades]="unidades$"
+
+  >
+  </tabla-unidades>
+</div>
