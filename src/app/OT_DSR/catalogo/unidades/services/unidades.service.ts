@@ -30,11 +30,11 @@ export class UnidadesService {
   };
 
   getUnidades(query: {} = {}) {
-    console.log(this.apiUrlUnidades);
+
     return this.http.get<UnidadesResponse[]>(`${this.apiUrlUnidades}/`, {params: query}).pipe(
       tap(unidades => {
         // Actualizar los datos del servicio en el BehaviorSubject
-        console.log(unidades);
+
         this.unidadesSubject.next(unidades);
       }),
       catchError((err: HttpErrorResponse) => this.handleError(err))
