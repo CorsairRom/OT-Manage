@@ -41,16 +41,42 @@ export class UnidadesService {
     );
   };
 
-  // addUnidades(UnidesData: UnidadesResponse): Observable<UnidadesResponse>  {
-  //   return this.http.post<UnidadesResponse>(`${this.apiUrlUnidades}/`, UnidesData).pipe(
-  //     tap(() => {
-  //         this.messageService.addMessage({
-  //             details: ['Servicio registrado exitosamente!'],
-  //             role: 'success'
-  //         })
-  //     }),
-  //     catchError((err: HttpErrorResponse) => this.handleError(err))
-  // )
+  getUnidadesById(codigo: string){
+    return this.http.get<UnidadesResponse>(`${this.apiUrlUnidades}/${codigo}/`);
+  }
+
+  addUnidades(UnidesData: UnidadesResponse): Observable<UnidadesResponse>  {
+    return this.http.post<UnidadesResponse>(`${this.apiUrlUnidades}/`, UnidesData).pipe(
+      tap(() => {
+          this.messageService.addMessage({
+              details: ['Unidad registrado exitosamente!'],
+              role: 'success'
+          })
+      }),
+      catchError((err: HttpErrorResponse) => this.handleError(err))
+  )
+  }
+  // updateUnidad(unidadesData: UnidadesResponse): Observable<UnidadesResponse>{
+  //   return this.http.put<UnidadesResponse>(`${this.apiUrlUnidades}/`, unidadesData)
   // }
+  updateUnidad(unidadesData: UnidadesResponse, codigo: string) {
+    return this.http.put<UnidadesResponse>(`${this.apiUrlUnidades}/${codigo}/`, unidadesData).pipe(
+      tap((updatedUnidades: UnidadesResponse) => {
+        this.messageService.addMessage({
+          details: ['Servicio actualizado exitosamente!'],
+          role: 'success'
+        });
+
+        // Actualizar los datos del servicio con el servicio actualizado
+        const unidades = this.unidadesSubject.getValue();
+        const unidadesIndex = unidades.findIndex(s => s.codigo === updatedUnidades.codigo);
+        if (unidadesIndex !== -1) {
+          unidades[unidadesIndex] = updatedUnidades;
+          this.unidadesSubject.next(unidades);
+        }
+      }),
+      catchError((err: HttpErrorResponse) => this.handleError(err))
+    );
+  }
 
 }

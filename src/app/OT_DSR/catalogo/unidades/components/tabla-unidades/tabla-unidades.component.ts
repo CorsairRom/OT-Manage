@@ -31,6 +31,7 @@ export class TablaUnidadesComponent implements OnInit {
   ){}
 
   ngOnInit(): void {
+
     this.items = [
       {
           label: 'Unidad',
@@ -91,7 +92,7 @@ export class TablaUnidadesComponent implements OnInit {
   }
 
   agregar(){
-    this.show('');
+    this.show('new');
 
   }
 

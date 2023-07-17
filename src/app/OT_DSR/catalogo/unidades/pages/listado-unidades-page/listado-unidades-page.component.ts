@@ -23,9 +23,6 @@ export class ListadoUnidadesPageComponent implements OnInit {
     this.subscription = this.unidadesServices.unidades$.subscribe(unidades => {
       this.unidades$ = unidades;
     });
-
-    // this.unidadesServices.getUnidades().subscribe(data => console.log(data))
-
     // Obtener los servicios iniciales
     this.unidadesServices.getUnidades().subscribe(unidades => {
       this.unidades$ = unidades;
