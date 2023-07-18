@@ -1,6 +1,6 @@
 <p-toast></p-toast>
 <p-table
-    #serviciosTable
+    #unidadesTable
     [value]="unidades"
     [tableStyle]="{ 'min-width': '50rem' }"
     [globalFilterFields]="filterFields"
@@ -22,7 +22,7 @@
                 <span class="p-input-icon-left ml-auto">
                     <i class="pi pi-search"></i>
                     <input pInputText type="text"
-                        (input)="serviciosTable.filterGlobal($any($event.target).value, 'contains')"
+                        (input)="unidadesTable.filterGlobal($any($event.target).value, 'contains')"
                         placeholder="Codigo, Servicio..." />
                 </span>
                 <!-- Botón LIMPIAR -->
@@ -31,7 +31,7 @@
                     class="p-button-outlined mr-2"
                     style="color: #006C86;"
                     label="Limpiar"
-                    (click)="clear(serviciosTable)">
+                    (click)="clear(unidadesTable)">
                 </button>
             </div>
         </div>

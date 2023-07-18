@@ -127,7 +127,7 @@ export class TablaUnidadesComponent implements OnInit {
       data: {
         codigo: codigo
       },
-      header: 'Servicio',
+      header: 'Registro:',
       resizable:false,
       width: '50%',
       contentStyle: { overflow: 'auto' },

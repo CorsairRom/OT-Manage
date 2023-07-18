@@ -1,4 +1,4 @@
-<h4 class="pb-3">{{ title }}</h4>
+<h3 class="pb-3">Unidad</h3>
   <form [formGroup]="form" >
 
     <div class="grid mb-3">
@@ -39,7 +39,7 @@
     <div class="grid mb-4">
       <div class="col flex flex-column gap-2">
         <p-selectButton
-          [options]="opcionesEstadoServicio"
+          [options]="opcionesEstadoUnidades"
           formControlName="estado"
           optionLabel="label"
           optionValue="value"
@@ -48,6 +48,38 @@
       </div>
       <div class="col flex flex-column gap-2"></div>
     </div>
+
+
+
+    <div *ngIf="templateAdd" class="grid mb-4" >
+      <div class="col flex flex-column gap-2">
+        <h5 class="pb-0 mb-0">Subunidades Registradas</h5>
+        <hr class="mt-0 p-0">
+        <div class="" formArrayName="subunidades">
+          <div class="mb-1" *ngFor="let subunidad of form.controls['subunidades'].value; let i = index" >
+            {{subunidad}}
+            <div class="p-inputgroup">
+              <input type="text" pInputText placeholder="codigo" class="mr-2" />
+              <input type="text" pInputText placeholder="nombre" />
+              <button type="button" pButton icon="pi pi-trash" class="p-button-danger"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid mb-4">
+      <div class="col-12 flex flex-column gap-2">
+        <p-button
+        styleClass="mr-3"
+        label="Agregar SubUnidad"
+        [style]="{ width: '100%' }"
+        (click) = toggleSubunidades()
+      ></p-button>
+      </div>
+    </div>
+
+
 
     <div class="flex">
       <p-button

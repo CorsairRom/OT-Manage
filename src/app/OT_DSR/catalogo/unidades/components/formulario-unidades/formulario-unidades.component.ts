@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, inject } from '@angular/core';
-import { UnidadesResponse } from '../../interfaces/unidades.interface';
-import { FormBuilder, Validators } from '@angular/forms';
+import { UnidadesResponse, SubunidadResponse } from '../../interfaces/unidades.interface';
+import { FormArray, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { UnidadesService } from '../../services/unidades.service';
 
@@ -13,14 +13,15 @@ import { UnidadesService } from '../../services/unidades.service';
 export class FormularioUnidadesComponent implements OnInit {
 
 
-  opcionesEstadoServicio: {label: string; value: boolean}[] = [
+  opcionesEstadoUnidades: {label: string; value: boolean}[] = [
     { label: 'Activo', value: true },
     { label: 'Inactivo', value: false },
   ]
 
   public title?: string;
   data: UnidadesResponse | undefined ;
-
+  templateAdd: boolean = false;
+  public newSubunidades: FormControl = new FormControl('', Validators.required);
 
   fb = inject(FormBuilder)
   config = inject(DynamicDialogConfig)
@@ -31,7 +32,12 @@ export class FormularioUnidadesComponent implements OnInit {
     codigo: this.fb.control<string>('',[Validators.required,Validators.minLength(5), Validators.maxLength(12)] ),
     nombre: this.fb.control<string>('',[Validators.required, Validators.minLength(5) ,Validators.maxLength(50)] ),
     estado: this.fb.control<boolean>(true, [ Validators.required]),
+    subunidades: this.fb.array<SubunidadResponse[]>([])
   })
+
+  get subunidades(){
+    return this.form.get('subunidades') as FormArray;
+  }
 
   ngOnInit(): void {
     if(!this.config.data) return;
@@ -54,7 +60,10 @@ export class FormularioUnidadesComponent implements OnInit {
       codigo: data.codigo?.toUpperCase(),
       nombre: data.nombre.toUpperCase(),
       estado: data.estado,
+      subunidades: data.subunidades
     })
+    console.log(this.form.controls["subunidades"].value);
+    // this.form.controls["subunidades"] = data.subunidades
     this.data = data;
 
   }
@@ -82,6 +91,10 @@ export class FormularioUnidadesComponent implements OnInit {
   }
   cancel(){
     this.ref.close();
+  }
+
+  toggleSubunidades(){
+    this.templateAdd = !this.templateAdd
   }
 
 
