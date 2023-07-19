@@ -62,11 +62,24 @@ export class FormularioUnidadesComponent implements OnInit {
       estado: data.estado,
       subunidades: data.subunidades
     })
-    console.log(this.form.controls["subunidades"].value);
-    // this.form.controls["subunidades"] = data.subunidades
+    // Limpiar las subunidades previas del FormArray
+
+    this.subunidades.clear();
+
+    // Iterar sobre la lista de subunidades y agregar cada una al FormArray
+    data.subunidades.forEach((subunidad: SubunidadResponse) => {
+
+      const subunidadFormGroup = this.fb.group({
+        codigo: [subunidad.codigo],
+        nombre: [subunidad.nombre],
+      });
+      this.subunidades.push(subunidadFormGroup);
+    });
+
     this.data = data;
 
   }
+
 
   submit(){
     if (this.form.invalid) return;
@@ -77,13 +90,33 @@ export class FormularioUnidadesComponent implements OnInit {
       codigo: values.codigo!.toUpperCase(),
       nombre: values.nombre!.toUpperCase(),
       estado: values.estado!,
-      subunidades:[]
+      subunidades:values.subunidades! as SubunidadResponse[]
     }
 
-    if (this.data?.codigo && !this.form.pristine) {
-      this.unidadesService.updateUnidad( UnidadesForm, this.data.codigo ).subscribe();
+    if (this.data?.codigo && !this.form.pristine || !this.form.controls['subunidades'].pristine) {
+      const newSub:SubunidadResponse[] = UnidadesForm.subunidades.map( sub => {
+        return {
+          codigo: sub.codigo,
+          nombre: sub.nombre,
+          unidad: sub.unidad,
+          estado: sub.estado
+        }
+      })
+
+      const newForm:UnidadesResponse = {
+        codigo: UnidadesForm.codigo,
+        nombre: UnidadesForm.nombre,
+        estado: UnidadesForm.estado,
+        subunidades: newSub
+      }
+      console.log('Pase por el if');
+      console.log(this.data?.codigo);
+      this.unidadesService.updateUnidad( newForm, this.data!.codigo! ).subscribe();
       this.ref.close();
     } else {
+      console.log('pase al else');
+
+
       this.unidadesService.addUnidades(UnidadesForm).subscribe( res => this.ref.close(res));
       this.ref.close();
     }

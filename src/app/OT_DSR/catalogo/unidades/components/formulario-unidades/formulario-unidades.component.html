@@ -51,16 +51,17 @@
 
 
 
-    <div *ngIf="templateAdd" class="grid mb-4" >
+    <div *ngIf="templateAdd" class="grid mb-4">
       <div class="col flex flex-column gap-2">
         <h5 class="pb-0 mb-0">Subunidades Registradas</h5>
         <hr class="mt-0 p-0">
         <div class="" formArrayName="subunidades">
-          <div class="mb-1" *ngFor="let subunidad of form.controls['subunidades'].value; let i = index" >
-            {{subunidad}}
+          <!-- Utilizamos subunidades.controls para acceder a los controles del FormArray -->
+          <div class="mb-1" *ngFor="let subunidad of subunidades.controls; let i = index" [formGroupName]="i">
             <div class="p-inputgroup">
-              <input type="text" pInputText placeholder="codigo" class="mr-2" />
-              <input type="text" pInputText placeholder="nombre" />
+              <!-- Utilizamos formGroupName para enlazar el FormGroup dentro del FormArray -->
+              <input type="text" pInputText placeholder="codigo" class="mr-2" formControlName="codigo" />
+              <input type="text" pInputText placeholder="nombre" formControlName="nombre" />
               <button type="button" pButton icon="pi pi-trash" class="p-button-danger"></button>
             </div>
           </div>
