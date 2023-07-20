@@ -1,8 +1,13 @@
-<h3 class="pb-3">Unidad</h3>
-  <form [formGroup]="form" >
 
+  <form [formGroup]="form" >
+    <div class="grid mb-1">
+      <div class="col-12 flex flex-column gap-1">
+        <h3 class="p-0 m-0">Unidad</h3>
+        <hr>
+      </div>
+    </div>
     <div class="grid mb-3">
-      <div class="col-12 flex flex-column gap-2">
+      <div class="col-4 flex flex-column gap-2">
         <span class="p-float-label">
           <input
             type="text"
@@ -50,36 +55,24 @@
     </div>
 
 
+    <!-- subunidades -->
+    <div class="flex align-items-center justify-content-center mb-1">
+      <h3>Subunidad</h3>
 
-    <div *ngIf="templateAdd" class="grid mb-4">
-      <div class="col flex flex-column gap-2">
-        <h5 class="pb-0 mb-0">Subunidades Registradas</h5>
-        <hr class="mt-0 p-0">
-        <div class="" formArrayName="subunidades">
-          <!-- Utilizamos subunidades.controls para acceder a los controles del FormArray -->
-          <div class="mb-1" *ngFor="let subunidad of subunidades.controls; let i = index" [formGroupName]="i">
-            <div class="p-inputgroup">
-              <!-- Utilizamos formGroupName para enlazar el FormGroup dentro del FormArray -->
-              <input type="text" pInputText placeholder="codigo" class="mr-2" formControlName="codigo" />
-              <input type="text" pInputText placeholder="nombre" formControlName="nombre" />
-              <button type="button" pButton icon="pi pi-trash" class="p-button-danger"></button>
-            </div>
+    </div>
+    <ng-container  formArrayName="subunidades">
+        <ng-container class="mb-1" *ngFor="let subunidad of subunidades.controls; let i = index" [formGroupName]="i">
+          <div class="p-inputgroup">
+            <!-- Utilizamos formGroupName para enlazar el FormGroup dentro del FormArray -->
+            <input type="text" pInputText placeholder="codigo" class="mr-2" formControlName="codigo" />
+            <input type="text" pInputText placeholder="nombre" formControlName="nombre" />
+            <button type="button" pButton icon="pi pi-trash" (click)="deleteSubunidad(i)" class="p-button-danger"></button>
           </div>
-        </div>
-      </div>
+        </ng-container>
+    </ng-container>
+    <div class="flex align-items-center justify-content-center m-4">
+      <p-button icon="pi pi-plus"  styleClass="p-button-rounded p-button-help" (click)="addNewSubunidad()"></p-button>
     </div>
-
-    <div class="grid mb-4">
-      <div class="col-12 flex flex-column gap-2">
-        <p-button
-        styleClass="mr-3"
-        label="Agregar SubUnidad"
-        [style]="{ width: '100%' }"
-        (click) = toggleSubunidades()
-      ></p-button>
-      </div>
-    </div>
-
 
 
     <div class="flex">

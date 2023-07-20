@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, inject } from '@angular/core';
 import { UnidadesResponse, SubunidadResponse } from '../../interfaces/unidades.interface';
-import { FormArray, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { UnidadesService } from '../../services/unidades.service';
 
@@ -21,7 +21,11 @@ export class FormularioUnidadesComponent implements OnInit {
   public title?: string;
   data: UnidadesResponse | undefined ;
   templateAdd: boolean = false;
-  public newSubunidades: FormControl = new FormControl('', Validators.required);
+
+  // public newSubunidades: FormGroup = new FormGroup({
+  //   codigo: new FormControl(''),
+  //   nombre: new FormControl(''),
+  // });
 
   fb = inject(FormBuilder)
   config = inject(DynamicDialogConfig)
@@ -51,6 +55,19 @@ export class FormularioUnidadesComponent implements OnInit {
 
     }
 
+  }
+  addNewSubunidad(){
+    const subunidadForm = this.fb.group({
+      codigo: ['', Validators.required],
+      nombre: ['', Validators.required]
+  });
+
+  this.subunidades.push(subunidadForm);
+
+  }
+
+  deleteSubunidad(subunidadIndex: number) {
+    this.subunidades.removeAt(subunidadIndex);
   }
 
   addDataForm(data:UnidadesResponse){
