@@ -56,8 +56,8 @@
             </td>
             <td><p-tag [value]="unidades.estado ? 'Activo': 'Inactivo'" [severity]="unidades.estado ? 'success': 'danger'"></p-tag></td>
             <td>
-              <p-button icon="pi pi-search" styleClass="p-button-rounded p-button-success" (click)="addUnidad(unidades)"></p-button>
-
+              <p-button icon="pi pi-search" styleClass="p-button-rounded p-button-success" (click)="addUnidad(unidades)" class="m-2"></p-button>
+              <p-button icon="pi pi-trash" styleClass="p-button-rounded p-button-danger" [disabled]="true"></p-button>
             </td>
         </tr>
     </ng-template>
