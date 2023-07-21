@@ -21,11 +21,8 @@ export class FormularioUnidadesComponent implements OnInit {
   public title?: string;
   data: UnidadesResponse | undefined ;
   templateAdd: boolean = false;
+  difArraySubunidades: boolean=false;
 
-  // public newSubunidades: FormGroup = new FormGroup({
-  //   codigo: new FormControl(''),
-  //   nombre: new FormControl(''),
-  // });
 
   fb = inject(FormBuilder)
   config = inject(DynamicDialogConfig)
@@ -40,7 +37,7 @@ export class FormularioUnidadesComponent implements OnInit {
   })
 
   get subunidades(){
-    return this.form.get('subunidades') as FormArray;
+    return this.form.get('subunidades') as FormArray || [];
   }
 
   ngOnInit(): void {
@@ -58,8 +55,8 @@ export class FormularioUnidadesComponent implements OnInit {
   }
   addNewSubunidad(){
     const subunidadForm = this.fb.group({
-      codigo: ['', Validators.required],
-      nombre: ['', Validators.required]
+      codigo: [''],
+      nombre: ['']
   });
 
   this.subunidades.push(subunidadForm);
@@ -79,11 +76,15 @@ export class FormularioUnidadesComponent implements OnInit {
       estado: data.estado,
       subunidades: data.subunidades
     })
+
     // Limpiar las subunidades previas del FormArray
 
     this.subunidades.clear();
 
     // Iterar sobre la lista de subunidades y agregar cada una al FormArray
+
+
+
     data.subunidades.forEach((subunidad: SubunidadResponse) => {
 
       const subunidadFormGroup = this.fb.group({
@@ -91,54 +92,60 @@ export class FormularioUnidadesComponent implements OnInit {
         nombre: [subunidad.nombre],
       });
       this.subunidades.push(subunidadFormGroup);
+      subunidadFormGroup.controls['codigo'].disable();
     });
 
     this.data = data;
+
 
   }
 
 
   submit(){
+    console.log('pristine: ', this.form.pristine);
+    console.log('touched: ', this.form.touched);
     if (this.form.invalid) return;
+
     const values = this.form.getRawValue();
-
-
     const UnidadesForm: UnidadesResponse = {
       codigo: values.codigo!.toUpperCase(),
       nombre: values.nombre!.toUpperCase(),
       estado: values.estado!,
       subunidades:values.subunidades! as SubunidadResponse[]
     }
-
-    if (this.data?.codigo && !this.form.pristine || !this.form.controls['subunidades'].pristine) {
-      const newSub:SubunidadResponse[] = UnidadesForm.subunidades.map( sub => {
-        return {
-          codigo: sub.codigo,
-          nombre: sub.nombre,
-          unidad: sub.unidad,
-          estado: sub.estado
-        }
-      })
-
-      const newForm:UnidadesResponse = {
-        codigo: UnidadesForm.codigo,
-        nombre: UnidadesForm.nombre,
-        estado: UnidadesForm.estado,
-        subunidades: newSub
-      }
-      console.log('Pase por el if');
-      console.log(this.data?.codigo);
-      this.unidadesService.updateUnidad( newForm, this.data!.codigo! ).subscribe();
-      this.ref.close();
-    } else {
-      console.log('pase al else');
-
-
-      this.unidadesService.addUnidades(UnidadesForm).subscribe( res => this.ref.close(res));
-      this.ref.close();
+    if(this.hasDuplicateSubunidades()) {
+      console.log("hay duplicados");
     }
 
+    if (this.data?.codigo) {
+      if (this.data?.subunidades.length != UnidadesForm.subunidades.length) {
+        this.difArraySubunidades = true
+      }
+      if (!this.form.pristine && this.form.touched || this.difArraySubunidades) {
+
+        this.unidadesService.updateUnidad( UnidadesForm, this.data!.codigo! ).subscribe(res => this.ref.close());
+      }
+
+    }else{
+
+      this.unidadesService.addUnidades(UnidadesForm).subscribe( res => this.ref.close(res));
+
+    }
   }
+  hasDuplicateSubunidades(): boolean {
+    const subunidadCodes = new Set<string>();
+    for (const subunidad of this.subunidades.controls) {
+      const codigo = subunidad.get('codigo')?.value;
+      if (subunidadCodes.has(codigo)) {
+        return true;
+      }
+      subunidadCodes.add(codigo);
+    }
+    return false;
+  }
+
+
+
   cancel(){
     this.ref.close();
   }

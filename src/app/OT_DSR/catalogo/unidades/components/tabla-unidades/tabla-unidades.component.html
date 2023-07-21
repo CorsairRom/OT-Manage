@@ -56,10 +56,7 @@
             </td>
             <td><p-tag [value]="unidades.estado ? 'Activo': 'Inactivo'" [severity]="unidades.estado ? 'success': 'danger'"></p-tag></td>
             <td>
-
-
-              <button #btn type="button" pButton icon="pi pi-bars"  (click)="selectedItem = unidades;menu.toggle($event)"></button>
-              <p-tieredMenu #menu [model]="items!" [popup]="true"  appendTo="body" ></p-tieredMenu>
+              <p-button icon="pi pi-search" styleClass="p-button-rounded p-button-success" (click)="addUnidad(unidades)"></p-button>
 
             </td>
         </tr>

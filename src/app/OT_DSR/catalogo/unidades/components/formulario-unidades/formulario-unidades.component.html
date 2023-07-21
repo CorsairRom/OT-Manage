@@ -62,7 +62,7 @@
     </div>
     <ng-container  formArrayName="subunidades">
         <ng-container class="mb-1" *ngFor="let subunidad of subunidades.controls; let i = index" [formGroupName]="i">
-          <div class="p-inputgroup">
+          <div class="p-inputgroup m-2">
             <!-- Utilizamos formGroupName para enlazar el FormGroup dentro del FormArray -->
             <input type="text" pInputText placeholder="codigo" class="mr-2" formControlName="codigo" />
             <input type="text" pInputText placeholder="nombre" formControlName="nombre" />

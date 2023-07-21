@@ -11,6 +11,6 @@ export interface SubunidadResponse {
   codigo?: string;
   unidad: string;
   nombre: string;
-  estado: boolean;
+  estado?: boolean;
 }
 

@@ -60,7 +60,7 @@ export class UnidadesService {
   //   return this.http.put<UnidadesResponse>(`${this.apiUrlUnidades}/`, unidadesData)
   // }
   updateUnidad(unidadesData: UnidadesResponse, codigo: string) {
-    return this.http.put<UnidadesResponse>(`${this.apiUrlUnidades}/${codigo}/`, unidadesData).pipe(
+    return this.http.patch<UnidadesResponse>(`${this.apiUrlUnidades}/${codigo}/`, unidadesData).pipe(
       tap((updatedUnidades: UnidadesResponse) => {
         this.messageService.addMessage({
           details: ['Servicio actualizado exitosamente!'],

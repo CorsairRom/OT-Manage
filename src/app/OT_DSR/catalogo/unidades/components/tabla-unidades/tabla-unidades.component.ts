@@ -5,7 +5,7 @@ import { ConfirmationService, MessageService, MenuItem } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { UnidadesResponse } from '../../interfaces/unidades.interface';
 import { FormularioUnidadesComponent } from '../formulario-unidades/formulario-unidades.component';
-import { items } from "./menu-item";
+
 
 
 @Component({
@@ -22,7 +22,7 @@ export class TablaUnidadesComponent implements OnInit {
   filterFields: string[] = ['codigo', 'nombre']
   btnDisabled: boolean = true;
   ref: DynamicDialogRef | undefined;
-  items: MenuItem[] | undefined;
+
 
   constructor(
     private confirmationService: ConfirmationService,
@@ -31,61 +31,11 @@ export class TablaUnidadesComponent implements OnInit {
   ){}
 
   ngOnInit(): void {
-
-    this.items = [
-      {
-          label: 'Unidad',
-          icon: 'pi pi-fw pi-file',
-          items: [
-              {
-                  label: 'Editar',
-                  icon: 'pi pi-fw pi-trash',
-                  command: (event) => {
-                    this.addUnidad(this.selectedItem!)
-                  }
-              },
-              {
-                  label: 'Eliminar',
-                  icon: 'pi pi-fw pi-external-link'
-              }
-          ]
-      },
-      {
-          label: 'Subunidad',
-          icon: 'pi pi-fw pi-pencil',
-          items: [
-              {
-                  label: 'Agregar',
-                  icon: 'pi pi-fw pi-align-left',
-                  command: (event) => {
-                    this.show(this.selectedItem?.codigo!)
-                  }
-
-              },
-              {
-                  label: 'Editar',
-                  icon: 'pi pi-fw pi-align-left'
-              },
-              {
-                  label: 'Eliminar',
-                  icon: 'pi pi-fw pi-align-right'
-              },
-
-          ]
-      }
-
-    ];
-
   }
 
   addUnidad(selectItem:UnidadesResponse){
     this.show(selectItem.codigo!)
   }
-
-  addSubunidad(selectItem:any){
-    console.log(selectItem);
-  }
-
 
   clear(table: Table) {
     table.clear();
