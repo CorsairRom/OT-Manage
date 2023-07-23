@@ -1,1 +1,79 @@
-<p>detalle-cliente works!</p>
+<ng-container *ngIf="cliente">
+  <div class="card">
+    <div class="flex justify-content-between flex-wrap mb-4">
+      <div class="flex align-items-center justify-content-center">
+        <h5>Detalle Cliente</h5>
+      </div>
+      <div class="flex align-items-center justify-content-center">
+        <h5>ID: {{ cliente.id }}</h5>
+      </div>
+    </div>
+    <div class="grid">
+
+      <div class="col-3">
+        <div class="text-sm font-bold text-600 mb-1">Nombre</div>
+        <div class="font-medium">{{ cliente.razon_social }}</div>
+      </div>
+
+      <div class="col-3">
+        <div class="text-sm font-bold text-600 mb-1">Rut</div>
+        <div class="font-medium">{{ cliente.rut }}</div>
+      </div>
+
+      <div class="col-3">
+        <div class="text-sm font-bold text-600 mb-1">Telefono</div>
+        <div class="font-medium">{{ cliente.telefono }}</div>
+      </div>
+
+      <div class="col-3">
+        <div class="text-sm font-bold text-600 mb-1">Sitio Web</div>
+        <div class="font-medium">
+          <a
+            *ngIf="cliente.sitio_web"
+            (click)="navegarSitioWeb(cliente.sitio_web)"
+            >{{ cliente.sitio_web }}</a
+          >
+        </div>
+      </div>
+
+      <div *ngIf="cliente.pais" class="col-3">
+        <div class="text-sm font-bold text-600 mb-1">Pais</div>
+        <div class="font-medium">{{ cliente.pais.name }}</div>
+      </div>
+
+      <div class="col-3">
+        <div class="text-sm font-bold text-600 mb-1">Región</div>
+        <div class="font-medium">{{ cliente.comuna.nom_reg }}</div>
+      </div>
+
+      <div class="col-3">
+        <div class="text-sm font-bold text-600 mb-1">Comuna</div>
+        <div class="font-medium">{{ cliente.comuna.nom_com }}</div>
+      </div>
+
+      <div class="col-3">
+        <div class="text-sm font-bold text-600 mb-1">Dirección</div>
+        <div class="font-medium">{{ cliente.direccion }}</div>
+      </div>
+      <div class="col-12">
+        <div class="flex">
+          <p-button
+              icon="pi pi-pencil"
+              styleClass="p-button-warning mr-2"
+              (click)="actualizar()"
+          >
+          </p-button>
+          <p-confirmPopup></p-confirmPopup>
+          <p-button
+              icon="pi pi-trash"
+              styleClass="p-button-danger"
+              (click)="eliminar($event)"
+          >
+          </p-button>
+      </div>
+      </div>
+    </div>
+  </div>
+
+
+</ng-container>

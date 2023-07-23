@@ -1,1 +1,9 @@
-<p>detalle-cliente-page works!</p>
+
+  <!-- agregar eventos actualizar y eliminar -->
+  <detalle-cliente
+      [cliente]="cliente"
+      (actualizarEvent)="handleActualizarEvent(cliente!)"
+      (eliminarEvent)="handleEliminarEvent(cliente!)"
+  ></detalle-cliente>
+
+

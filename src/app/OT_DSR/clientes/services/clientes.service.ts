@@ -38,6 +38,11 @@ export class ClientesService {
     );
   };
 
+  getClienteById(id: number):Observable<ClienteResponse> {
+    return this.http.get<ClienteResponse>(`${this.apiUrl}/${id}/`);
+
+  }
+
   addCliente(ClienteForm: ClienteForm): Observable<ClienteResponse>  {
     return this.http.post<ClienteResponse>(`${this.apiUrl}/`, ClienteForm).pipe(
       tap(() => {
