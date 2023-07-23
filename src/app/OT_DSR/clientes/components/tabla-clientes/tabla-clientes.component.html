@@ -1,0 +1,77 @@
+<p-toast></p-toast>
+<p-table
+    #clientesTable
+    [value]="clientes"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    [globalFilterFields]="filterFields"
+    [paginator]="true"
+    [rows]="20"
+>
+    <ng-template pTemplate="caption">
+        <div class="caption-table">
+            <!-- Botón REGISTRAR -->
+            <button pButton pRipple
+                icon="pi pi-plus"
+                class="p-button mr-2"
+                style="background-color:#F78E00"
+                label="Registrar Unidad"
+                (click)="agregar()">
+            </button>
+
+            <div class="caption-filter">
+                <span class="p-input-icon-left ml-auto">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text"
+                        (input)="clientesTable.filterGlobal($any($event.target).value, 'contains')"
+                        placeholder="Codigo, Servicio..." />
+                </span>
+                <!-- Botón LIMPIAR -->
+                <button pButton pRipple
+                    icon="pi pi-filter-slash"
+                    class="p-button-outlined mr-2"
+                    style="color: #006C86;"
+                    label="Limpiar"
+                    (click)="clear(clientesTable)">
+                </button>
+            </div>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+        <tr>
+            <th class="font-bold">ID</th>
+            <th class="font-bold">RUT</th>
+            <th class="font-bold">CLIENTE</th>
+            <th class="font-bold">DIRECCIÓN</th>
+            <th class="font-bold">SUCURSALES</th>
+            <th class="font-bold">CONTACTO</th>
+            <th class="font-bold">ACCIONES</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-clientes let-i>
+        <tr>
+            <td>{{clientes.id}}</td>
+            <td>{{clientes.rut}}</td>
+            <td>{{clientes.razon_social}}</td>
+            <td>{{clientes.direccion}}</td>
+            <td>
+              <!-- <li *ngFor="let cliente of clientes.cliente" >
+                {{cliente.nombre}}
+              </li> -->
+              SUCURSALES
+            </td>
+            <td>
+              <!-- <li *ngFor="let cliente of clientes.cliente" >
+                {{cliente.nombre}}
+              </li> -->
+              CONTACTOS
+            </td>
+            <td>
+              <p-button icon="pi pi-search" styleClass="p-button-rounded p-button-success"  class="m-2"></p-button>
+              <p-button icon="pi pi-trash" styleClass="p-button-rounded p-button-danger" [disabled]="true"></p-button>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+
+
+

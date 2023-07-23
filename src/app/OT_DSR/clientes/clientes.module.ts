@@ -6,6 +6,9 @@ import { ListadoClientesPageComponent } from './pages/listado-clientes-page/list
 import { DetalleClientePageComponent } from './pages/detalle-cliente-page/detalle-cliente-page.component';
 import { RegistroClientePageComponent } from './pages/registro-cliente-page/registro-cliente-page.component';
 import { ActualizarClientePageComponent } from './pages/actualizar-cliente-page/actualizar-cliente-page.component';
+import { FormularioClienteComponent } from './components/formulario-cliente/formulario-cliente.component';
+import { TablaClientesComponent } from './components/tabla-clientes/tabla-clientes.component';
+import { PrimeNGModule } from '../prime-ng/prime-ng.module';
 
 
 @NgModule({
@@ -13,11 +16,14 @@ import { ActualizarClientePageComponent } from './pages/actualizar-cliente-page/
     ListadoClientesPageComponent,
     DetalleClientePageComponent,
     RegistroClientePageComponent,
-    ActualizarClientePageComponent
+    ActualizarClientePageComponent,
+    FormularioClienteComponent,
+    TablaClientesComponent
   ],
   imports: [
     CommonModule,
-    ClientesRoutingModule
+    ClientesRoutingModule,
+    PrimeNGModule
   ]
 })
 export class ClientesModule { }
