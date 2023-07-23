@@ -11,6 +11,7 @@ import { TablaClientesComponent } from './components/tabla-clientes/tabla-client
 import { PrimeNGModule } from '../prime-ng/prime-ng.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UbicacionFormComponent } from 'src/app/shared/components/ubicacion-form/ubicacion-form.component';
+import { DetalleClienteComponent } from './components/detalle-cliente/detalle-cliente.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { UbicacionFormComponent } from 'src/app/shared/components/ubicacion-form
     ActualizarClientePageComponent,
     FormularioClienteComponent,
     TablaClientesComponent,
-    UbicacionFormComponent
+    UbicacionFormComponent,
+    DetalleClienteComponent
   ],
   imports: [
     CommonModule,
