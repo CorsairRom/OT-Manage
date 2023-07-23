@@ -60,10 +60,22 @@
     </div>
   </div>
 
+  <div class="grid mb-3">
+    <div class="col-6">
+      <p-dropdown
+              [options]="opcionesPais"
+              optionLabel="nombre"
+              [style]="{ width: '100%' }"
+              placeholder="Seleccione pais"
+              (onChange)="onPaisSelect($event)"
+              [filter]="true"
+              filterBy="nombre"
+          ></p-dropdown>
+    </div>
+  </div>
 
+  <app-ubicacion-form *ngIf="componentComunaRegion"  [initialComunaId]="cliente?.comuna?.id" (selectedComunaIdEvent)="handleSelectedComuna($event)"></app-ubicacion-form>
 
-  <app-ubicacion-form></app-ubicacion-form>
-  <!-- <app-ubicacion-form [initialComunaId]="propietario?.comuna?.id" (selectedComunaIdEvent)="handleSelectedComuna($event)"></app-ubicacion-form> -->
   <div class="grid mb-3">
     <div class="col">
       <span class="p-float-label">
@@ -77,6 +89,32 @@
         <label>Direccion*</label>
       </span>
     </div>
+    <div class="col">
+      <span class="p-float-label">
+        <input
+          type="text"
+          pInputText
+          formControlName="codigo_postal"
+          placeholder="403000"
+          [style]="{ width: '100%' }"
+        />
+        <label>Codigo Postal</label>
+      </span>
+    </div>
   </div>
+
+  <div class="flex">
+    <p-button
+        styleClass="mr-3"
+        [disabled]="form.invalid"
+        label="Guardar"
+        (click)="submit()"
+    ></p-button>
+    <p-button
+        label="Cancelar"
+        styleClass="p-button-danger"
+        (click)="cancelar()"
+    ></p-button>
+</div>
 
 </form>
