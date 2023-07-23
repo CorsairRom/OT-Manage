@@ -1,1 +1,82 @@
-<p>formulario-cliente works!</p>
+<form [formGroup]="form">
+  <div class="grid mb-3">
+    <div class="col">
+      <span class="p-float-label">
+        <input
+          type="text"
+          pInputText
+          formControlName="razon_social"
+          placeholder="Acis Sociedad LTDA."
+          [style]="{ width: '100%' }"
+        />
+        <label>Nombre*</label>
+      </span>
+    </div>
+    <div class="col">
+      <span class="p-float-label">
+        <input
+          type="text"
+          pInputText
+          formControlName="rut"
+          autofocus
+          placeholder="19.109.516-2"
+          [style]="{ width: '100%' }"
+        />
+        <label>Rut*</label>
+      </span>
+      <small
+        >Rut con puntos y con guión,
+        <strong> Ej: 11.625.443-8</strong>
+      </small>
+    </div>
+  </div>
+
+  <div class="grid mb-3">
+    <div class="col">
+      <span class="p-float-label">
+        <input
+          type="text"
+          pInputText
+          formControlName="sitio_web"
+          placeholder="www.example.com"
+          [style]="{ width: '100%' }"
+        />
+        <label>Sitio Web*</label>
+      </span>
+    </div>
+    <div class="col">
+      <span class="p-float-label">
+        <input
+          type="number"
+          pInputText
+          formControlName="telefono"
+          autofocus
+          placeholder="973932259"
+          [style]="{ width: '100%' }"
+        />
+        <label>Telefono*</label>
+      </span>
+
+    </div>
+  </div>
+
+
+
+  <app-ubicacion-form></app-ubicacion-form>
+  <!-- <app-ubicacion-form [initialComunaId]="propietario?.comuna?.id" (selectedComunaIdEvent)="handleSelectedComuna($event)"></app-ubicacion-form> -->
+  <div class="grid mb-3">
+    <div class="col">
+      <span class="p-float-label">
+        <input
+          type="text"
+          pInputText
+          formControlName="direccion"
+          placeholder="Av. Paivavi N° 1245"
+          [style]="{ width: '100%' }"
+        />
+        <label>Direccion*</label>
+      </span>
+    </div>
+  </div>
+
+</form>

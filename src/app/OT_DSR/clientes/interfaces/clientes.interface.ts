@@ -26,11 +26,11 @@ export interface Pais {
 
 export interface ClienteForm {
   comuna_id:     number;
-  pais:          number;
-  razon_social?: string;
+  pais?:         number | null;
+  razon_social: string;
   rut:           string;
-  sitio_web:     string;
+  sitio_web?:    string | null;
   telefono:      number;
   direccion:     string;
-  codigo_postal?: number;
+  codigo_postal?: number | null;
 }

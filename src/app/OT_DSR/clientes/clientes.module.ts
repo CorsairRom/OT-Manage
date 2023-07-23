@@ -9,6 +9,8 @@ import { ActualizarClientePageComponent } from './pages/actualizar-cliente-page/
 import { FormularioClienteComponent } from './components/formulario-cliente/formulario-cliente.component';
 import { TablaClientesComponent } from './components/tabla-clientes/tabla-clientes.component';
 import { PrimeNGModule } from '../prime-ng/prime-ng.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UbicacionFormComponent } from 'src/app/shared/components/ubicacion-form/ubicacion-form.component';
 
 
 @NgModule({
@@ -18,12 +20,15 @@ import { PrimeNGModule } from '../prime-ng/prime-ng.module';
     RegistroClientePageComponent,
     ActualizarClientePageComponent,
     FormularioClienteComponent,
-    TablaClientesComponent
+    TablaClientesComponent,
+    UbicacionFormComponent
   ],
   imports: [
     CommonModule,
     ClientesRoutingModule,
-    PrimeNGModule
+    PrimeNGModule,
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class ClientesModule { }

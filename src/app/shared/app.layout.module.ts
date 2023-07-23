@@ -24,6 +24,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { FooterComponent } from './components/footer/footer.component';
 
 
+
 @NgModule({
     declarations: [
         MenuComponent,
@@ -31,6 +32,7 @@ import { FooterComponent } from './components/footer/footer.component';
         MenuitemComponent,
         TopBarComponent,
         AppLayoutComponent,
+
 
     ],
     imports: [
