@@ -2,8 +2,8 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { MensajeService } from '../../core/services/message.service';
 import { environment } from 'src/environments/environment';
-import { BehaviorSubject, catchError, tap, throwError } from 'rxjs';
-import { ClienteResponse } from '../interfaces/clientes.interface';
+import { BehaviorSubject, Observable, catchError, tap, throwError } from 'rxjs';
+import { ClienteForm, ClienteResponse } from '../interfaces/clientes.interface';
 
 @Injectable({providedIn: 'root'})
 export class ClientesService {
@@ -37,5 +37,17 @@ export class ClientesService {
       catchError((err: HttpErrorResponse) => this.handleError(err))
     );
   };
+
+  addCliente(ClienteForm: ClienteForm): Observable<ClienteResponse>  {
+    return this.http.post<ClienteResponse>(`${this.apiUrl}/`, ClienteForm).pipe(
+      tap(() => {
+          this.messageService.addMessage({
+              details: ['Cliente registrado exitosamente!'],
+              role: 'success'
+          })
+      }),
+      catchError((err: HttpErrorResponse) => this.handleError(err))
+  )
+  }
 
 }
