@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MenuItem } from 'primeng/api';
-import { Product } from './api/product';
+import { DashboardData, Product } from './api/product';
 import { ProductService } from './service/product.service';
 import { Subscription } from 'rxjs';
 import { LayoutService } from 'src/app/shared/service/app.layout.service';
@@ -31,13 +31,15 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
     subscription!: Subscription;
 
+    dataDashboard!: DashboardData;
+
     constructor(
         private productService: ProductService,
         public layoutService: LayoutService,
 
-        private detalleArriendoService: DetalleArriendoService,
-        private gastoComunService: GastoComunService,
-        private servicioExtraService: ServicioExtraService,
+        // private detalleArriendoService: DetalleArriendoService,
+        // private gastoComunService: GastoComunService,
+        // private servicioExtraService: ServicioExtraService,
     ) {
         this.subscription = this.layoutService.configUpdate$.subscribe(() => {
             this.initChart();
@@ -50,10 +52,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this.productService.getProductsSmall().then(data => this.products = data);
 
 
-        this.detalleArriendoService.getDetallesArriendo().subscribe(res => console.log('DetalleArriendo',res))
-        this.gastoComunService.getGastosComunes().subscribe(res => console.log('GastosComunes',res))
-        this.servicioExtraService.getServiciosExtras().subscribe(res => console.log('ServiciosExtras',res))
-
+        // this.detalleArriendoService.getDetallesArriendo().subscribe(res => console.log('DetalleArriendo',res))
+        // this.gastoComunService.getGastosComunes().subscribe(res => console.log('GastosComunes',res))
+        // this.servicioExtraService.getServiciosExtras().subscribe(res => console.log('ServiciosExtras',res))
+        this.productService.getDataDashboard().subscribe(res => this.dataDashboard= res);
 
         this.items = [
             { label: 'Add New', icon: 'pi pi-fw pi-plus' },

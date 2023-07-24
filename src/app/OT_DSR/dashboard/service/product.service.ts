@@ -1,10 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Product } from '../api/product';
+import { DashboardData, Product } from '../api/product';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class ProductService {
-
+    private apiUrl = `${ environment.apiUrl }/api/dashboard`
     constructor(private http: HttpClient) { }
 
     getProductsSmall() {
@@ -33,5 +34,8 @@ export class ProductService {
             .toPromise()
             .then(res => res.data as Product[])
             .then(data => data);
+    }
+    getDataDashboard() {
+      return this.http.get<DashboardData>(`${this.apiUrl}/`)
     }
 }

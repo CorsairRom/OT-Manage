@@ -68,11 +68,9 @@ export class FormularioClienteComponent implements OnInit {
           this.form.get('pais')?.setValue(selectedPais); // Establecer el valor del control pais
           this.componentComunaRegion = true;
         }
+      };
 
-      }
-
-
-    }
+    };
   }
 
   handleSelectedComuna(comunaId: number | null) {
@@ -86,9 +84,7 @@ export class FormularioClienteComponent implements OnInit {
       this.form.patchValue({pais: {id: event.value.id, nombre: event.value.nombre}})
       this.componentComunaRegion = true;
 
-
-
-    }
+    };
   }
 
   submit(){
@@ -104,10 +100,10 @@ export class FormularioClienteComponent implements OnInit {
       telefono: values.telefono,
       direccion: values.direccion,
       codigo_postal: values.codigo_postal!
-    }
+    };
     if (this.cliente?.id) {
       clienteForm.id=this.cliente.id;
-    }
+    };
 
     this.submitEvent.emit(clienteForm);
   }
