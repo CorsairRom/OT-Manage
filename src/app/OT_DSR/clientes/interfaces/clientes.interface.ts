@@ -25,8 +25,9 @@ export interface Pais {
 }
 
 export interface ClienteForm {
+  id?:           number;
   comuna_id:     number;
-  pais?:         number | null;
+  pais_id?:      number | null;
   razon_social: string;
   rut:           string;
   sitio_web?:    string | null;

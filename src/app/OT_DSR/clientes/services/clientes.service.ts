@@ -55,4 +55,8 @@ export class ClientesService {
   )
   }
 
+  updateCliente(ClienteForm: ClienteForm){
+    return this.http.put<ClienteResponse>(`${this.apiUrl}/${ClienteForm.id!}/`, ClienteForm);
+  }
+
 }

@@ -1,1 +1,9 @@
-<p>actualizar-cliente-page works!</p>
+<div class="card">
+  <h4>Actualizar Cliente</h4>
+  <formulario-cliente
+      *ngIf="cliente$ | async as cliente"
+      [cliente]="cliente"
+      (submitEvent)="submit($event)"
+      (cancelEvent)="cancel()"
+  ></formulario-cliente>
+</div>
