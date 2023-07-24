@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { ClienteResponse } from '../../interfaces/clientes.interface';
+import { ClienteRES } from '../../interfaces/clientes.interface';
 import { Table } from 'primeng/table';
 
 @Component({
@@ -8,7 +8,7 @@ import { Table } from 'primeng/table';
   styleUrls: ['./tabla-clientes.component.scss']
 })
 export class TablaClientesComponent {
-  @Input() clientes: ClienteResponse[] = [];
+  @Input() clientes: ClienteRES[] = [];
   @Output() eliminarEvent = new EventEmitter<string>();
 
   filterFields: string[] = ['rut', 'nombre']

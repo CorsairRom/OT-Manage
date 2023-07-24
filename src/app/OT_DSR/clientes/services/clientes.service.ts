@@ -3,7 +3,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { MensajeService } from '../../core/services/message.service';
 import { environment } from 'src/environments/environment';
 import { BehaviorSubject, Observable, catchError, tap, throwError } from 'rxjs';
-import { ClienteForm, ClienteResponse } from '../interfaces/clientes.interface';
+import { ClienteForm, ClienteRES } from '../interfaces/clientes.interface';
 
 @Injectable({providedIn: 'root'})
 export class ClientesService {
@@ -11,7 +11,7 @@ export class ClientesService {
   private messageService = inject(MensajeService);
   private apiUrl = `${ environment.apiUrl }/api/cliente`
 
-  private clientesSubject = new BehaviorSubject<ClienteResponse[]>([]);
+  private clientesSubject = new BehaviorSubject<ClienteRES[]>([]);
   clientes$ = this.clientesSubject.asObservable();
 
   private handleError(error: HttpErrorResponse) {
@@ -28,7 +28,7 @@ export class ClientesService {
 
   getClientes(query: {} = {}) {
 
-    return this.http.get<ClienteResponse[]>(`${this.apiUrl}/`, {params: query}).pipe(
+    return this.http.get<ClienteRES[]>(`${this.apiUrl}/`, {params: query}).pipe(
       tap(clientes => {
         // Actualizar los datos del servicio en el BehaviorSubject
 
@@ -38,13 +38,13 @@ export class ClientesService {
     );
   };
 
-  getClienteById(id: number):Observable<ClienteResponse> {
-    return this.http.get<ClienteResponse>(`${this.apiUrl}/${id}/`);
+  getClienteById(id: number):Observable<ClienteRES> {
+    return this.http.get<ClienteRES>(`${this.apiUrl}/${id}/`);
 
   }
 
-  addCliente(ClienteForm: ClienteForm): Observable<ClienteResponse>  {
-    return this.http.post<ClienteResponse>(`${this.apiUrl}/`, ClienteForm).pipe(
+  addCliente(ClienteForm: ClienteForm): Observable<ClienteRES>  {
+    return this.http.post<ClienteRES>(`${this.apiUrl}/`, ClienteForm).pipe(
       tap(() => {
           this.messageService.addMessage({
               details: ['Cliente registrado exitosamente!'],
@@ -56,7 +56,7 @@ export class ClientesService {
   }
 
   updateCliente(ClienteForm: ClienteForm){
-    return this.http.put<ClienteResponse>(`${this.apiUrl}/${ClienteForm.id!}/`, ClienteForm);
+    return this.http.put<ClienteRES>(`${this.apiUrl}/${ClienteForm.id!}/`, ClienteForm);
   }
 
 }

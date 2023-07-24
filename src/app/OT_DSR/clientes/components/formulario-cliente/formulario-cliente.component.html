@@ -32,7 +32,7 @@
   </div>
 
   <div class="grid mb-3">
-    <div class="col">
+    <!-- <div class="col">
       <span class="p-float-label">
         <input
           type="text"
@@ -44,6 +44,28 @@
         <label>Sitio Web*</label>
       </span>
     </div>
+
+    <div class="p-inputgroup">
+      <span class="p-inputgroup-addon">www</span>
+      <input type="text" pInputText placeholder="Website" />
+    </div> -->
+
+    <div class="col">
+        <div class="p-inputgroup">
+          <span class="p-inputgroup-addon">https://www.</span>
+          <input
+          type="text"
+          pInputText
+          formControlName="sitio_web"
+          placeholder="example.com"
+          [style]="{ width: '100%' }"
+        />
+
+        </div>
+    </div>
+
+
+
     <div class="col">
       <span class="p-float-label">
         <input

@@ -42,8 +42,8 @@
             <th class="font-bold">RUT</th>
             <th class="font-bold">CLIENTE</th>
             <th class="font-bold">DIRECCIÓN</th>
-            <th class="font-bold">SUCURSALES</th>
-            <th class="font-bold">CONTACTO</th>
+            <th class="font-bold">TELÉFONO</th>
+            <th class="font-bold">SITIO WEB</th>
             <th class="font-bold">ACCIONES</th>
         </tr>
     </ng-template>
@@ -54,22 +54,16 @@
             <td>{{clientes.razon_social}}</td>
             <td>{{clientes.direccion}}</td>
             <td>
-              <!-- <li *ngFor="let cliente of clientes.cliente" >
-                {{cliente.nombre}}
-              </li> -->
-              SUCURSALES
+              {{clientes.telefono}}
             </td>
             <td>
-              <!-- <li *ngFor="let cliente of clientes.cliente" >
-                {{cliente.nombre}}
-              </li> -->
-              CONTACTOS
+              {{clientes.sitio_web}}
             </td>
             <td>
               <div class="flex">
 
                 <p-button icon="pi pi-search" styleClass="p-button-rounded p-button-success" [routerLink]="['/clientes', clientes.id, 'detalle']" class="mx-2"></p-button>
-                <p-button icon="pi pi-trash" styleClass="p-button-rounded p-button-danger" [disabled]="true"></p-button>
+
               </div>
             </td>
         </tr>

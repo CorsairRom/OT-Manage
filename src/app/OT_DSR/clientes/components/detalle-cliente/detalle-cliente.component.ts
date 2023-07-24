@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
-import { ClienteResponse } from '../../interfaces/clientes.interface';
+import { ClienteRES } from '../../interfaces/clientes.interface';
 import { ConfirmationService } from 'primeng/api';
 
 @Component({
@@ -10,7 +10,7 @@ import { ConfirmationService } from 'primeng/api';
   providers: [ConfirmationService],
 })
 export class DetalleClienteComponent {
-  @Input() cliente?: ClienteResponse
+  @Input() cliente?: ClienteRES
 
   @Output() actualizarEvent = new EventEmitter();
   @Output() eliminarEvent = new EventEmitter();

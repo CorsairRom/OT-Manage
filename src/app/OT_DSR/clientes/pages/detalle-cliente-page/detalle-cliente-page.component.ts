@@ -1,6 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule, Location } from '@angular/common';
-import { ClienteResponse } from '../../interfaces/clientes.interface';
+import { ClienteRES } from '../../interfaces/clientes.interface';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ClientesService } from '../../services/clientes.service';
 import { map, switchMap } from 'rxjs';
@@ -13,7 +13,7 @@ import { map, switchMap } from 'rxjs';
 export class DetalleClientePageComponent implements OnInit{
 
 
-  cliente?: ClienteResponse;
+  cliente?: ClienteRES;
 
   activatedRoute = inject(ActivatedRoute);
   location = inject(Location);
@@ -27,11 +27,11 @@ export class DetalleClientePageComponent implements OnInit{
       switchMap((id) => this.clienteService.getClienteById(id))
     ).subscribe(cliente => this.cliente = cliente)
   }
-  handleActualizarEvent(cliente: ClienteResponse) {
+  handleActualizarEvent(cliente: ClienteRES) {
     this.router.navigate(['clientes', cliente.id, 'actualizar'])
   }
 
-  handleEliminarEvent(cliente: ClienteResponse) {
+  handleEliminarEvent(cliente: ClienteRES) {
     alert('cliente: puesto en inactivo')
   }
 

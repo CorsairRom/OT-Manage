@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output, inject, OnInit } from '@angular/core';
-import { ClienteForm, ClienteResponse } from '../../interfaces/clientes.interface';
+import { ClienteForm, ClienteRES } from '../../interfaces/clientes.interface';
 import { FormBuilder, Validators } from '@angular/forms';
 
 interface Pais {
@@ -16,7 +16,7 @@ interface Pais {
 })
 export class FormularioClienteComponent implements OnInit {
 
-  @Input() cliente? : ClienteResponse
+  @Input() cliente? : ClienteRES
   @Input() title? : string
 
   @Output() submitEvent = new EventEmitter<ClienteForm>();

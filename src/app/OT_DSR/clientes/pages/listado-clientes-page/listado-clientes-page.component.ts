@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ClienteResponse } from '../../interfaces/clientes.interface';
+import { ClienteRES } from '../../interfaces/clientes.interface';
 import { ClientesService } from '../../services/clientes.service';
 import { Subscription } from 'rxjs';
 
@@ -9,7 +9,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./listado-clientes-page.component.scss']
 })
 export class ListadoClientesPageComponent implements OnInit{
-  clientes$: ClienteResponse[] = [];
+  clientes$: ClienteRES[] = [];
   private subscription?: Subscription;
 
   constructor( private clienteService:ClientesService) { }
