@@ -21,4 +21,9 @@ export class TablaClientesComponent {
     console.log('agregar');
 
   }
+  navegarSitioWeb(data: string) {
+    // Utilizar window.open() para abrir el sitio web
+    let url = `${data}`
+    window.open(url, '_blank');
+  }
 }

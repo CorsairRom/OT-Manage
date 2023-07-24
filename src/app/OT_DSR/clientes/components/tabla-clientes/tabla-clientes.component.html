@@ -57,7 +57,11 @@
               {{clientes.telefono}}
             </td>
             <td>
-              {{clientes.sitio_web}}
+              <a
+            *ngIf="clientes.sitio_web"
+            (click)="navegarSitioWeb(clientes.sitio_web)"
+            >{{ clientes.sitio_web }}</a
+          >
             </td>
             <td>
               <div class="flex">

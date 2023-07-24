@@ -96,7 +96,8 @@ export class FormularioClienteComponent implements OnInit {
       pais_id: values.pais?.id,
       razon_social: values.razon_social,
       rut: values.rut,
-      sitio_web: values.sitio_web,
+      // sitio_web: values.sitio_web,
+      sitio_web: this.valueSitioWeb(values.sitio_web),
       telefono: values.telefono,
       direccion: values.direccion,
       codigo_postal: values.codigo_postal!
@@ -107,6 +108,20 @@ export class FormularioClienteComponent implements OnInit {
 
     this.submitEvent.emit(clienteForm);
   }
+
+  valueSitioWeb(sitioWeb:string| null){
+    if(!sitioWeb) return;
+    console.log(sitioWeb);
+    if (sitioWeb.length < 0) return;
+    let sitioWebValue:string = '';
+    if (sitioWeb.includes('www.'))  return sitioWebValue = sitioWeb.replace('www.', 'https://');
+    if (sitioWeb.includes('https://www.')) return sitioWebValue = sitioWeb.replace('https://www.', 'https://');
+    if (sitioWeb.includes('http://www.'))  return sitioWebValue = sitioWeb.replace('http://www.', 'https://');
+    if (!sitioWeb.includes('www.') && !sitioWeb.includes('http://www.') && !sitioWeb.includes('https://www.')) return sitioWebValue = `https://${sitioWeb}`
+    return sitioWeb
+  }
+
+
 
   cancelar() {
     this.cancelEvent.emit();

@@ -19,7 +19,7 @@ export class DetalleClienteComponent {
 
   navegarSitioWeb(data: string) {
     // Utilizar window.open() para abrir el sitio web
-    let url = `http://${data}`
+    let url = `${data}`
     window.open(url, '_blank');
   }
 
