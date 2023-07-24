@@ -12,7 +12,8 @@ import { PrimeNGModule } from '../prime-ng/prime-ng.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UbicacionFormComponent } from 'src/app/shared/components/ubicacion-form/ubicacion-form.component';
 import { DetalleClienteComponent } from './components/detalle-cliente/detalle-cliente.component';
-import { ListadoSucursalesComponent } from './components/listado-sucursales/listado-sucursales.component';
+import { TablaSucursalesComponent } from './components/tabla-sucursales/tabla-sucursales.component';
+
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { ListadoSucursalesComponent } from './components/listado-sucursales/list
     TablaClientesComponent,
     UbicacionFormComponent,
     DetalleClienteComponent,
-    ListadoSucursalesComponent
+    TablaSucursalesComponent,
+
   ],
   imports: [
     CommonModule,
