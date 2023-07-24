@@ -55,7 +55,7 @@ export class FormularioClienteComponent implements OnInit {
         comuna_id: this.cliente.comuna.id,
         razon_social: this.cliente.razon_social || '',
         rut: this.cliente.rut,
-        sitio_web: this.cliente.sitio_web,
+        sitio_web: this.cuttHttp(this.cliente.sitio_web),
         telefono: this.cliente.telefono,
         direccion: this.cliente.direccion,
         codigo_postal: this.cliente.codigo_postal
@@ -108,12 +108,21 @@ export class FormularioClienteComponent implements OnInit {
 
     this.submitEvent.emit(clienteForm);
   }
+  cuttHttp(sitioWeb:string | null){
+    if(!sitioWeb) return;
+
+    if (sitioWeb.length < 0) return;
+    let sitioWebValue:string = '';
+    if (sitioWeb.includes('https://'))  return sitioWebValue = sitioWeb.split('https://')[1]
+    return sitioWeb
+  }
 
   valueSitioWeb(sitioWeb:string| null){
     if(!sitioWeb) return;
-    console.log(sitioWeb);
+
     if (sitioWeb.length < 0) return;
     let sitioWebValue:string = '';
+    if (sitioWeb.includes('https://'))  return sitioWebValue = sitioWeb
     if (sitioWeb.includes('www.'))  return sitioWebValue = sitioWeb.replace('www.', 'https://');
     if (sitioWeb.includes('https://www.')) return sitioWebValue = sitioWeb.replace('https://www.', 'https://');
     if (sitioWeb.includes('http://www.'))  return sitioWebValue = sitioWeb.replace('http://www.', 'https://');
