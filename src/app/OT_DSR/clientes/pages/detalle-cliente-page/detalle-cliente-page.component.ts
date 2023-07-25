@@ -17,7 +17,7 @@ export class DetalleClientePageComponent implements OnInit{
   cliente?: ClienteRES;
   sucursales$: SucursalesResponse[] = [];
   private subscription?: Subscription;
-  clienteID?: number;
+
   activatedRoute = inject(ActivatedRoute);
   location = inject(Location);
   router = inject(Router);
@@ -31,7 +31,6 @@ export class DetalleClientePageComponent implements OnInit{
       switchMap((id) => this.clienteService.getClienteById(id))
     ).subscribe(cliente =>{
       this.cliente = cliente;
-      this.clienteID = this.cliente.id;
       this.suscribeSucursales(cliente.id);
     })
   }

@@ -1,6 +1,8 @@
-import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, inject, OnChanges, SimpleChanges } from '@angular/core';
 import { ContactoForm, SucursalesForm, SucursalesResponse } from '../../interfaces/sucursal.interface';
 import { FormArray, FormBuilder, Validators } from '@angular/forms';
+import { ClientesService } from '../../services/clientes.service';
+import { ClienteRES } from '../../interfaces/clientes.interface';
 
 @Component({
   selector: 'formulario-sucursal',
@@ -8,21 +10,25 @@ import { FormArray, FormBuilder, Validators } from '@angular/forms';
   styles: [
   ]
 })
-export class FormularioSucursalComponent implements OnInit {
+export class FormularioSucursalComponent implements OnInit, OnChanges {
 
   @Input() sucursal? : SucursalesResponse
   @Input() title? : string;
-  @Input() IDcliente!: number;
+  @Input() cliente?:ClienteRES;
 
   @Output() submitEvent = new EventEmitter<SucursalesForm>();
   @Output() cancelEvent = new EventEmitter<boolean>();
+  IDcliente?: number;
 
   fb = inject(FormBuilder)
+
+  clienteService = inject(ClientesService)
+
 
   form = this.fb.group({
     nombre: this.fb.control<string>('', [Validators.required,Validators.minLength(3), Validators.maxLength(50)]),
     direccion: this.fb.control<string>('', [Validators.required,Validators.minLength(10), Validators.maxLength(150)]),
-    cliente: this.fb.control<number>(this.IDcliente,[Validators.required]),
+    cliente: this.fb.control<number>(0,[Validators.required]),
     comuna_id: this.fb.control<number | null>(null,[Validators.required]),
     contactos: this.fb.array<ContactoForm[]>([]),
   });
@@ -32,10 +38,13 @@ export class FormularioSucursalComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log("Cliente ID formularioResp:", this.IDcliente);
+
     console.log('Sucursales en formulario sucursal ',this.sucursal);
     if(!this.sucursal) return;
 
   }
+
 
   addContacto() {
     const ContactoFormControl = this.fb.group({
@@ -62,7 +71,7 @@ export class FormularioSucursalComponent implements OnInit {
     const SucursalForm: SucursalesForm = {
       nombre: values.nombre!,
       direccion: values.direccion!,
-      cliente: values.cliente!,
+      cliente: 1,
       comuna_id: values.comuna_id!,
       contactos: values.contactos as ContactoForm[],
     };
@@ -77,5 +86,14 @@ export class FormularioSucursalComponent implements OnInit {
     // this.contactos.clear();
     this.cancelEvent.emit(false);
   }
+  ngOnChanges(changes: SimpleChanges) {
+    // Detecta los cambios en las propiedades de entrada, incluido clienteID
+    if (changes['cliente'] && changes['cliente'].currentValue !== undefined) {
+      this.IDcliente = this.cliente!.id;
+      this.form.patchValue({cliente: this.IDcliente});
+    }
+    }
+
+
 
 }

@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, Output, inject, OnInit, AfterViewInit, OnChanges, SimpleChanges } from '@angular/core';
 import { SucursalesForm, SucursalesResponse } from '../../interfaces/sucursal.interface';
 import { SucursalesService } from '../../services/sucursales.service';
+import { ClienteRES } from '../../interfaces/clientes.interface';
+import { ClientesService } from '../../services/clientes.service';
 
 
 @Component({
@@ -9,24 +11,29 @@ import { SucursalesService } from '../../services/sucursales.service';
   styles: [
   ]
 })
-export class TablaSucursalesComponent {
+export class TablaSucursalesComponent implements OnInit, OnChanges {
+  ngOnChanges(changes: SimpleChanges): void {
 
+  }
 
   @Input() sucursales: SucursalesResponse[] = [];
-  @Input() clienteID?: number;
+  @Input() cliente?: ClienteRES;
 
   sucursal?: SucursalesResponse;
-  formSucursalToggle: boolean = true; //cambiar
+  formSucursalToggle: boolean = false; //cambiar
   sucursalForm?:SucursalesForm;
-  idCliente!:number;
+
 
 
   sucursalesService= inject(SucursalesService)
+  clienteServices = inject(ClientesService)
+  ngOnInit(): void {
+
+  }
 
 
+  toggleFormSucursal(){
 
-  toggleFormSucursal(Event:any){
-    // console.log(this.sucursal);
     this.formSucursalToggle = !this.formSucursalToggle;
   }
 
