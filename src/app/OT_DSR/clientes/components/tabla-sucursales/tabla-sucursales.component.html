@@ -1,6 +1,6 @@
-<ng-container *ngIf="formSucursal"  >
+<ng-container *ngIf="formSucursalToggle"  >
   <div class="card m-4">
-    <formulario-sucursal [sucursal]="sucursalForm"></formulario-sucursal>
+    <formulario-sucursal [sucursal]="sucursal" (submitEvent)="submitEvent($event)" (cancelEvent)="toggleFormSucursal($event)" ></formulario-sucursal>
   </div>
 </ng-container>
 
@@ -23,7 +23,7 @@
           class="p-button mr-2"
           style="background-color: #f78e00"
           label="Registrar Sucursal"
-          (click)="toggleFormSucursal()"
+          (click)="toggleFormSucursal($event)"
         ></button>
       </div>
     </ng-template>

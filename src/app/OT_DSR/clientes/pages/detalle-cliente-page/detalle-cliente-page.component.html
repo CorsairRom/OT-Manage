@@ -4,9 +4,10 @@
       [cliente]="cliente"
       (actualizarEvent)="handleActualizarEvent(cliente!)"
       (eliminarEvent)="handleEliminarEvent(cliente!)"
+
   ></detalle-cliente>
 
   <tabla-sucursales
       [sucursales]="sucursales$"
-
+      [clienteID] = "clienteID"
   ></tabla-sucursales>

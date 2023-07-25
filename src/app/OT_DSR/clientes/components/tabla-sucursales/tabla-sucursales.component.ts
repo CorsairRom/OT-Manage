@@ -1,5 +1,6 @@
-import { Component,EventEmitter, Input, Output } from '@angular/core';
-import { SucursalesResponse } from '../../interfaces/sucursal.interface';
+import { Component, EventEmitter, Input, Output, inject, OnInit, AfterViewInit, OnChanges, SimpleChanges } from '@angular/core';
+import { SucursalesForm, SucursalesResponse } from '../../interfaces/sucursal.interface';
+import { SucursalesService } from '../../services/sucursales.service';
 
 
 @Component({
@@ -10,11 +11,26 @@ import { SucursalesResponse } from '../../interfaces/sucursal.interface';
 })
 export class TablaSucursalesComponent {
 
-  @Input() sucursales: SucursalesResponse[] = [];
-  sucursalForm?: SucursalesResponse;
-  formSucursal: boolean = true; //cambiar
 
-  toggleFormSucursal(){
-    this.formSucursal = !this.formSucursal;
+  @Input() sucursales: SucursalesResponse[] = [];
+  @Input() clienteID?: number;
+
+  sucursal?: SucursalesResponse;
+  formSucursalToggle: boolean = true; //cambiar
+  sucursalForm?:SucursalesForm;
+  idCliente!:number;
+
+
+  sucursalesService= inject(SucursalesService)
+
+
+
+  toggleFormSucursal(Event:any){
+    // console.log(this.sucursal);
+    this.formSucursalToggle = !this.formSucursalToggle;
+  }
+
+  submitEvent(sucursarForm: SucursalesForm){
+    console.log(sucursarForm);
   }
 }

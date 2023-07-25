@@ -30,13 +30,11 @@ export class FormularioSucursalComponent implements OnInit {
   get contactos(){
     return (this.form.get('contactos') as FormArray)|| [];
   }
-  // set contactos(form:any){
-
-  // }
 
   ngOnInit(): void {
-    console.log(this.sucursal);
+    console.log('Sucursales en formulario sucursal ',this.sucursal);
     if(!this.sucursal) return;
+
   }
 
   addContacto() {
@@ -58,6 +56,7 @@ export class FormularioSucursalComponent implements OnInit {
   }
 
   Submit(){
+    console.log(this.form);
     if(this.form.invalid) return;
     const values = this.form.getRawValue();
     const SucursalForm: SucursalesForm = {

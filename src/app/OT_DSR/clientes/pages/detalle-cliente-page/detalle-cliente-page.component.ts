@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, AfterViewInit } from '@angular/core';
 import { CommonModule, Location } from '@angular/common';
 import { ClienteRES } from '../../interfaces/clientes.interface';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -14,11 +14,10 @@ import { SucursalesService } from '../../services/sucursales.service';
 })
 export class DetalleClientePageComponent implements OnInit{
 
-
   cliente?: ClienteRES;
   sucursales$: SucursalesResponse[] = [];
   private subscription?: Subscription;
-
+  clienteID?: number;
   activatedRoute = inject(ActivatedRoute);
   location = inject(Location);
   router = inject(Router);
@@ -26,19 +25,22 @@ export class DetalleClientePageComponent implements OnInit{
   clienteService = inject(ClientesService)
   sucursalesService = inject(SucursalesService)
 
-  ngOnInit(): void {
+  ngOnInit(){
     this.activatedRoute.paramMap.pipe(
       map(param => Number(param.get('id'))),
       switchMap((id) => this.clienteService.getClienteById(id))
     ).subscribe(cliente =>{
       this.cliente = cliente;
+      this.clienteID = this.cliente.id;
       this.suscribeSucursales(cliente.id);
     })
   }
 
+
   suscribeSucursales(id: number) {
     // Suscribirse a los cambios en los servicios
     this.subscription = this.sucursalesService.sucursales$.subscribe(sucursales => {
+
       this.sucursales$ = sucursales;
     });
     // Obtener los servicios iniciales
