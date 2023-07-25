@@ -1,1 +1,51 @@
-<p>formulario-sucursal works!</p>
+<form [formGroup]="form">
+ <h4 class="pb-2">{{title}}</h4>
+  <div class="grid mb-3">
+    <div class="col">
+      <span class="p-float-label">
+        <input
+          type="text"
+          pInputText
+          formControlName="nombre"
+          placeholder="Juan Pérez"
+          [style]="{ width: '100%' }"
+        />
+        <label>Zona*</label>
+      </span>
+    </div>
+
+  </div>
+  <app-ubicacion-form  [initialComunaId]="sucursal?.comuna?.id" (selectedComunaIdEvent)="handleSelectedComuna($event)"></app-ubicacion-form>
+
+  <div class="grid mb-3">
+    <div class="col">
+      <span class="p-float-label">
+        <input
+          type="text"
+          pInputText
+          formControlName="direccion"
+          placeholder="Juan Pérez"
+          [style]="{ width: '100%' }"
+        />
+        <label>Direccion*</label>
+      </span>
+    </div>
+
+  </div>
+  <div class="flex">
+    <p-button
+        styleClass="mr-3"
+        [disabled]="form.invalid"
+        label="Guardar"
+        (click)="Submit()"
+    ></p-button>
+    <p-button
+        label="Cancelar"
+        styleClass="p-button-danger"
+        (click)="Cancel()"
+    ></p-button>
+  </div>
+
+
+
+</form>

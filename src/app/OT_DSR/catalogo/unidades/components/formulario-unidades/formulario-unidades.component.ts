@@ -104,8 +104,7 @@ export class FormularioUnidadesComponent implements OnInit {
   }
 
   submit() {
-    console.log('pristine: ', this.form.pristine);
-    console.log('touched: ', this.form.touched);
+
     if (this.form.invalid) return;
 
     const values = this.form.getRawValue();

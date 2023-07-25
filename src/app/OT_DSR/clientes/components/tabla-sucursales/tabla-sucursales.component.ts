@@ -11,8 +11,8 @@ import { SucursalesResponse } from '../../interfaces/sucursal.interface';
 export class TablaSucursalesComponent {
 
   @Input() sucursales: SucursalesResponse[] = [];
-
-  formSucursal: boolean = false;
+  sucursalForm?: SucursalesResponse;
+  formSucursal: boolean = true; //cambiar
 
   toggleFormSucursal(){
     this.formSucursal = !this.formSucursal;
