@@ -7,7 +7,7 @@
           type="text"
           pInputText
           formControlName="nombre"
-          placeholder="Juan Pérez"
+          placeholder="Zona Norte"
           [style]="{ width: '100%' }"
         />
         <label>Zona*</label>
@@ -30,8 +30,84 @@
         <label>Direccion*</label>
       </span>
     </div>
-
   </div>
+
+  <ng-container  formArrayName="contactos" >
+    <ng-container class="mb-1" *ngFor="let contacto of contactos.controls; let i = index" [formGroupName]="i" >
+
+      <div class="flex align-items-center justify-content-center m-4">
+        <h4>Contacto {{i+1}}</h4>
+      </div>
+      <div class="grid mb-3">
+        <div class="col">
+          <span class="p-float-label">
+            <input
+              type="text"
+              pInputText
+              formControlName="nombre"
+              placeholder="Juan"
+              [style]="{ width: '100%' }"
+            />
+            <label>Nombre*</label>
+          </span>
+        </div>
+        <div class="col">
+          <span class="p-float-label">
+            <input
+              type="text"
+              pInputText
+              formControlName="apellido"
+              placeholder="Pérez"
+              [style]="{ width: '100%' }"
+            />
+            <label>Apellido*</label>
+          </span>
+        </div>
+      </div>
+      <div class="grid mb-3">
+        <div class="col">
+          <span class="p-float-label">
+            <input
+              type="email"
+
+              email
+              pInputText
+              formControlName="correo"
+              placeholder="admin@admin.com"
+              [style]="{ width: '100%' }"
+            />
+            <label>Correo*</label>
+          </span>
+        </div>
+        <div class="col">
+          <span class="p-float-label">
+            <input
+              type="number"
+              pKeyFilter="int"
+              pInputText
+              formControlName="apellido"
+              placeholder="973932259"
+              [style]="{ width: '100%' }"
+            />
+            <label>Telefono*</label>
+          </span>
+        </div>
+      </div>
+      <div class="flex">
+        <p-button
+        label="Borrar"
+        styleClass="p-button-danger"
+        (click)="deleteContacto(i)"
+      ></p-button>
+      </div>
+      <hr>
+    </ng-container>
+  </ng-container>
+
+  <div class="flex align-items-center justify-content-center m-4">
+    <p-button icon="pi pi-plus" label="Contacto" styleClass="p-button-rounded p-button-help" (click)="addContacto()"></p-button>
+  </div>
+
   <div class="flex">
     <p-button
         styleClass="mr-3"

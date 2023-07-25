@@ -1,55 +1,57 @@
 import { NgModule } from '@angular/core';
 
+import { AnimateModule } from 'primeng/animate';
 import { ButtonModule } from 'primeng/button';
+import { CardModule } from 'primeng/card';
+import { ChipModule } from 'primeng/chip';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { DialogModule } from 'primeng/dialog';
+import { DropdownModule } from 'primeng/dropdown';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { FileUploadModule } from 'primeng/fileupload';
+import { ImageModule } from 'primeng/image';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 import { InputTextModule } from 'primeng/inputtext';
+import { MenuModule } from 'primeng/menu';
 import { MessagesModule } from 'primeng/messages';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { SelectButtonModule } from 'primeng/selectbutton';
 import { TableModule } from 'primeng/table';
 import { TagModule } from 'primeng/tag';
-import { ToolbarModule } from 'primeng/toolbar';
-import { SelectButtonModule } from 'primeng/selectbutton';
-import { InputTextareaModule } from 'primeng/inputtextarea';
-import { InputNumberModule } from 'primeng/inputnumber';
-import { DropdownModule } from 'primeng/dropdown';
-import { FileUploadModule } from 'primeng/fileupload';
-import { ToastModule } from 'primeng/toast';
-import { ImageModule } from 'primeng/image';
-import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { DynamicDialogModule } from 'primeng/dynamicdialog';
-import { CardModule } from 'primeng/card';
 import { TieredMenuModule } from 'primeng/tieredmenu';
-import { MenuModule } from 'primeng/menu';
-import { ChipModule } from 'primeng/chip';
+import { ToastModule } from 'primeng/toast';
+import { ToolbarModule } from 'primeng/toolbar';
 
 @NgModule({
 
   exports: [
+    AnimateModule,
     ButtonModule,
+    CardModule,
+    ChipModule,
+    ConfirmDialogModule,
     ConfirmPopupModule,
     DialogModule,
+    DropdownModule,
+    DynamicDialogModule,
+    FileUploadModule,
+    ImageModule,
+    InputNumberModule,
+    InputTextareaModule,
     InputTextModule,
+    MenuModule,
     MessagesModule,
     MultiSelectModule,
     OverlayPanelModule,
+    SelectButtonModule,
     TableModule,
     TagModule,
-    ToolbarModule,
-    SelectButtonModule,
-    InputTextareaModule,
-    InputNumberModule,
-    DropdownModule,
-    FileUploadModule,
-    ToastModule,
-    ImageModule,
-    ConfirmDialogModule,
-    DynamicDialogModule,
-    CardModule,
     TieredMenuModule,
-    MenuModule,
-    ChipModule
+    ToastModule,
+    ToolbarModule,
   ]
 })
 export class PrimeNGModule { }

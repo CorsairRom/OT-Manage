@@ -15,7 +15,7 @@ export class FormularioSucursalComponent implements OnInit {
   @Input() IDcliente!: number;
 
   @Output() submitEvent = new EventEmitter<SucursalesForm>();
-  @Output() cancelEvent = new EventEmitter<void>();
+  @Output() cancelEvent = new EventEmitter<boolean>();
 
   fb = inject(FormBuilder)
 
@@ -30,6 +30,9 @@ export class FormularioSucursalComponent implements OnInit {
   get contactos(){
     return (this.form.get('contactos') as FormArray)|| [];
   }
+  // set contactos(form:any){
+
+  // }
 
   ngOnInit(): void {
     console.log(this.sucursal);
@@ -40,7 +43,7 @@ export class FormularioSucursalComponent implements OnInit {
     const ContactoFormControl = this.fb.group({
       nombre: this.fb.control<string>('', [Validators.required,Validators.minLength(3), Validators.maxLength(50)]),
       apellido: this.fb.control<string>('', [Validators.required,Validators.minLength(3), Validators.maxLength(50)]),
-      correo: this.fb.control<string>('', [Validators.required,Validators.minLength(3), Validators.maxLength(50)]),
+      correo: this.fb.control<string>('', [Validators.required,Validators.minLength(3), Validators.maxLength(50), Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),
       telefono: this.fb.control<number>(0, [Validators.required,Validators.minLength(3), Validators.maxLength(50)]),
     })
     this.contactos.push(ContactoFormControl)
@@ -50,7 +53,7 @@ export class FormularioSucursalComponent implements OnInit {
     this.form.patchValue({ comuna_id: comunaId })
   }
 
-  deleteSubunidad(contactoIndex: number) {
+  deleteContacto(contactoIndex: number) {
     this.contactos.removeAt(contactoIndex);
   }
 
@@ -71,7 +74,9 @@ export class FormularioSucursalComponent implements OnInit {
 
 
   Cancel(){
-    this.cancelEvent.emit();
+    this.form.reset();
+    // this.contactos.clear();
+    this.cancelEvent.emit(false);
   }
 
 }
