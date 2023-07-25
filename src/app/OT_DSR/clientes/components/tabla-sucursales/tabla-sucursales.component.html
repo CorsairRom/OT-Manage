@@ -1,4 +1,10 @@
-<div class="card mt-4">
+<ng-container *ngIf="formSucursal"  >
+  <div class="card m-4">
+    <formulario-sucursal></formulario-sucursal>
+  </div>
+</ng-container>
+
+<div class="card mt-4 ">
   <p-toast></p-toast>
   <p-table
     #clientesTable
@@ -17,6 +23,7 @@
           class="p-button mr-2"
           style="background-color: #f78e00"
           label="Registrar Sucursal"
+          (click)="toggleFormSucursal()"
         ></button>
       </div>
     </ng-template>
@@ -51,7 +58,6 @@
                   <p-chip label="{{ contacto.nombre }} {{ contacto.apellido }}" class="mb-1" icon="pi pi-user"></p-chip>
                   <p-chip label="{{ contacto.correo }}" icon="pi pi-at" class="mb-1"></p-chip>
                   <p-chip label="{{ contacto.telefono }}" icon="pi pi-tablet"></p-chip>
-
                 </div>
               </span>
           </ng-container>
@@ -80,3 +86,5 @@
     </ng-template>
   </p-table>
 </div>
+
+

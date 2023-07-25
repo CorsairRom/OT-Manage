@@ -13,6 +13,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UbicacionFormComponent } from 'src/app/shared/components/ubicacion-form/ubicacion-form.component';
 import { DetalleClienteComponent } from './components/detalle-cliente/detalle-cliente.component';
 import { TablaSucursalesComponent } from './components/tabla-sucursales/tabla-sucursales.component';
+import { FormularioSucursalComponent } from './components/formulario-sucursal/formulario-sucursal.component';
 
 
 
@@ -27,6 +28,7 @@ import { TablaSucursalesComponent } from './components/tabla-sucursales/tabla-su
     UbicacionFormComponent,
     DetalleClienteComponent,
     TablaSucursalesComponent,
+    FormularioSucursalComponent,
 
   ],
   imports: [

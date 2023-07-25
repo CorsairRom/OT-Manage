@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component,EventEmitter, Input, Output } from '@angular/core';
 import { SucursalesResponse } from '../../interfaces/sucursal.interface';
+
 
 @Component({
   selector: 'tabla-sucursales',
@@ -11,4 +12,9 @@ export class TablaSucursalesComponent {
 
   @Input() sucursales: SucursalesResponse[] = [];
 
+  formSucursal: boolean = false;
+
+  toggleFormSucursal(){
+    this.formSucursal = !this.formSucursal;
+  }
 }
