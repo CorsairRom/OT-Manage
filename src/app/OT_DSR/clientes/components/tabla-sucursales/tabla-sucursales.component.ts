@@ -1,11 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { SucursalesResponse } from '../../interfaces/sucursal.interface';
 
 @Component({
-  selector: 'app-tabla-sucursales',
+  selector: 'tabla-sucursales',
   templateUrl: './tabla-sucursales.component.html',
   styles: [
   ]
 })
 export class TablaSucursalesComponent {
+
+  @Input() sucursales: SucursalesResponse[] = [];
 
 }

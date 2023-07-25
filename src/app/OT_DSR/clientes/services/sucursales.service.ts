@@ -7,7 +7,7 @@ import { SucursalesResponse } from '../interfaces/sucursal.interface';
 
 
 @Injectable({providedIn: 'root'})
-export class ServiceNameService {
+export class SucursalesService {
 
   private http = inject(HttpClient)
   private messageService = inject(MensajeService);

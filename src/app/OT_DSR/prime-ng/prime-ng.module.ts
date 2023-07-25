@@ -22,7 +22,7 @@ import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { CardModule } from 'primeng/card';
 import { TieredMenuModule } from 'primeng/tieredmenu';
 import { MenuModule } from 'primeng/menu';
-
+import { ChipModule } from 'primeng/chip';
 
 @NgModule({
 
@@ -48,7 +48,8 @@ import { MenuModule } from 'primeng/menu';
     DynamicDialogModule,
     CardModule,
     TieredMenuModule,
-    MenuModule
+    MenuModule,
+    ChipModule
   ]
 })
 export class PrimeNGModule { }

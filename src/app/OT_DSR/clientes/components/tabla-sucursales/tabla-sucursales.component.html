@@ -1,1 +1,82 @@
-<p>tabla-sucursales works!</p>
+<div class="card mt-4">
+  <p-toast></p-toast>
+  <p-table
+    #clientesTable
+    [value]="sucursales"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    [paginator]="true"
+    [rows]="4"
+  >
+    <ng-template pTemplate="caption">
+      <div class="caption-table">
+        <!-- Botón REGISTRAR -->
+        <button
+          pButton
+          pRipple
+          icon="pi pi-plus"
+          class="p-button mr-2"
+          style="background-color: #f78e00"
+          label="Registrar Sucursal"
+        ></button>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th class="font-bold">ID</th>
+        <th class="font-bold">ZONA</th>
+        <th class="font-bold">REGION</th>
+        <th class="font-bold">COMUNA</th>
+        <th class="font-bold">DIRECCIÓN</th>
+        <th class="font-bold">CONTACTOS</th>
+        <th class="font-bold">ACCIONES</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-sucursales let-i>
+      <tr>
+        <td>{{ sucursales.id }}</td>
+        <td>{{ sucursales.nombre }}</td>
+        <td>{{ sucursales.comuna.nom_reg }}</td>
+        <td>{{ sucursales.comuna.nom_com }}</td>
+        <td>{{ sucursales.direccion }}</td>
+
+        <td>
+          <ng-container
+            *ngIf="
+              sucursales.contactos && sucursales.contactos.length > 0;
+              else sinContacto
+            "
+          >
+              <span *ngFor="let contacto of sucursales.contactos">
+                <div class="flex flex-column">
+                  <p-chip label="{{ contacto.nombre }} {{ contacto.apellido }}" class="mb-1" icon="pi pi-user"></p-chip>
+                  <p-chip label="{{ contacto.correo }}" icon="pi pi-at" class="mb-1"></p-chip>
+                  <p-chip label="{{ contacto.telefono }}" icon="pi pi-tablet"></p-chip>
+
+                </div>
+              </span>
+          </ng-container>
+        </td>
+
+        <ng-template #sinContacto>
+          <p-chip
+           label="Sin Contacto" icon="pi pi-info-circle"></p-chip>
+        </ng-template>
+
+        <td>
+          <div class="flex">
+            <p-button
+              icon="pi pi-pencil"
+              styleClass="p-button-rounded p-button-success"
+              class="mx-1"
+            ></p-button>
+            <p-button
+              icon="pi pi-trash"
+              styleClass="p-button-rounded p-button-danger"
+              class="mx-1"
+            ></p-button>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

@@ -24,5 +24,9 @@ export class ListadoClientesPageComponent implements OnInit{
       this.clientes$ = clientes;
     });
   }
+  ngOnDestroy() {
+    // Asegurarse de cancelar la suscripción al destruir el componente
+    this.subscription?.unsubscribe();
+  }
 
 }

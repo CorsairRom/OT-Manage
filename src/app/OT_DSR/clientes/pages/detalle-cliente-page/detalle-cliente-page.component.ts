@@ -3,7 +3,9 @@ import { CommonModule, Location } from '@angular/common';
 import { ClienteRES } from '../../interfaces/clientes.interface';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ClientesService } from '../../services/clientes.service';
-import { map, switchMap } from 'rxjs';
+import { Subscription, map, switchMap } from 'rxjs';
+import { SucursalesResponse } from '../../interfaces/sucursal.interface';
+import { SucursalesService } from '../../services/sucursales.service';
 
 @Component({
   selector: 'app-detalle-cliente-page',
@@ -14,25 +16,47 @@ export class DetalleClientePageComponent implements OnInit{
 
 
   cliente?: ClienteRES;
+  sucursales$: SucursalesResponse[] = [];
+  private subscription?: Subscription;
 
   activatedRoute = inject(ActivatedRoute);
   location = inject(Location);
   router = inject(Router);
 
   clienteService = inject(ClientesService)
+  sucursalesService = inject(SucursalesService)
 
   ngOnInit(): void {
     this.activatedRoute.paramMap.pipe(
       map(param => Number(param.get('id'))),
       switchMap((id) => this.clienteService.getClienteById(id))
-    ).subscribe(cliente => this.cliente = cliente)
+    ).subscribe(cliente =>{
+      this.cliente = cliente;
+      this.suscribeSucursales(cliente.id);
+    })
   }
+
+  suscribeSucursales(id: number) {
+    // Suscribirse a los cambios en los servicios
+    this.subscription = this.sucursalesService.sucursales$.subscribe(sucursales => {
+      this.sucursales$ = sucursales;
+    });
+    // Obtener los servicios iniciales
+    this.sucursalesService.getSucursalByClienteID(id).subscribe(sucursales => {
+      this.sucursales$ = sucursales;
+    });
+  }
+
   handleActualizarEvent(cliente: ClienteRES) {
     this.router.navigate(['clientes', cliente.id, 'actualizar'])
   }
 
   handleEliminarEvent(cliente: ClienteRES) {
     alert('cliente: puesto en inactivo')
+  }
+  ngOnDestroy() {
+    // Asegurarse de cancelar la suscripción al destruir el componente
+    this.subscription?.unsubscribe();
   }
 
 }
