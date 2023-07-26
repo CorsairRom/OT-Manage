@@ -18,6 +18,7 @@ export class FormularioSucursalComponent implements OnInit, OnChanges {
 
   @Output() submitEvent = new EventEmitter<SucursalesForm>();
   @Output() cancelEvent = new EventEmitter<boolean>();
+
   IDcliente?: number;
 
   fb = inject(FormBuilder)
@@ -51,7 +52,7 @@ export class FormularioSucursalComponent implements OnInit, OnChanges {
       nombre: this.fb.control<string>('', [Validators.required,Validators.minLength(3), Validators.maxLength(50)]),
       apellido: this.fb.control<string>('', [Validators.required,Validators.minLength(3), Validators.maxLength(50)]),
       correo: this.fb.control<string>('', [Validators.required,Validators.minLength(3), Validators.maxLength(50), Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),
-      telefono: this.fb.control<number>(0, [Validators.required,Validators.minLength(3), Validators.maxLength(50)]),
+      telefono: this.fb.control<number | null>(null, [Validators.required,Validators.minLength(8), Validators.maxLength(50), Validators.pattern('^[0-9]{9}$')]),
     })
     this.contactos.push(ContactoFormControl)
   }
@@ -65,7 +66,7 @@ export class FormularioSucursalComponent implements OnInit, OnChanges {
   }
 
   Submit(){
-    console.log(this.form);
+
     if(this.form.invalid) return;
     const values = this.form.getRawValue();
     const SucursalForm: SucursalesForm = {
@@ -78,6 +79,7 @@ export class FormularioSucursalComponent implements OnInit, OnChanges {
     this.submitEvent.emit(SucursalForm);
     this.form.reset();
 
+    setTimeout(() => {this.cancelEvent.emit(false)}, 500);
   }
 
 
