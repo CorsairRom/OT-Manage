@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output, inject, OnChanges, Simp
 import { ContactoForm, SucursalesForm, SucursalesResponse } from '../../interfaces/sucursal.interface';
 import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { ClientesService } from '../../services/clientes.service';
-import { ClienteRES } from '../../interfaces/clientes.interface';
+import { ClienteRES, Contacto } from '../../interfaces/clientes.interface';
 
 @Component({
   selector: 'formulario-sucursal',
@@ -39,10 +39,28 @@ export class FormularioSucursalComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
-    console.log("Cliente ID formularioResp:", this.IDcliente);
-
-    console.log('Sucursales en formulario sucursal ',this.sucursal);
     if(!this.sucursal) return;
+    console.log("Cliente ID formularioResp:", this.IDcliente);
+    console.log('Sucursales en formulario sucursal ',this.sucursal);
+    if(this.sucursal){
+      this.form.patchValue({
+        nombre: this.sucursal.nombre,
+        direccion: this.sucursal.direccion,
+        cliente: this.sucursal.cliente,
+        comuna_id: this.sucursal.comuna.id
+      });
+      this.contactos.clear();
+      this.sucursal.contactos.forEach((contacto:Contacto)=>{
+        const Contactoform = this.fb.group({
+          nombre: contacto.nombre,
+          apellido: contacto.apellido,
+          correo: contacto.correo,
+          telefono: contacto.telefono,
+        });
+        this.contactos.push(Contactoform);
+      });
+
+    };
 
   }
 

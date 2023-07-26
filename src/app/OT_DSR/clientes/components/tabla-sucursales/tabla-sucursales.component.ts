@@ -41,10 +41,17 @@ export class TablaSucursalesComponent implements OnInit, OnChanges {
     this.sucursalesService.addSucursal(sucursarForm).subscribe()
   }
 
+  updateSucursal(sucursarl:SucursalesResponse){
+    this.sucursal = sucursarl;
+    this.toggleFormSucursal()
+  }
+
   Delete(id: number){
 
     if(!id) return;
     this.sucursalesService.deleteSucursal(id).subscribe()
   }
+
+
 
 }
