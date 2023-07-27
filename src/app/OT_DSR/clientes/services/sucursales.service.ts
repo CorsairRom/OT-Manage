@@ -53,12 +53,34 @@ export class SucursalesService {
   )
   }
 
+  updateSucursal(sucursalForm: SucursalesForm, id: number) {
+    console.log(sucursalForm);
+    return this.http.put<SucursalesResponse>(`${this.apiUrl}/${id}/`, sucursalForm).pipe(
+      tap((updateSucursal: SucursalesResponse) => {
+        this.messageService.addMessage({
+          details: ['Servicio actualizado exitosamente!'],
+          role: 'success'
+        });
+
+        // Actualizar los datos del servicio con el servicio actualizado
+        const sucursal = this.sucursalesSubject.getValue();
+        const sucursalIndex = sucursal.findIndex(s => s.id === updateSucursal.id);
+        if (sucursalIndex !== -1) {
+          sucursal[sucursalIndex] = updateSucursal;
+          this.sucursalesSubject.next(sucursal);
+        }
+      }),
+      catchError((err: HttpErrorResponse) => this.handleError(err))
+    );
+  }
+
+
   deleteSucursal(id: number) {
     return this.http.delete(`${this.apiUrl}/${id}/`).pipe(
       tap(() => {
           this.messageService.addMessage({
               details: ['Sucursal eliminado exitosamente!'],
-              role: 'warn'
+              role: 'info'
           });
           // Eliminar la sucursal del BehaviorSubject
           const sucursalesActuales = this.sucursalesSubject.getValue();

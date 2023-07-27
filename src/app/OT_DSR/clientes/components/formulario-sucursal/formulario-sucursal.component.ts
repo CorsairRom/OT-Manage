@@ -15,8 +15,11 @@ export class FormularioSucursalComponent implements OnInit, OnChanges {
   @Input() sucursal? : SucursalesResponse
   @Input() title? : string;
   @Input() cliente?:ClienteRES;
+  @Input() Addnew?: boolean;
+  @Input() update?: boolean;
 
   @Output() submitEvent = new EventEmitter<SucursalesForm>();
+  @Output() updatetEvent = new EventEmitter<SucursalesForm>();
   @Output() cancelEvent = new EventEmitter<boolean>();
 
   IDcliente?: number;
@@ -40,9 +43,8 @@ export class FormularioSucursalComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     if(!this.sucursal) return;
-    console.log("Cliente ID formularioResp:", this.IDcliente);
-    console.log('Sucursales en formulario sucursal ',this.sucursal);
     if(this.sucursal){
+
       this.form.patchValue({
         nombre: this.sucursal.nombre,
         direccion: this.sucursal.direccion,
@@ -52,6 +54,7 @@ export class FormularioSucursalComponent implements OnInit, OnChanges {
       this.contactos.clear();
       this.sucursal.contactos.forEach((contacto:Contacto)=>{
         const Contactoform = this.fb.group({
+          id: contacto.id,
           nombre: contacto.nombre,
           apellido: contacto.apellido,
           correo: contacto.correo,
@@ -61,6 +64,7 @@ export class FormularioSucursalComponent implements OnInit, OnChanges {
       });
 
     };
+
 
   }
 
@@ -94,6 +98,17 @@ export class FormularioSucursalComponent implements OnInit, OnChanges {
       comuna_id: values.comuna_id!,
       contactos: values.contactos as ContactoForm[],
     };
+
+    if(this.sucursal?.id){
+
+      SucursalForm.id = this.sucursal.id;
+      // console.log(SucursalForm);
+      this.submitEvent.emit(SucursalForm);
+      this.form.reset();
+      setTimeout(() => {this.cancelEvent.emit(false)}, 500);
+      return;
+    }
+
     this.submitEvent.emit(SucursalForm);
     this.form.reset();
 
@@ -112,7 +127,15 @@ export class FormularioSucursalComponent implements OnInit, OnChanges {
       this.IDcliente = this.cliente!.id;
       this.form.patchValue({cliente: this.IDcliente});
     }
+    if (changes['Addnew'] && changes['Addnew'].currentValue !== undefined) {
+      console.log(this.Addnew);
+      this.form.reset();
     }
+
+
+    }
+
+
 
 
 

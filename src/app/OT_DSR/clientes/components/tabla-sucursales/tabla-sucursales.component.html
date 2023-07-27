@@ -3,8 +3,9 @@
     <formulario-sucursal
     [sucursal]="sucursal"
     (submitEvent)="submitEvent($event)"
-    (cancelEvent)="toggleFormSucursal()"
+    (cancelEvent)="cancelEvent()"
     [cliente]="cliente"
+
     ></formulario-sucursal>
   </div>
 </ng-container>
@@ -28,6 +29,7 @@
           class="p-button mr-2"
           style="background-color: #f78e00"
           label="Registrar Sucursal"
+          [disabled]="dissableBtnRegistrar"
           (click)="toggleFormSucursal()"
         ></button>
       </div>
@@ -85,6 +87,7 @@
               icon="pi pi-trash"
               styleClass="p-button-rounded p-button-danger"
               class="mx-1"
+              [disabled]="formSucursalToggle"
               (click)="Delete(sucursales.id)"
             ></p-button>
           </div>

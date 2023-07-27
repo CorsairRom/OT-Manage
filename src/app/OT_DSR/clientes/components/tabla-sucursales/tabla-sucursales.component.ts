@@ -22,6 +22,7 @@ export class TablaSucursalesComponent implements OnInit, OnChanges {
   sucursal?: SucursalesResponse;
   formSucursalToggle: boolean = false; //cambiar
   sucursalForm?:SucursalesForm;
+  dissableBtnRegistrar: boolean = false;
 
 
 
@@ -33,16 +34,35 @@ export class TablaSucursalesComponent implements OnInit, OnChanges {
 
 
   toggleFormSucursal(){
+    this.formSucursalToggle = true;
 
-    this.formSucursalToggle = !this.formSucursalToggle;
+    this.dissableBtnRegistrar= true;
   }
 
   submitEvent(sucursarForm: SucursalesForm){
+    if(sucursarForm.id){
+      this.updateEvent(sucursarForm)
+
+      return;
+    }
     this.sucursalesService.addSucursal(sucursarForm).subscribe()
+
+  }
+
+  updateEvent(sucursalForm: SucursalesForm){
+    this.sucursalesService.updateSucursal(sucursalForm, sucursalForm.id!).subscribe()
+  }
+
+  cancelEvent(){
+
+    this.sucursal = undefined;
+    this.dissableBtnRegistrar = false;
+    this.formSucursalToggle = false;
   }
 
   updateSucursal(sucursarl:SucursalesResponse){
     this.sucursal = sucursarl;
+
     this.toggleFormSucursal()
   }
 

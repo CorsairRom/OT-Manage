@@ -36,11 +36,11 @@ export class MenuComponent {
             routerLink: ['/ordenes-trabajo/listado'],
         }
 
-        const facturas = {
-            label: 'Facturas',
-            icon: 'bi bi-receipt',
-            routerLink: ['/facturas/listado'],
-        }
+        // const facturas = {
+        //     label: 'Facturas',
+        //     icon: 'bi bi-receipt',
+        //     routerLink: ['/facturas/listado'],
+        // }
 
         const catalogo = {
             label: 'Catálogo',
@@ -118,7 +118,7 @@ export class MenuComponent {
             return [
                 {
                     label: 'Administracion',
-                    items: [dashboard, ot, facturas, catalogo, fabricantes, clientes, reportes]
+                    items: [dashboard, ot,  catalogo, fabricantes, clientes, reportes]
                 },
                 {
                     label: 'Seguridad',
@@ -130,7 +130,7 @@ export class MenuComponent {
             return [
                 {
                     label: 'Administracion',
-                    items: [dashboard, ot, facturas, catalogo, fabricantes, clientes, reportes]
+                    items: [dashboard, ot,  catalogo, fabricantes, clientes, reportes]
                 },
             ]
         } else {
