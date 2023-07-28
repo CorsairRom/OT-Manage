@@ -6,6 +6,7 @@ export interface SucursalesForm {
   direccion: string;
   cliente:   number;
   comuna_id: number;
+  estado?:   boolean;
   contactos: ContactoForm[] | [];
 }
 
@@ -14,6 +15,7 @@ export interface ContactoForm {
   nombre:   string;
   apellido: string;
   correo:   string;
+  estado?:  boolean;
   telefono: number;
 }
 
@@ -26,6 +28,7 @@ export interface SucursalesResponse {
   direccion: string;
   cliente:   number;
   comuna:    Comuna;
+  estado?:   boolean;
   contactos: Contacto[];
 }
 
@@ -41,6 +44,7 @@ export interface Contacto {
   apellido: string;
   correo:   string;
   telefono: number;
+  estado?:  boolean;
   sucursal: number;
 }
 

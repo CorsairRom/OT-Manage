@@ -42,6 +42,7 @@
         <th class="font-bold">COMUNA</th>
         <th class="font-bold">DIRECCIÓN</th>
         <th class="font-bold">CONTACTOS</th>
+        <th class="font-bold">ESTADO</th>
         <th class="font-bold">ACCIONES</th>
       </tr>
     </ng-template>
@@ -52,6 +53,7 @@
         <td>{{ sucursales.comuna.nom_reg }}</td>
         <td>{{ sucursales.comuna.nom_com }}</td>
         <td>{{ sucursales.direccion }}</td>
+
 
         <td>
           <ng-container
@@ -69,6 +71,7 @@
               </span>
           </ng-container>
         </td>
+        <td>{{ sucursales.estado }}</td>
 
         <ng-template #sinContacto>
           <p-chip
