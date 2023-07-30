@@ -13,11 +13,11 @@ export interface UsuariosResponse {
 
 export interface UsuariosForm {
   id?:           number;
-  username:     string;
-  email:        string;
-  is_active:    boolean;
-  is_staff:     boolean;
-  is_superuser: boolean;
-  nombre:       string;
-  rut:          string;
+  username:      string;
+  email:         string;
+  is_active?:    boolean;
+  is_staff?:     boolean;
+  is_superuser?: boolean;
+  nombre:        string;
+  rut:           string;
 }

@@ -10,13 +10,15 @@ import { ListadoUsuariosPageComponent } from './pages/listado-usuarios-page/list
 
 import { TablaUsuariosComponent } from './components/tabla-usuarios/tabla-usuarios.component';
 import { RegistroUsuarioPageComponent } from './pages/registro-usuario-page/registro-usuario-page.component';
+import { FormularioUsuarioComponent } from './components/formulario-usuario/formulario-usuario.component';
 
 
 @NgModule({
   declarations: [
     TablaUsuariosComponent,
     ListadoUsuariosPageComponent,
-    RegistroUsuarioPageComponent
+    RegistroUsuarioPageComponent,
+    FormularioUsuarioComponent
   ],
   imports: [
     CommonModule,
