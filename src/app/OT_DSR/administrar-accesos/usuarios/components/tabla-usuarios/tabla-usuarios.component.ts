@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { UsuariosResponse } from '../../interfaces/usuario.interface';
+import { Table } from 'primeng/table';
 
 @Component({
   selector: 'tabla-usuarios',
@@ -6,5 +8,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./tabla-usuarios.component.scss']
 })
 export class TablaUsuariosComponent {
+  @Input() usuarios:UsuariosResponse[] = [];
+  filterFields: string[] = ['usuario', 'nombre']
+
+  clear(table: Table) {
+    table.clear();
+  }
+
 
 }

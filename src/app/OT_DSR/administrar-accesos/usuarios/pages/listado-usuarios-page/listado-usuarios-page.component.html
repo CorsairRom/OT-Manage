@@ -1,1 +1,4 @@
-<tabla-usuarios></tabla-usuarios>
+<tabla-usuarios
+  *ngIf="usuarios$"
+  [usuarios]="usuarios$"
+></tabla-usuarios>

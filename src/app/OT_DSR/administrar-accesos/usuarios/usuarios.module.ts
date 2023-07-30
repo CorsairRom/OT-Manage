@@ -9,12 +9,14 @@ import { UsuariosRoutingModule } from './usuarios-routing.module';
 import { ListadoUsuariosPageComponent } from './pages/listado-usuarios-page/listado-usuarios-page.component';
 
 import { TablaUsuariosComponent } from './components/tabla-usuarios/tabla-usuarios.component';
+import { RegistroUsuarioPageComponent } from './pages/registro-usuario-page/registro-usuario-page.component';
 
 
 @NgModule({
   declarations: [
     TablaUsuariosComponent,
-    ListadoUsuariosPageComponent
+    ListadoUsuariosPageComponent,
+    RegistroUsuarioPageComponent
   ],
   imports: [
     CommonModule,
