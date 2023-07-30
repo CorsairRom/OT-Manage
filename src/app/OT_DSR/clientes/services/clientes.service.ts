@@ -53,10 +53,10 @@ export class ClientesService {
       }),
       catchError((err: HttpErrorResponse) => this.handleError(err))
   )
-  }
+  };
 
   updateCliente(ClienteForm: ClienteForm){
     return this.http.put<ClienteRES>(`${this.apiUrl}/${ClienteForm.id!}/`, ClienteForm);
-  }
+  };
 
 }

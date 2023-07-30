@@ -2,8 +2,8 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { MensajeService } from 'src/app/OT_DSR/core/services/message.service';
 import { environment } from 'src/environments/environment';
-import { BehaviorSubject, catchError, tap, throwError } from 'rxjs';
-import { UsuariosResponse } from '../interfaces/usuario.interface';
+import { BehaviorSubject, Observable, catchError, tap, throwError } from 'rxjs';
+import { UsuariosResponse , UsuariosForm } from '../interfaces/usuario.interface';
 
 @Injectable({providedIn: 'root'})
 export class UsuariosService {
@@ -35,6 +35,26 @@ export class UsuariosService {
       }),
       catchError((err: HttpErrorResponse) => this.handleError(err))
     );
+  };
+  getUsuarioById(id: number):Observable<UsuariosResponse> {
+    return this.http.get<UsuariosResponse>(`${this.apiUrl}/${id}/`);
+
+  }
+
+  addUsuario(usuarioForm: UsuariosForm): Observable<UsuariosResponse>  {
+    return this.http.post<UsuariosResponse>(`${this.apiUrl}/`, usuarioForm).pipe(
+      tap(() => {
+          this.messageService.addMessage({
+              details: ['Usuario registrado exitosamente!'],
+              role: 'success'
+          })
+      }),
+      catchError((err: HttpErrorResponse) => this.handleError(err))
+  )
+  };
+
+  updateUsuario(usuarioForm: UsuariosForm){
+    return this.http.put<UsuariosResponse>(`${this.apiUrl}/${usuarioForm.id!}/`, usuarioForm);
   };
 
 
