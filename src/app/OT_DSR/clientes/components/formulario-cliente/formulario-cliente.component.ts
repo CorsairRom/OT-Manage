@@ -10,8 +10,12 @@ interface Pais {
 @Component({
   selector: 'formulario-cliente',
   templateUrl: './formulario-cliente.component.html',
-  styles: [
-  ],
+  styles: [`
+    .btnDEL {
+      background-color: red;
+      color: white;
+    }
+    `],
 
 })
 export class FormularioClienteComponent implements OnInit {

@@ -1,5 +1,5 @@
 <ng-container *ngIf="cliente">
-  <div class="card">
+  <div class="card shadow-4">
     <div class="flex justify-content-between flex-wrap mb-4">
       <div class="flex align-items-center justify-content-center">
         <h5>Detalle Cliente</h5>
@@ -58,15 +58,15 @@
       <div class="col-12">
         <div class="flex">
           <p-button
-              icon="pi pi-pencil"
-              styleClass="p-button-warning mr-2"
+              icon="bi bi-pencil-square"
+              styleClass="p-button-raised p-button-text p-button-warning mr-2"
               (click)="actualizar()"
           >
           </p-button>
           <p-confirmPopup></p-confirmPopup>
           <p-button
               icon="pi pi-trash"
-              styleClass="p-button-danger"
+              styleClass="p-button-raised p-button-text p-button-danger"
               (click)="eliminar($event)"
           >
           </p-button>

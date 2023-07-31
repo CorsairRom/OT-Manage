@@ -1,5 +1,5 @@
 <ng-container *ngIf="formSucursalToggle"  >
-  <div class="card m-4">
+  <div class="card shadow-5 m-4">
     <formulario-sucursal
     [sucursal]="sucursal"
     (submitEvent)="submitEvent($event)"
@@ -10,7 +10,7 @@
   </div>
 </ng-container>
 
-<div class="card mt-4 ">
+<div class="card shadow-5 mt-4 ">
 
   <p-table
     #clientesTable
@@ -26,9 +26,9 @@
           pButton
           pRipple
           icon="pi pi-plus"
-          class="p-button mr-2"
-          style="background-color: #f78e00"
-          label="Registrar Sucursal"
+          class="p-button-raised p-button-text mr-2"
+          style="color: #f78e00;"
+          label="Registrar"
           [disabled]="dissableBtnRegistrar"
           (click)="toggleFormSucursal()"
         ></button>
@@ -81,14 +81,14 @@
         <td>
           <div class="flex">
             <p-button
-              icon="pi pi-pencil"
-              styleClass="p-button-rounded p-button-success"
+              icon="bi bi-pencil-square"
+              styleClass="p-button-raised p-button-text p-button-warning"
               class="mx-1"
               (click)="updateSucursal(sucursales)"
             ></p-button>
             <p-button
               icon="pi pi-trash"
-              styleClass="p-button-rounded p-button-danger"
+              styleClass="p-button-raised p-button-text p-button-danger"
               class="mx-1"
               [disabled]="formSucursalToggle"
               (click)="Delete(sucursales.id)"

@@ -12,9 +12,9 @@
             <!-- Botón REGISTRAR -->
             <button pButton pRipple
                 icon="pi pi-plus"
-                class="p-button mr-2"
-                style="background-color:#F78E00"
-                label="Registrar Usuario"
+                class="p-button-raised p-button-text mr-2"
+                style="color: #f78e00;"
+                label="Registrar"
                 (click)="show(0)">
             </button>
 
@@ -28,8 +28,8 @@
                 <!-- Botón LIMPIAR -->
                 <button pButton pRipple
                     icon="pi pi-filter-slash"
-                    class="p-button-outlined mr-2"
-                    style="color: #006C86;"
+                    class="p-button-raised p-button-text mr-2"
+                    style="color: #006c86"
                     label="Limpiar"
                     (click)="clear(usuariosTable)">
                 </button>
@@ -61,7 +61,7 @@
             <td>
               <div class="flex">
 
-                <p-button icon="pi pi-pencil" styleClass="p-button-rounded p-button-success" (click)="editar(i.id)" class="mx-2"></p-button>
+                <p-button icon="bi bi-pencil-square" styleClass="p-button-raised p-button-text p-button-warning" (click)="editar(i.id)" class="mx-2"></p-button>
 
               </div>
             </td>

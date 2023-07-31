@@ -52,12 +52,13 @@ export class TablaUsuariosComponent {
       data: {
         id: id
       },
-      header: 'Servicio',
+      header: 'Registro',
+      maximizable: false,
       resizable:false,
       width: '50%',
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
-      maximizable: true
+
     });
     this.ref.onClose.subscribe((data: UsuariosResponse ) =>{
       if(data){
