@@ -22,8 +22,8 @@ export class FormularioServiciosComponent implements OnInit {
 
 
   fb = inject(FormBuilder)
-  config = inject(DynamicDialogConfig)
   servicioService = inject(ServicioService)
+  config = inject(DynamicDialogConfig)
   ref = inject(DynamicDialogRef)
 
 

@@ -1,1 +1,113 @@
-formulario
+<h4 class="pb-3">{{ title }}</h4>
+  <form [formGroup]="form" >
+
+    <div class="grid mb-3">
+      <div class="col flex flex-column gap-2">
+        <span class="p-float-label">
+          <input
+            type="text"
+            pInputText
+            formControlName="nombre"
+            autofocus
+            placeholder="Administrador"
+            [style]="{ width: '100%' }"
+          />
+          <label>Nombre*</label>
+        </span>
+      </div>
+      <div class="col flex flex-column gap-2">
+        <span class="p-float-label">
+          <input
+            type="text"
+            pInputText
+            formControlName="rut"
+            autofocus
+            placeholder="12.345.678-9"
+            [style]="{ width: '100%' }"
+          />
+          <label>Rut*</label>
+        </span>
+      </div>
+    </div>
+
+    <div class="grid mb-3">
+
+      <div class="col flex flex-column gap-2">
+        <span class="p-float-label">
+          <input
+            type="text"
+            pInputText
+            formControlName="username"
+            placeholder="Banana Conector"
+            [style]="{ width: '100%' }"
+          />
+          <label>Usuario*</label>
+        </span>
+      </div>
+
+      <div class="col flex flex-column gap-2">
+        <span class="p-float-label">
+          <input
+            type="email"
+            pInputText
+            formControlName="email"
+            placeholder="Banana Conector"
+            [style]="{ width: '100%' }"
+          />
+          <label>Email*</label>
+        </span>
+      </div>
+
+    </div>
+
+    <div class="grid mb-3">
+      <div class="col-6 flex flex-column gap-2">
+        <p-dropdown [options]="permisos"  [style]="{ width: '100%' }"></p-dropdown>
+      </div>
+    </div>
+
+    <div class="grid mb-3">
+
+      <div class="col flex flex-column gap-2">
+        <span class="p-float-label">
+          <input
+            type="password"
+            pInputText
+            formControlName="password"
+
+            [style]="{ width: '100%' }"
+          />
+          <label>Contraseña*</label>
+        </span>
+      </div>
+
+      <div class="col flex flex-column gap-2">
+        <span class="p-float-label">
+          <input
+            type="password"
+            pInputText
+            formControlName="rePassword"
+
+            [style]="{ width: '100%' }"
+          />
+          <label>Repetir Contraseña*</label>
+        </span>
+      </div>
+
+    </div>
+
+
+    <div class="flex">
+      <p-button
+        styleClass="mr-3"
+        [disabled]="form.invalid"
+        label="Guardar"
+        (click)="submit()"
+      ></p-button>
+      <p-button
+        label="Cancelar"
+        styleClass="p-button-danger"
+        (click)="cancel()"
+      ></p-button>
+    </div>
+  </form>

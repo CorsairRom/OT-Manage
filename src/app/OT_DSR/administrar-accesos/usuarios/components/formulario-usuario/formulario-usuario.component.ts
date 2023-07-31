@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { UsuariosForm, UsuariosResponse } from '../../interfaces/usuario.interface';
+import { DynamicDialogRef, DynamicDialogConfig } from 'primeng/dynamicdialog';
 import { FormBuilder, Validators } from '@angular/forms';
+import { UsuariosService } from '../../services/usuarios.service';
 
 @Component({
   selector: 'formulario-usuario',
@@ -20,10 +22,17 @@ export class FormularioUsuarioComponent {
     {label: 'Técnico', value: {is_superuser: false, is_staff: false}}
   ];
 
-  fb = inject(FormBuilder)
+  fb = inject(FormBuilder);
+  config = inject(DynamicDialogConfig);
+  ref = inject(DynamicDialogRef);
+  usuariosService = inject(UsuariosService);
+
+
 
   form = this.fb.group({
     username : this.fb.nonNullable.control<string>('', [Validators.required, Validators.maxLength(50)]),
+    password : this.fb.nonNullable.control<string>('', [Validators.required, Validators.maxLength(50)]),
+    rePassword : this.fb.nonNullable.control<string>('', [Validators.required, Validators.maxLength(50)]),
     email : this.fb.nonNullable.control<string>('',[Validators.required]),
     is_active : this.fb.control< boolean>(true,[]),
     is_staff : this.fb.control<boolean>(false),
@@ -54,8 +63,8 @@ export class FormularioUsuarioComponent {
   }
 
 
-  cancelar() {
-    this.cancelEvent.emit();
+  cancel(){
+    this.ref.close();
   }
 
 }
