@@ -14,10 +14,23 @@ export interface UsuariosResponse {
 export interface UsuariosForm {
   id?:           number;
   username:      string;
+  password:      string;
   email:         string;
   is_active?:    boolean;
   is_staff?:     boolean;
   is_superuser?: boolean;
   nombre:        string;
   rut:           string;
+}
+export enum Permiso {
+  Administrador = 'Administrador',
+  Tecnico = 'Técnico',
+}
+
+export interface PermisoItem {
+  label: string;
+  value: {
+    is_superuser: boolean;
+    is_staff: boolean;
+  };
 }

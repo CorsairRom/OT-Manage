@@ -62,7 +62,13 @@
 
     <div class="grid mb-3">
       <div class="col-6 flex flex-column gap-2">
-        <p-dropdown [options]="permisos"  [style]="{ width: '100%' }"></p-dropdown>
+        <p-dropdown
+          [options]="permisos"
+          formControlName="permiso"
+          [style]="{ width: '100%' }"
+          optionLabel="label"
+          placeholder="Tipo Usuario"
+        ></p-dropdown>
       </div>
     </div>
 
@@ -79,6 +85,9 @@
           />
           <label>Contraseña*</label>
         </span>
+        <div *ngIf="form.hasError('passwordMismatch')">
+          <small class="p-error">Las contraseñas no coinciden.</small>
+        </div>
       </div>
 
       <div class="col flex flex-column gap-2">
@@ -87,7 +96,7 @@
             type="password"
             pInputText
             formControlName="rePassword"
-
+            (blur)="onRePasswordBlur()"
             [style]="{ width: '100%' }"
           />
           <label>Repetir Contraseña*</label>
