@@ -52,10 +52,11 @@ export class TablaServiciosComponent {
       key: codigo
 
     });
-  }
+  };
+
   editar(id:number){
     this.show(id);
-  }
+  };
 
   show(id:number) {
     this.ref = this.dialogService.open(FormularioServiciosComponent, {
@@ -72,8 +73,8 @@ export class TablaServiciosComponent {
     this.ref.onClose.subscribe((data:ServiciosResponse ) =>{
       if(data){
         this.servicios.push(data)
-      }
-    })
-}
+      };
+    });
+  };
 
 }
