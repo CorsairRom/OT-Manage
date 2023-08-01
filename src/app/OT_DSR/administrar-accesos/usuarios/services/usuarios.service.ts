@@ -54,7 +54,21 @@ export class UsuariosService {
   };
 
   updateUsuario(usuarioForm: UsuariosForm){
-    return this.http.put<UsuariosResponse>(`${this.apiUrl}/${usuarioForm.id!}/`, usuarioForm);
+    return this.http.put<UsuariosResponse>(`${this.apiUrl}/${usuarioForm.id!}/`, usuarioForm).pipe(
+      tap((userUpdate: UsuariosResponse)=>{
+        this.messageService.addMessage({
+          details: ['Usuario actualizado correctamente'],
+          role: 'info'
+        });
+        const usuarios = this.usuarioSubject.getValue();
+        const usuarioIndex = usuarios.findIndex(u => u.id ===userUpdate.id);
+        if (usuarioIndex !== -1) {
+          usuarios[usuarioIndex] = userUpdate;
+          this.usuarioSubject.next(usuarios);
+        };
+      }),
+      catchError((err: HttpErrorResponse) => this.handleError(err))
+    );
   };
 
 
