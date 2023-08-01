@@ -15,7 +15,7 @@ export class FormularioUsuarioComponent implements OnInit {
   @Input() usuario? : UsuariosResponse
   @Input() title? : string
 
-  @Output() submitEvent = new EventEmitter<UsuariosForm>();
+  @Output() submitEvent = new EventEmitter<UsuariosResponse>();
   @Output() cancelEvent = new EventEmitter<void>();
 
   permisos: PermisoItem[] = [
@@ -69,6 +69,7 @@ export class FormularioUsuarioComponent implements OnInit {
   }
 
   submit(){
+    console.log(this.form.value);
     if(this.form.invalid) return;
 
     const values = this.form.getRawValue();
@@ -90,10 +91,11 @@ export class FormularioUsuarioComponent implements OnInit {
     }
 
     if (this.usuario?.id) {
+
       usuarioForm.id=this.usuario.id;
     };
-    console.log(usuarioForm);
-    // this.submitEvent.emit(usuarioForm);
+    this.usuariosService.addUsuario(usuarioForm).subscribe(res => this.ref.close(res))
+
   }
 
 
