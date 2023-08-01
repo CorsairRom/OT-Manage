@@ -93,7 +93,6 @@ export class FormularioUsuarioComponent implements OnInit {
   };
 
   submit(){
-    console.log(this.form.value);
     if(this.form.invalid) return;
 
     const values = this.form.getRawValue();
@@ -121,7 +120,6 @@ export class FormularioUsuarioComponent implements OnInit {
       return;
     };
 
-    console.log(usuarioForm);
     this.usuariosService.addUsuario(usuarioForm).subscribe(res => this.ref.close(res))
 
   };
