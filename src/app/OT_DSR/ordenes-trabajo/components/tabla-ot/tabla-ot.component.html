@@ -1,1 +1,95 @@
-<p>tabla-ot works!</p>
+<p-toast></p-toast>
+
+<p-table
+  #otTable
+  [value]="ot"
+  [tableStyle]="{ 'min-width': '50rem' }"
+  [globalFilterFields]="filterFields"
+  [paginator]="true"
+  [rows]="20"
+>
+
+  <ng-template pTemplate="caption">
+    <div class="caption-table">
+      <!-- Botón REGISTRAR -->
+      <button
+        pButton
+        pRipple
+        icon="pi pi-plus"
+        class="p-button-raised p-button-text mr-2"
+        style="color: #f78e00;"
+        label="Registrar"
+        [routerLink]="['/clientes/registro']"
+      ></button>
+
+      <div class="caption-filter">
+        <span class="p-input-icon-left ml-auto">
+          <i class="pi pi-search"></i>
+          <input
+            pInputText
+            type="text"
+            (input)="
+              otTable.filterGlobal($any($event.target).value, 'contains')
+            "
+            placeholder="Codigo, Servicio..."
+          />
+        </span>
+        <!-- Botón LIMPIAR -->
+        <button
+          pButton
+          pRipple
+          icon="pi pi-filter-slash"
+          class="p-button-raised p-button-text mr-2"
+          style="color: #006c86"
+          label="Limpiar"
+          (click)="clear(otTable)"
+        ></button>
+      </div>
+    </div>
+  </ng-template>
+
+
+
+  <ng-template pTemplate="header">
+    <tr>
+      <th class="font-bold">ID</th>
+      <th class="font-bold">CLIENTE</th>
+      <th class="font-bold">TÉCNICO</th>
+      <th class="font-bold">SUBROGANTE</th>
+      <th class="font-bold">MARCA EQUIPO</th>
+      <th class="font-bold">ESTADO PROCESO</th>
+      <th class="font-bold">ACCIONES</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-ot let-i>
+    <tr>
+      <td>{{ ot.id }}</td>
+      <td>{{ ot.cliente.nombre }}</td>
+      <td>{{ ot.tecnico.nombre }}</td>
+      <td>{{ ot.subrogante }}</td>
+      <td>{{ ot.marca_equipo }}
+        <p>{{ ot.modelo_equipo }}</p>
+      </td>
+      <td>
+        <p *ngIf="ot.seguimiento">
+          <span *ngFor="let seguimiento of ot.seguimiento; let last = last">
+            <ng-container *ngIf="last">{{ seguimiento.proceso }}</ng-container>
+          </span>
+        </p>
+      </td>
+      <td>
+        <div class="flex">
+          <p-button
+            icon="bi bi-eye"
+            label="Ver"
+            styleClass="p-button-raised p-button-text p-button-info"
+            [routerLink]="['/clientes', ot.id, 'detalle']"
+            class="mx-2"
+          ></p-button>
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+
+</p-table>
+

@@ -5,12 +5,14 @@ import { OrdenesTrabajoRoutingModule } from './ordenes-trabajo-routing.module';
 import { TablaOTComponent } from './components/tabla-ot/tabla-ot.component';
 import { PrimeNGModule } from '../prime-ng/prime-ng.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ListadoOrdenesTrabajoPageComponent } from './pages/listado-ordenes-trabajo-page/listado-ordenes-trabajo-page.component';
 
 
 
 @NgModule({
   declarations: [
-    TablaOTComponent
+    TablaOTComponent,
+    ListadoOrdenesTrabajoPageComponent
   ],
   imports: [
     CommonModule,

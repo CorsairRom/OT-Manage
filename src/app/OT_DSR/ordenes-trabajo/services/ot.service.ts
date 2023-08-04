@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { MensajeService } from '../../core/services/message.service';
 import { environment } from 'src/environments/environment';
-import { catchError, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, tap, throwError } from 'rxjs';
 import { OTResponse } from '../interfaces/ot.interface';
 
 @Injectable({
@@ -12,6 +12,9 @@ export class OtService {
   private http = inject(HttpClient)
   private messageService = inject(MensajeService);
   private apiUrl = `${ environment.apiUrl }/api/OT`;
+
+  private otSubject = new BehaviorSubject<OTResponse[]>([]);
+  ot$ = this.otSubject.asObservable();
 
   private handleError(error: HttpErrorResponse) {
     const msg = JSON.stringify(error.error);
@@ -26,9 +29,14 @@ export class OtService {
   };
 
   getOT(){
-    return this.http.get<OTResponse>(`${this.apiUrl}/`).pipe(
+    return this.http.get<OTResponse[]>(`${this.apiUrl}/`).pipe(
+      // inicializar behaviorSubject con los datos obtenidos
+      tap(ot => this.otSubject.next(ot)),
       catchError((err: HttpErrorResponse) => this.handleError(err))
     );
+  };
+  getOTById(id: number): Observable<OTResponse>{
+    return this.http.get<OTResponse>(`${this.apiUrl}/${id}/`);
   }
 
 }

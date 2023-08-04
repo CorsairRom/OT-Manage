@@ -13,8 +13,13 @@ export interface OTResponse {
   serie_componente:     string;
   fecha_entrega:        Date | null;
   is_active:            boolean;
-  cliente:              number;
+  cliente:              Cliente;
   subrogante:           Tecnico | null;
+}
+
+export interface Cliente {
+  id:     number;
+  nombre: string;
 }
 
 export interface Seguimiento {
@@ -68,5 +73,6 @@ export interface Actividades {
   nombre:  string;
   proceso: number;
 }
+
 
 
