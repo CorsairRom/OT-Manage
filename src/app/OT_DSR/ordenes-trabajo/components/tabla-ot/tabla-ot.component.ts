@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { OTResponse } from '../../interfaces/ot.interface';
+import { OTResponse,} from '../../interfaces/ot.interface';
 import { Table } from 'primeng/table';
 
 @Component({
@@ -13,7 +13,11 @@ export class TablaOTComponent {
 
   filterFields: string[] = ['rut', 'nombre']
 
+
+
   clear(table: Table) {
     table.clear();
   }
+
+
 }

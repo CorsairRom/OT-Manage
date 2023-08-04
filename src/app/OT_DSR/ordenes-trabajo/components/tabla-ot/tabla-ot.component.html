@@ -73,7 +73,7 @@
       <td>
         <p *ngIf="ot.seguimiento">
           <span *ngFor="let seguimiento of ot.seguimiento; let last = last">
-            <ng-container *ngIf="last">{{ seguimiento.proceso }}</ng-container>
+            <ng-container *ngIf="last">{{ seguimiento.proceso.nombre }}</ng-container>
           </span>
         </p>
       </td>

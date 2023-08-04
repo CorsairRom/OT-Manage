@@ -3,6 +3,7 @@
 export interface OTResponse {
   id:                   number;
   tecnico:              Tecnico;
+  cliente:              ClienteRes;
   seguimiento:          Seguimiento[];
   fecha_inicio:         string;
   observaciones:        string;
@@ -11,13 +12,20 @@ export interface OTResponse {
   serie_equipo:         string;
   num_parte_componente: string;
   serie_componente:     string;
-  fecha_entrega:        Date | null;
+  fecha_entrega:        null;
   is_active:            boolean;
-  cliente:              Cliente;
-  subrogante:           Tecnico | null;
+  subrogante:           null;
 }
 
-export interface Cliente {
+export interface ClienteRes {
+  id:     number;
+  nombre: string;
+}
+export interface ProcesoRes {
+  id:     number;
+  nombre: string;
+}
+export interface ActividadRes {
   id:     number;
   nombre: string;
 }
@@ -25,14 +33,16 @@ export interface Cliente {
 export interface Seguimiento {
   id:                 number;
   ot:                 number;
-  proceso:            number;
+  proceso:            ProcesoRes;
+  proceso_id?:        number;
   estado:             boolean;
-  estado_actividades: EstadoActividade[];
+  estado_actividades: EstadoActividades[];
 }
 
-export interface EstadoActividade {
+export interface EstadoActividades {
   id:             number;
-  actividad:      number;
+  actividad:      ActividadRes;
+  actividad_id:   number;
   estado:         boolean;
   estado_proceso: number;
 }
@@ -42,6 +52,7 @@ export interface Tecnico {
   nombre: string;
   email:  string;
 }
+
 
 export interface OTForm {
   id?:                  number;
