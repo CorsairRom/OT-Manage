@@ -5,16 +5,7 @@ import { ProductService } from './service/product.service';
 import { Subscription } from 'rxjs';
 import { LayoutService } from 'src/app/shared/service/app.layout.service';
 
-// import { PropiedadesService } from '../propiedades/propiedades.service';
-import { TipoPropiedadesService } from '../core/services/tipo-propiedades.service';
-// import { PropietarioService } from '../propietarios/propietario.service';
-import { PersonalidadJuridicaService } from '../core/services/personalidad-juridica.service';
-// import { ArrendatarioService } from '../arrendatarios/arrendatario.service';
-// import { ArriendoService } from '../arriendos/arriendo.service';
-// import { CuentaBancariaService } from '../cuentas-bancarias/cuenta-bancaria.service';
-import { DetalleArriendoService } from '../core/services/detalle-arriendo.service';
-import { GastoComunService } from '../core/services/gasto-comun.service';
-import { ServicioExtraService } from '../core/services/servicio-extra.service';
+
 
 @Component({
     templateUrl: './dashboard.component.html',

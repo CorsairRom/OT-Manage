@@ -24,6 +24,7 @@ import { TagModule } from 'primeng/tag';
 import { TieredMenuModule } from 'primeng/tieredmenu';
 import { ToastModule } from 'primeng/toast';
 import { ToolbarModule } from 'primeng/toolbar';
+import { CalendarModule } from 'primeng/calendar';
 
 @NgModule({
 
@@ -52,6 +53,7 @@ import { ToolbarModule } from 'primeng/toolbar';
     TieredMenuModule,
     ToastModule,
     ToolbarModule,
+    CalendarModule,
   ]
 })
 export class PrimeNGModule { }
