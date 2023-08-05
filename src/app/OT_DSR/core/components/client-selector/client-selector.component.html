@@ -1,18 +1,17 @@
-<div class="p-formgrid grid mb-3">
-  <div class="col-6 flex flex-column gap-2">
-    <span class="p-float-label">
-        <p-dropdown
-            [options]="clients"
-            optionLabel="razon_social"
-            [(ngModel)]="currentClient"
-            [style]="{ width: '100%' }"
-            placeholder="Seleccione cliente"
-            (onChange)="handleClientChanges($event)"
-            [filter]="true"
-            filterBy="razon_social"
-        ></p-dropdown>
-        <label>Cliente *</label>
-    </span>
-</div>
 
-</div>
+
+<span class="p-float-label">
+    <p-dropdown
+        [options]="clients"
+        optionLabel="razon_social"
+        [(ngModel)]="currentClient"
+        [style]="{ width: '100%' }"
+        placeholder="Seleccione cliente"
+        (onChange)="handleClientChanges($event)"
+        [filter]="true"
+        filterBy="razon_social"
+    ></p-dropdown>
+    <label>Cliente *</label>
+</span>
+
+

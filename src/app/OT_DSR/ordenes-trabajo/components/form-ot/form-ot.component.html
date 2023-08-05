@@ -1,3 +1,94 @@
-<form [formGroup]="form"></form>
+<form [formGroup]="form">
+  <div class="grid mb-3">
+    <div class="col-6">
+      <span class="p-float-label">
+        <input
+          type="date"
+          pInputText
+          formControlName="fecha_inicio"
+          [style]="{ width: '100%' }"
+        />
+      </span>
+    </div>
+    <div class="col-6">
+      <app-client-selector [initialClientId]="ot?.cliente?.id" (selectedClientIdEvent)="handleSelectedClient($event)" ></app-client-selector>
+    </div>
+  </div>
 
-<app-client-selector [initialClientId]="ot?.cliente?.id" (selectedClientIdEvent)="handleSelectedClient($event)" ></app-client-selector>
+  <div class="grid mb-3">
+    <div class="col">
+      <span class="p-float-label">
+        <textarea
+          rows="3" cols="20"
+          pInputTextarea
+          [autoResize]="true"
+          [style]="{ width: '100%' }"
+          ></textarea>
+        <label>Observación*</label>
+      </span>
+    </div>
+  </div>
+
+  <div class="grid mb-3">
+    <div class="col">
+      <span class="p-float-label">
+        <input
+          type="text"
+          pInputText
+          formControlName="marca_equipo"
+          [style]="{ width: '100%' }"
+        />
+        <label>Marca Equipo*</label>
+      </span>
+    </div>
+    <div class="col">
+      <span class="p-float-label">
+        <input
+          type="text"
+          pInputText
+          formControlName="modelo_equipo"
+          [style]="{ width: '100%' }"
+        />
+        <label>Modelo Equipo*</label>
+      </span>
+    </div>
+    <div class="col">
+      <span class="p-float-label">
+        <input
+          type="text"
+          pInputText
+          formControlName="serie_equipo"
+          [style]="{ width: '100%' }"
+        />
+        <label>Serie Equipo*</label>
+      </span>
+    </div>
+  </div>
+
+  <div class="grid mb-3">
+    <div class="col">
+      <span class="p-float-label">
+        <input
+          type="text"
+          pInputText
+          formControlName="num_parte_componente"
+          [style]="{ width: '100%' }"
+        />
+        <label>N° Parte Componente*</label>
+      </span>
+    </div>
+    <div class="col">
+      <span class="p-float-label">
+        <input
+          type="text"
+          pInputText
+          formControlName="serie_componente"
+          [style]="{ width: '100%' }"
+        />
+        <label>Serie Componente*</label>
+      </span>
+    </div>
+  </div>
+
+</form>
+
