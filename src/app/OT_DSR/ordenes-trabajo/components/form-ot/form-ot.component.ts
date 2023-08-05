@@ -20,6 +20,17 @@ export class FormOTComponent {
 
   form = this.fb.group({
     fecha_inicio: this.fb.control<Date>(new Date(), [Validators.required]),
-
+    cliente_id: this.fb.control<number | null>(null, [Validators.required]),
+    observaciones: this.fb.control<string>('', [Validators.required]),
+    marca_equipo: this.fb.control<string>('', [Validators.required, Validators.maxLength(50)]),
+    modelo_equipo: this.fb.control<string>('', [Validators.required, Validators.maxLength(50)]),
+    serie_equipo: this.fb.control<string>('', [Validators.required, Validators.maxLength(50)]),
+    num_parte_componente: this.fb.control<string>('', [Validators.required, Validators.maxLength(50)]),
+    serie_componente: this.fb.control<string>('', [Validators.required, Validators.maxLength(50)]),
   })
+
+
+  handleSelectedClient(clienteId: number | null) {
+    this.form.patchValue({ cliente_id: clienteId })
+  }
 }

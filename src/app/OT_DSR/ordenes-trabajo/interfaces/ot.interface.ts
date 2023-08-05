@@ -57,7 +57,7 @@ export interface Tecnico {
 export interface OTForm {
   id?:                  number;
   fecha_inicio:         Date;
-  cliente:              number;
+  cliente_id:           number;
   observaciones:        string;
   marca_equipo:         string;
   modelo_equipo:        string;

@@ -1,1 +1,3 @@
 <form [formGroup]="form"></form>
+
+<app-client-selector [initialClientId]="ot?.cliente?.id" (selectedClientIdEvent)="handleSelectedClient($event)" ></app-client-selector>
