@@ -6,13 +6,17 @@ import { TablaOTComponent } from './components/tabla-ot/tabla-ot.component';
 import { PrimeNGModule } from '../prime-ng/prime-ng.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ListadoOrdenesTrabajoPageComponent } from './pages/listado-ordenes-trabajo-page/listado-ordenes-trabajo-page.component';
+import { FormOTComponent } from './components/form-ot/form-ot.component';
+import { RegistroOrdenesTrabajoPageComponent } from './pages/registro-ordenes-trabajo-page/registro-ordenes-trabajo-page.component';
 
 
 
 @NgModule({
   declarations: [
     TablaOTComponent,
-    ListadoOrdenesTrabajoPageComponent
+    ListadoOrdenesTrabajoPageComponent,
+    RegistroOrdenesTrabajoPageComponent,
+    FormOTComponent
   ],
   imports: [
     CommonModule,
