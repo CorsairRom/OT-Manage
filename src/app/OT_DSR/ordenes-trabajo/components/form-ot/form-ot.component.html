@@ -21,6 +21,7 @@
         <textarea
           rows="3" cols="20"
           pInputTextarea
+          formControlName="observaciones"
           [autoResize]="true"
           [style]="{ width: '100%' }"
           ></textarea>
@@ -88,6 +89,19 @@
         <label>Serie Componente*</label>
       </span>
     </div>
+  </div>
+  <div class="flex">
+    <p-button
+      styleClass="mr-3"
+      [disabled]="form.invalid"
+      label="Guardar"
+      (click)="submit()"
+    ></p-button>
+    <p-button
+      label="Cancelar"
+      styleClass="p-button-danger"
+      (click)="cancel()"
+    ></p-button>
   </div>
 
 </form>

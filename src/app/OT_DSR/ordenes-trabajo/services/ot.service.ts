@@ -3,7 +3,7 @@ import { Injectable, inject } from '@angular/core';
 import { MensajeService } from '../../core/services/message.service';
 import { environment } from 'src/environments/environment';
 import { BehaviorSubject, Observable, catchError, tap, throwError } from 'rxjs';
-import { OTResponse } from '../interfaces/ot.interface';
+import { OTForm, OTResponse } from '../interfaces/ot.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -37,6 +37,17 @@ export class OtService {
   };
   getOTById(id: number): Observable<OTResponse>{
     return this.http.get<OTResponse>(`${this.apiUrl}/${id}/`);
+  }
+  addOT(OTData: OTForm): Observable<OTResponse>  {
+    return this.http.post<OTResponse>(`${this.apiUrl}/`, OTData).pipe(
+      tap(() => {
+          this.messageService.addMessage({
+              details: ['OT registrado exitosamente!'],
+              role: 'success'
+          })
+      }),
+      catchError((err: HttpErrorResponse) => this.handleError(err))
+  )
   }
 
 }

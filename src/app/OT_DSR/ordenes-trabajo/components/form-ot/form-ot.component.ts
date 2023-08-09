@@ -33,4 +33,24 @@ export class FormOTComponent {
   handleSelectedClient(clienteId: number | null) {
     this.form.patchValue({ cliente_id: clienteId })
   }
+
+  submit(){
+    if (this.form.invalid) return;
+    const values = this.form.getRawValue();
+    const otForm: OTForm = {
+      fecha_inicio: values.fecha_inicio,
+      cliente_id: values.cliente_id!,
+      observaciones: values.observaciones!,
+      marca_equipo: values.marca_equipo!,
+      modelo_equipo: values.modelo_equipo!,
+      serie_equipo: values.serie_equipo!,
+      num_parte_componente: values.num_parte_componente!,
+      serie_componente: values.serie_componente!,
+    }
+    this.submitEvent.emit(otForm);
+  };
+
+  cancel(){
+    this.cancelEvent.emit();
+  }
 }
