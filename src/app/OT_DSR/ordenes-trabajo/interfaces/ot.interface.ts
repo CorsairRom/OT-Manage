@@ -4,7 +4,7 @@ export interface OTResponse {
   id:                   number;
   tecnico:              Tecnico | {};
   cliente:              ClienteRes;
-  seguimiento?:         Seguimiento[];
+  seguimiento?:         Seguimiento[] | [];
   fecha_inicio:         string;
   observaciones:        string;
   marca_equipo:         string;

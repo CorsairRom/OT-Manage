@@ -65,8 +65,14 @@
     <tr>
       <td>{{ ot.id }}</td>
       <td>{{ ot.cliente.nombre }}</td>
-      <td>{{ ot.tecnico.nombre }}</td>
-      <td>{{ ot.subrogante }}</td>
+      <td>
+        <ng-container *ngIf="ot.tecnico.nombre; else sinTecnico">{{ ot.tecnico.nombre }}</ng-container>
+        <ng-template #sinTecnico>Sin Tecnico</ng-template>
+      </td>
+      <td>
+        <ng-container *ngIf="ot.subrogante; else sinSubrogante">{{ ot.subrogante }}</ng-container>
+        <ng-template #sinSubrogante>Sin subrogante</ng-template>
+      </td>
       <td>{{ ot.marca_equipo }}
         <p>{{ ot.modelo_equipo }}</p>
       </td>
@@ -76,6 +82,7 @@
             <ng-container *ngIf="last">{{ seguimiento.proceso.nombre }}</ng-container>
           </span>
         </p>
+        <p *ngIf="!ot.seguimiento || ot.seguimiento.length === 0">Generada</p>
       </td>
       <td>
         <div class="flex">
@@ -83,7 +90,7 @@
             icon="bi bi-eye"
             label="Ver"
             styleClass="p-button-raised p-button-text p-button-info"
-            [routerLink]="['/clientes', ot.id, 'detalle']"
+            [routerLink]="['/ordenes-trabajo', ot.id, 'detalle']"
             class="mx-2"
           ></p-button>
         </div>

@@ -46,9 +46,12 @@ export class FormOTComponent {
       serie_equipo: values.serie_equipo!,
       num_parte_componente: values.num_parte_componente!,
       serie_componente: values.serie_componente!,
+      seguimiento: []
     }
     this.submitEvent.emit(otForm);
   };
+
+
 
   cancel(){
     this.cancelEvent.emit();
