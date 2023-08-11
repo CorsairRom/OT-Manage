@@ -26,7 +26,7 @@ import { ToastModule } from 'primeng/toast';
 import { ToolbarModule } from 'primeng/toolbar';
 import { CalendarModule } from 'primeng/calendar';
 import { FieldsetModule } from 'primeng/fieldset';
-
+import { CheckboxModule } from 'primeng/checkbox';
 @NgModule({
 
   exports: [
@@ -56,6 +56,7 @@ import { FieldsetModule } from 'primeng/fieldset';
     ToolbarModule,
     CalendarModule,
     FieldsetModule,
+    CheckboxModule,
   ]
 })
 export class PrimeNGModule { }

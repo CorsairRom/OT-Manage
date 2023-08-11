@@ -1,3 +1,4 @@
+<!-- Ingreso -->
 <p-fieldset>
   <ng-template pTemplate="header">
     <div class="flex align-items-center text-primary">
@@ -8,32 +9,99 @@
   <div class="grid nested-grid">
     <div class="col-6">
       <div class="grid">
-        <div class="p-inputgroup">
-          <span class="p-inputgroup-addon"> Observacion </span>
-          <p pInputText>esta es una observacion</p>
+        <div class="col-12">
+          <div class="p-inputgroup">
+            <span class="p-inputgroup-addon"> Fecha y Hora </span>
+            <p pInputText>20/20/2040</p>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="p-inputgroup">
+            <span class="p-inputgroup-addon"> Cliente </span>
+            <p pInputText>Corsair Garage</p>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="p-inputgroup">
+            <span class="p-inputgroup-addon"> Observacion </span>
+            <textarea rows="5" cols="30" pInputTextarea [autoResize]="true" [disabled]="true"></textarea>
+          </div>
         </div>
       </div>
     </div>
     <div class="col-6">
       <div class="grid">
-        <div class="p-inputgroup">
-          <span class="p-inputgroup-addon"> Marca </span>
-          <p pInputText>username</p>
+        <div class="col-12">
+          <div class="p-inputgroup">
+            <span class="p-inputgroup-addon"> Marca Equipo </span>
+            <p pInputText>Scania</p>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="p-inputgroup">
+            <span class="p-inputgroup-addon"> Modelo Equipo </span>
+            <p pInputText>Scania 123</p>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="p-inputgroup">
+            <span class="p-inputgroup-addon"> Serie Equipo </span>
+            <p pInputText>12345dfr</p>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="p-inputgroup">
+            <span class="p-inputgroup-addon"> N° Parte Componente </span>
+            <p pInputText>123456</p>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="p-inputgroup">
+            <span class="p-inputgroup-addon"> Serie Componente </span>
+            <p pInputText>Scania</p>
+          </div>
         </div>
       </div>
     </div>
-    <div class="col-12">
+  </div>
+</p-fieldset>
+<!-- Tecnico -->
+<p-fieldset>
+  <ng-template pTemplate="header">
+    <div class="flex align-items-center text-primary">
+      <span class="pi pi-comment mr-2"></span>
+      <span class="font-bold text-lg">Técnico</span>
+    </div>
+  </ng-template>
+  <div class="grid nested-grid">
+    <div class="col-6">
       <div class="grid">
-        <div class="col-6">
+        <div class="col-12">
           <div class="p-inputgroup">
-            <span class="p-inputgroup-addon"> Fecha y Hora </span>
-            <p pInputText>12/20/2023</p>
+            <span class="p-inputgroup-addon"> Responsable </span>
+            <p pInputText>20/20/2040</p>
           </div>
         </div>
-        <div class="col-6">
+        <div class="col-12">
           <div class="p-inputgroup">
-            <span class="p-inputgroup-addon"> Marca </span>
-            <p pInputText>username</p>
+            <span class="p-inputgroup-addon"> Correo Electrónico </span>
+            <p pInputText>Corsair Garage</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="grid">
+        <div class="col-12">
+          <div class="p-inputgroup">
+            <span class="p-inputgroup-addon"> Subrogante </span>
+            <p pInputText>Scania</p>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="p-inputgroup">
+            <span class="p-inputgroup-addon"> Correo Electrónico</span>
+            <p pInputText>Scania 123</p>
           </div>
         </div>
       </div>
@@ -41,39 +109,85 @@
   </div>
 </p-fieldset>
 
-<!--
+<!-- Seguimiento -->
+<p-fieldset>
+  <ng-template pTemplate="header">
+    <div class="flex align-items-center text-primary">
+      <span class="pi pi-comment mr-2"></span>
+      <span class="font-bold text-lg">Seguimiento</span>
+    </div>
+  </ng-template>
+  <div class="grid nested-grid">
+    <div class="col-2">
+      <p>Estado Procesos</p>
+    </div>
+    <div class="col-10">
+      <p-table [value]="ot!.seguimiento!" [tableStyle]="{ 'min-width': '50rem' }">
+        <ng-template pTemplate="caption">
+          <div class="flex align-items-center justify-content-center">
+              Actividades
+          </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Recepción</th>
+                <th>Evaluación</th>
+                <th>Reparación</th>
 
-<div class="col-12 py-1">
-  <div class="grid">
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-ot>
+            <tr>
+                <td>{{ot.id}}</td>
+                <td>Dos red</td>
+                <td> Tres rec</td>
+            </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</p-fieldset>
+<!-- informe -->
+<p-fieldset>
+  <ng-template pTemplate="header">
+    <div class="flex align-items-center text-primary">
+      <span class="pi pi-comment mr-2"></span>
+      <span class="font-bold text-lg">Informe</span>
+    </div>
+  </ng-template>
+  <div class="grid nested-grid">
     <div class="col-6">
-      <div class="p-inputgroup">
-        <span class="p-inputgroup-addon"> Observacion </span>
-        <p pInputText>esta es una observacion</p>
+      <div class="grid">
+        <div class="col-12">
+          <div class="p-inputgroup">
+            <span class="p-inputgroup-addon"> Responsable </span>
+            <p pInputText>20/20/2040</p>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="p-inputgroup">
+            <span class="p-inputgroup-addon"> Correo Electrónico </span>
+            <p pInputText>Corsair Garage</p>
+          </div>
+        </div>
       </div>
     </div>
     <div class="col-6">
-      <div class="p-inputgroup">
-        <span class="p-inputgroup-addon"> Marca </span>
-        <p pInputText>username</p>
+      <div class="grid">
+        <div class="col-12">
+          <div class="p-inputgroup">
+            <span class="p-inputgroup-addon"> Subrogante </span>
+            <p pInputText>Scania</p>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="p-inputgroup">
+            <span class="p-inputgroup-addon"> Correo Electrónico</span>
+            <p pInputText>Scania 123</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
-<div class="col-12 py-1">
-  <div class="grid">
+</p-fieldset>
 
-    <div class="col-6">
-      <div class="p-inputgroup">
-        <span class="p-inputgroup-addon"> Marca </span>
-        <p pInputText>username</p>
-      </div>
-    </div>
-
-    <div class="col-6">
-      <div class="p-inputgroup">
-        <span class="p-inputgroup-addon"> Marca </span>
-        <p pInputText>username</p>
-      </div>
-    </div>
-  </div>
-</div> -->
