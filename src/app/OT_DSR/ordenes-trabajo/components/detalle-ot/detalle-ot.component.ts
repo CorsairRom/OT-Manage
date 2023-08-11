@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
-import { OTResponse } from '../../interfaces/ot.interface';
+import { Component, Input, OnInit, inject } from '@angular/core';
+import { OTResponse, ProcesosOT } from '../../interfaces/ot.interface';
+import { SeguimientoService } from '../../services/seguimiento.service';
 
 @Component({
   selector: 'detalle-ot',
@@ -7,16 +8,22 @@ import { OTResponse } from '../../interfaces/ot.interface';
   styles: [
   ]
 })
-export class DetalleOTComponent {
+export class DetalleOTComponent implements OnInit{
 
   @Input() ot?: OTResponse;
-  selectedCategories: any[] = [];
+  seguimientoService = inject(SeguimientoService)
 
-    categories: any[] = [
-        { name: 'Accounting', key: 'A' },
-        { name: 'Marketing', key: 'M' },
-        { name: 'Production', key: 'P' },
-        { name: 'Research', key: 'R' }
-    ];
+  procesoOT?:ProcesosOT[];
+  selectedCategories: any[] = [];
+  categories: any[] = [
+      { name: 'Accounting', key: 'A' },
+      { name: 'Marketing', key: 'M' },
+      { name: 'Production', key: 'P' },
+      { name: 'Research', key: 'R' }
+  ];
+
+  ngOnInit(): void {
+    this.seguimientoService.getProcesosOT().subscribe(res => this.procesoOT = res);
+  }
 
 }
