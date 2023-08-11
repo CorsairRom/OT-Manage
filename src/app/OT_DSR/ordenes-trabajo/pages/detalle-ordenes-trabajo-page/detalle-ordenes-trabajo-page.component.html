@@ -1,1 +1,4 @@
-<p>detalle-ordenes-trabajo-page works!</p>
+<div class="card shadow-3">
+  <h4 class="text-center">Orden N°: {{OT?.id}}</h4>
+  <detalle-ot *ngIf="OT"  [ot]="OT"></detalle-ot>
+</div>

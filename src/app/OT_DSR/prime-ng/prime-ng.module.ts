@@ -25,6 +25,7 @@ import { TieredMenuModule } from 'primeng/tieredmenu';
 import { ToastModule } from 'primeng/toast';
 import { ToolbarModule } from 'primeng/toolbar';
 import { CalendarModule } from 'primeng/calendar';
+import { FieldsetModule } from 'primeng/fieldset';
 
 @NgModule({
 
@@ -54,6 +55,7 @@ import { CalendarModule } from 'primeng/calendar';
     ToastModule,
     ToolbarModule,
     CalendarModule,
+    FieldsetModule,
   ]
 })
 export class PrimeNGModule { }

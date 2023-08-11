@@ -4,6 +4,7 @@ import {  Location } from '@angular/common';
 import { OtService } from '../../services/ot.service';
 import { OTResponse } from '../../interfaces/ot.interface';
 import { map, switchMap } from 'rxjs';
+import { SeguimientoService } from '../../services/seguimiento.service';
 
 @Component({
   selector: 'app-detalle-ordenes-trabajo-page',
@@ -19,7 +20,7 @@ export class DetalleOrdenesTrabajoPageComponent implements OnInit {
   router = inject(Router);
 
   otService = inject(OtService)
-
+  seguimientoServices = inject(SeguimientoService)
 
   ngOnInit(): void {
     this.activatedRoute.paramMap.pipe(
