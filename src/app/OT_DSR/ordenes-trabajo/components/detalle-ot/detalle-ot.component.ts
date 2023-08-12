@@ -12,18 +12,22 @@ export class DetalleOTComponent implements OnInit{
 
   @Input() ot?: OTResponse;
   seguimientoService = inject(SeguimientoService)
-
+  allActividades: any[] = [];
   procesoOT?:ProcesosOT[];
-  selectedCategories: any[] = [];
-  categories: any[] = [
-      { name: 'Accounting', key: 'A' },
-      { name: 'Marketing', key: 'M' },
-      { name: 'Production', key: 'P' },
-      { name: 'Research', key: 'R' }
-  ];
+
+
 
   ngOnInit(): void {
-    this.seguimientoService.getProcesosOT().subscribe(res => this.procesoOT = res);
+    this.seguimientoService.getProcesosOT().subscribe(res => {
+      this.procesoOT = res
+      this.procesoOT.forEach(actividades => {
+        this.allActividades.push(actividades)
+      })
+  }
+)}
+
+  actividadEnProceso(procesoOT: any, actividad: number): boolean {
+    return procesoOT.actividades.some((act: any) => act.proceso === procesoOT.proceso && act.id === actividad);
   }
 
 }
