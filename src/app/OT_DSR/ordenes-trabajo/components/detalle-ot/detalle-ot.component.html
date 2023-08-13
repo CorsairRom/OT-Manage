@@ -117,40 +117,9 @@
       <span class="font-bold text-lg">Seguimiento</span>
     </div>
   </ng-template>
-  <div class="grid nested-grid">
-    <div *ngIf="procesoOT" class="col-12">
-      <p-table [value]="procesoOT">
-        <ng-template pTemplate="header">
-          <tr >
-            <th>ID</th>
-            <th style="min-width: 150px;">Proceso</th>
-            <th >Actividades</th>
-          </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-proceso>
-          <tr >
-            <td class="py-0">{{ proceso.id }}</td>
-            <td class="py-0">
-              <p-checkbox name="group" [value]="proceso" [inputId]="proceso.id" ></p-checkbox>
-              <label [for]="proceso.id" class="px-2">{{ proceso.nombre }}</label>
-            </td>
-            <td class="pb-0">
-              <div class="grid flex flex-wrap align-content-center ">
-                <div class="field-checkbox mb-1" *ngFor="let actividad of proceso.actividades">
-                <div class="col ">
-                    <div class="">
-                      <p-checkbox name="group" [value]="actividad" [inputId]="actividad.id" ></p-checkbox>
-                      <label [for]="actividad.id" class="px-2">{{ actividad.nombre }}</label>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </td>
-          </tr>
-        </ng-template>
-      </p-table>
-    </div>
-  </div>
+
+  <seguimiento-ot [procesoOT]="procesoOT"></seguimiento-ot>
+
 </p-fieldset>
 <!-- informe -->
 <p-fieldset>

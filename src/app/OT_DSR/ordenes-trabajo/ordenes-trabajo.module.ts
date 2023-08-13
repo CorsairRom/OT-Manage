@@ -11,6 +11,7 @@ import { RegistroOrdenesTrabajoPageComponent } from './pages/registro-ordenes-tr
 import { ClientSelectorComponent } from '../core/components/client-selector/client-selector.component';
 import { DetalleOrdenesTrabajoPageComponent } from './pages/detalle-ordenes-trabajo-page/detalle-ordenes-trabajo-page.component';
 import { DetalleOTComponent } from './components/detalle-ot/detalle-ot.component';
+import { SeguimientoOTComponent } from './components/seguimiento-ot/seguimiento-ot.component';
 
 
 
@@ -23,7 +24,8 @@ import { DetalleOTComponent } from './components/detalle-ot/detalle-ot.component
     RegistroOrdenesTrabajoPageComponent,
     DetalleOrdenesTrabajoPageComponent,
     FormOTComponent,
-    DetalleOTComponent
+    DetalleOTComponent,
+    SeguimientoOTComponent
   ],
   imports: [
     CommonModule,
