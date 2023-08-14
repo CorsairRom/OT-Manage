@@ -12,7 +12,13 @@
         <tr >
           <td class="py-0">{{ proceso.id }}</td>
           <td class="py-0">
-            <p-checkbox name="group" [value]="proceso" [inputId]="proceso.id" ></p-checkbox>
+            <p-checkbox
+              name="group"
+              [value]="proceso"
+              [(ngModel)]="selectedProcess"
+              [inputId]="proceso.id"
+              (onChange)="toggleProcessSelection(proceso, $event)"
+              ></p-checkbox>
             <label [for]="proceso.id" class="px-2">{{ proceso.nombre }}</label>
           </td>
           <td class="pb-0">
@@ -20,7 +26,13 @@
               <div class="field-checkbox mb-1" *ngFor="let actividad of proceso.actividades">
               <div class="col ">
                   <div class="">
-                    <p-checkbox name="group" [value]="actividad" [inputId]="actividad.id" ></p-checkbox>
+                    <p-checkbox
+                      name="group"
+                      [value]="actividad"
+                      [(ngModel)]="selectedActivity"
+                      [inputId]="actividad.id"
+                      (onChange)="toggleActivitySelection(actividad)"
+                      ></p-checkbox>
                     <label [for]="actividad.id" class="px-2">{{ actividad.nombre }}</label>
                   </div>
                 </div>
@@ -32,3 +44,5 @@
     </p-table>
   </div>
 </div>
+{{selectedActivity|json}}
+{{selectedProcess|json}}
