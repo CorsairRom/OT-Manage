@@ -16,10 +16,10 @@
               name="group"
               [value]="proceso"
               [(ngModel)]="selectedProcess"
-              [inputId]="proceso.id"
+              [inputId]="'proceso_' + proceso.id"
               (onChange)="toggleProcessSelection(proceso, $event)"
               ></p-checkbox>
-            <label [for]="proceso.id" class="px-2">{{ proceso.nombre }}</label>
+            <label [for]="'proceso_' + proceso.id" class="px-2">{{ proceso.nombre }}</label>
           </td>
           <td class="pb-0">
             <div class="grid flex flex-wrap align-content-center ">
@@ -30,10 +30,10 @@
                       name="group"
                       [value]="actividad"
                       [(ngModel)]="selectedActivity"
-                      [inputId]="actividad.id"
+                      [inputId]="'actividad_' + actividad.id"
                       (onChange)="toggleActivitySelection(actividad)"
                       ></p-checkbox>
-                    <label [for]="actividad.id" class="px-2">{{ actividad.nombre }}</label>
+                    <label [for]="'actividad_' + actividad.id" class="px-2">{{ actividad.nombre }}</label>
                   </div>
                 </div>
               </div>
@@ -44,5 +44,4 @@
     </p-table>
   </div>
 </div>
-{{selectedActivity|json}}
-{{selectedProcess|json}}
+

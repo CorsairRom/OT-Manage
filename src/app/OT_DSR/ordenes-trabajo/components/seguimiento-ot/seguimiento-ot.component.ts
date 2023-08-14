@@ -13,21 +13,40 @@ export class SeguimientoOTComponent implements OnInit{
   @Input() procesoOT?: ProcesosOT[];
 
   selectedActivity?:Actividades[];
-  selectedProcess:any[] = [];
+  selectedProcess?:ProcesosOT[];
 
-  seguimientoData!: ProcesosOT[];
+
 
   seguimientoService = inject(SeguimientoService);
 
 
 
   ngOnInit(): void {
-    this.seguimientoService.getProcesosOT().subscribe(seguimientoData => this.seguimientoData = seguimientoData)
+
   }
 
   toggleActivitySelection(actividad: Actividades){
-    console.log(this.selectedActivity);
+    const activitySelected =this.selectedActivity?.filter(a => a.proceso == actividad.proceso)
+    const actProcess=this.procesoOT!.find(a => a.id == actividad.proceso);
+    const activityProcess = actProcess?.actividades
+    const actividadProcesoSelected = actividad.proceso
+    const procesoIFind = actProcess?.id
+    // if (activitySelected?.length === activityProcess?.length && actividadProcesoSelected === procesoIFind) {
 
+    // }
+
+    console.log(activitySelected?.length,  activityProcess?.length);
+
+    if (activitySelected?.length === activityProcess?.length && actividadProcesoSelected === procesoIFind ) {
+      if (this.selectedProcess) {
+        this.selectedProcess = [...this.selectedProcess, actProcess!]
+      } else {
+        this.selectedProcess = [actProcess!]
+      }
+    } else {
+      const removePro = this.selectedProcess?.filter(a => a.id != actividad.proceso);
+      this.selectedProcess = removePro;
+    }
   }
 
   toggleProcessSelection(proceso: ProcesosOT, event:any){
@@ -43,7 +62,7 @@ export class SeguimientoOTComponent implements OnInit{
 
     proceso.actividades.forEach( act => {
       if(this.selectedActivity){
-        this.selectedActivity = [...this.selectedActivity, act];
+        this.selectedActivity = [... new Set(this.selectedActivity), act];
       } else {
         this.selectedActivity = [act];
       };
