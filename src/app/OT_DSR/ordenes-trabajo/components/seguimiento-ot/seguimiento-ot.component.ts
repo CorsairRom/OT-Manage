@@ -8,22 +8,20 @@ import { SeguimientoService } from '../../services/seguimiento.service';
   styleUrls: ['./seguimiento-ot.component.scss']
 })
 export class SeguimientoOTComponent implements OnInit{
-
-
   @Input() procesoOT?: ProcesosOT[];
 
   selectedActivity?:Actividades[];
   selectedProcess?:ProcesosOT[];
 
-
-
   seguimientoService = inject(SeguimientoService);
-
-
 
   ngOnInit(): void {
 
   }
+
+
+
+
 
   toggleActivitySelection(actividad: Actividades){
     const activitySelected =this.selectedActivity?.filter(a => a.proceso == actividad.proceso)
@@ -35,7 +33,7 @@ export class SeguimientoOTComponent implements OnInit{
 
     // }
 
-    console.log(activitySelected?.length,  activityProcess?.length);
+    // console.log(activitySelected?.length,  activityProcess?.length);
 
     if (activitySelected?.length === activityProcess?.length && actividadProcesoSelected === procesoIFind ) {
       if (this.selectedProcess) {
@@ -53,6 +51,18 @@ export class SeguimientoOTComponent implements OnInit{
     const processID = proceso.id;
     const processSelected = event.checked as ProcesosOT[]
     const activitySelectd = processSelected.find(p => p.id === processID)?.actividades;
+    const processActivity = proceso.actividades;
+
+    proceso.actividades.forEach( act => {
+      if(this.selectedActivity){
+        this.selectedActivity = [...new Set(this.selectedActivity), act];
+
+      } else {
+
+        this.selectedActivity = [act];
+
+      };
+    });
 
     if (!activitySelectd) {
       const removeAct = this.selectedActivity?.filter(a => a.proceso != processID);
@@ -60,14 +70,8 @@ export class SeguimientoOTComponent implements OnInit{
       return;
     };
 
-    proceso.actividades.forEach( act => {
-      if(this.selectedActivity){
-        this.selectedActivity = [... new Set(this.selectedActivity), act];
-      } else {
-        this.selectedActivity = [act];
-      };
-    });
-  };
 
+
+  }
 
 }
