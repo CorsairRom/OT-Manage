@@ -50,25 +50,44 @@ export class SeguimientoOTComponent implements OnInit{
   toggleProcessSelection(proceso: ProcesosOT, event:any){
     const processID = proceso.id;
     const processSelected = event.checked as ProcesosOT[]
-    const activitySelectd = processSelected.find(p => p.id === processID)?.actividades;
+
     const processActivity = proceso.actividades;
 
-    proceso.actividades.forEach( act => {
-      if(this.selectedActivity){
-        this.selectedActivity = [...new Set(this.selectedActivity), act];
+    // proceso.actividades.forEach( act => {
+    //   if(this.selectedActivity){
+    //     this.selectedActivity = [...new Set(this.selectedActivity), act];
 
-      } else {
+    //   } else {
 
-        this.selectedActivity = [act];
+    //     this.selectedActivity = [act];
 
-      };
-    });
+    //   };
+    // });
 
-    if (!activitySelectd) {
+
+
+    if (processSelected.length !==0) {
+      const activitySelectd = processSelected.find(p => p.id === processID)?.actividades;
+      if (!this.selectedActivity) {
+        this.selectedActivity = activitySelectd;
+      }
+      if (activitySelectd) {
+        // console.log(activitySelectd);
+        this.selectedActivity = [...new Set(this.selectedActivity), ...activitySelectd!];
+      }
+    } else {
       const removeAct = this.selectedActivity?.filter(a => a.proceso != processID);
       this.selectedActivity = removeAct;
-      return;
-    };
+
+      console.log(event);
+    }
+
+
+    // if (!activitySelectd) {
+    //   const removeAct = this.selectedActivity?.filter(a => a.proceso != processID);
+    //   this.selectedActivity = removeAct;
+
+    // };
 
 
 
