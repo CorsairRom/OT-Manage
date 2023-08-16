@@ -12,6 +12,7 @@ import { ClientSelectorComponent } from '../core/components/client-selector/clie
 import { DetalleOrdenesTrabajoPageComponent } from './pages/detalle-ordenes-trabajo-page/detalle-ordenes-trabajo-page.component';
 import { DetalleOTComponent } from './components/detalle-ot/detalle-ot.component';
 import { SeguimientoOTComponent } from './components/seguimiento-ot/seguimiento-ot.component';
+import { TecnicoOTComponent } from './components/tecnico-ot/tecnico-ot.component';
 
 
 
@@ -25,7 +26,8 @@ import { SeguimientoOTComponent } from './components/seguimiento-ot/seguimiento-
     DetalleOrdenesTrabajoPageComponent,
     FormOTComponent,
     DetalleOTComponent,
-    SeguimientoOTComponent
+    SeguimientoOTComponent,
+    TecnicoOTComponent
   ],
   imports: [
     CommonModule,
