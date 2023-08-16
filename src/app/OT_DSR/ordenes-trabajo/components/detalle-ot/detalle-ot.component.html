@@ -9,56 +9,56 @@
   <div class="grid nested-grid">
     <div class="col-6">
       <div class="grid">
-        <div class="col-12">
-          <div class="p-inputgroup">
-            <span class="p-inputgroup-addon"> Fecha y Hora </span>
-            <p pInputText>20/20/2040</p>
+        <div class="col-12 py-1">
+          <div class="p-inputgroup " >
+            <span class="p-inputgroup-addon widthLabelGroup"> Fecha y Hora </span>
+            <p pInputText > {{ot?.fecha_inicio}} </p>
           </div>
         </div>
-        <div class="col-12">
+        <div class="col-12 py-1">
           <div class="p-inputgroup">
-            <span class="p-inputgroup-addon"> Cliente </span>
-            <p pInputText>Corsair Garage</p>
+            <span class="p-inputgroup-addon widthLabelGroup"> Cliente </span>
+            <p pInputText> {{ot?.cliente?.nombre}} </p>
           </div>
         </div>
-        <div class="col-12">
+        <div class="col-12 py-1">
           <div class="p-inputgroup">
-            <span class="p-inputgroup-addon"> Observacion </span>
-            <textarea rows="5" cols="30" pInputTextarea [autoResize]="true" [disabled]="true"></textarea>
+            <span class="p-inputgroup-addon widthLabelGroup"> Observacion </span>
+            <textarea rows="5" cols="30" pInputTextarea [autoResize]="true" [disabled]="true"> {{ot?.observaciones}} </textarea>
           </div>
         </div>
       </div>
     </div>
     <div class="col-6">
       <div class="grid">
-        <div class="col-12">
+        <div class="col-12 py-1">
           <div class="p-inputgroup">
-            <span class="p-inputgroup-addon"> Marca Equipo </span>
-            <p pInputText>Scania</p>
+            <span class="p-inputgroup-addon widthLabelGroup"> Marca Equipo </span>
+            <p pInputText> {{ot?.marca_equipo}} </p>
           </div>
         </div>
-        <div class="col-12">
+        <div class="col-12 py-1">
           <div class="p-inputgroup">
-            <span class="p-inputgroup-addon"> Modelo Equipo </span>
-            <p pInputText>Scania 123</p>
+            <span class="p-inputgroup-addon widthLabelGroup"> Modelo Equipo </span>
+            <p pInputText> {{ot?.modelo_equipo}} </p>
           </div>
         </div>
-        <div class="col-12">
+        <div class="col-12 py-1">
           <div class="p-inputgroup">
-            <span class="p-inputgroup-addon"> Serie Equipo </span>
-            <p pInputText>12345dfr</p>
+            <span class="p-inputgroup-addon widthLabelGroup"> Serie Equipo </span>
+            <p pInputText> {{ot?.serie_equipo}} </p>
           </div>
         </div>
-        <div class="col-12">
+        <div class="col-12 py-1">
           <div class="p-inputgroup">
-            <span class="p-inputgroup-addon"> N° Parte Componente </span>
-            <p pInputText>123456</p>
+            <span class="p-inputgroup-addon widthLabelGroup"> N° Parte Componente </span>
+            <p pInputText> {{ot?.num_parte_componente}} </p>
           </div>
         </div>
-        <div class="col-12">
+        <div class="col-12 py-1">
           <div class="p-inputgroup">
-            <span class="p-inputgroup-addon"> Serie Componente </span>
-            <p pInputText>Scania</p>
+            <span class="p-inputgroup-addon sm widthLabelGroup"> Serie Componente </span>
+            <p pInputText> {{ot?.serie_componente}} </p>
           </div>
         </div>
       </div>

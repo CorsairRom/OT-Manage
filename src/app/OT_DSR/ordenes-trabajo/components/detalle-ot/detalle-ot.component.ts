@@ -6,6 +6,11 @@ import { SeguimientoService } from '../../services/seguimiento.service';
   selector: 'detalle-ot',
   templateUrl: './detalle-ot.component.html',
   styles: [
+  `
+  .widthLabelGroup{
+    width: 130px;
+  }
+  `
   ]
 })
 export class DetalleOTComponent implements OnInit{
