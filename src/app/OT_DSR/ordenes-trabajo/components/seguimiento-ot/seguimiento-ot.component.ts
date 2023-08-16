@@ -19,78 +19,45 @@ export class SeguimientoOTComponent implements OnInit{
 
   }
 
-
-
-
-
   toggleActivitySelection(actividad: Actividades){
-    const activitySelected =this.selectedActivity?.filter(a => a.proceso == actividad.proceso)
+    const activitySelected =this.selectedActivity?.filter(a => a.proceso == actividad.proceso);
     const actProcess=this.procesoOT!.find(a => a.id == actividad.proceso);
-    const activityProcess = actProcess?.actividades
-    const actividadProcesoSelected = actividad.proceso
-    const procesoIFind = actProcess?.id
-    // if (activitySelected?.length === activityProcess?.length && actividadProcesoSelected === procesoIFind) {
-
-    // }
-
-    // console.log(activitySelected?.length,  activityProcess?.length);
+    const activityProcess = actProcess?.actividades;
+    const actividadProcesoSelected = actividad.proceso;
+    const procesoIFind = actProcess?.id;
 
     if (activitySelected?.length === activityProcess?.length && actividadProcesoSelected === procesoIFind ) {
       if (this.selectedProcess) {
         this.selectedProcess = [...this.selectedProcess, actProcess!]
       } else {
         this.selectedProcess = [actProcess!]
-      }
+      };
     } else {
       const removePro = this.selectedProcess?.filter(a => a.id != actividad.proceso);
       this.selectedProcess = removePro;
-    }
-  }
+    };
+  };
 
   toggleProcessSelection(proceso: ProcesosOT, event:any){
     const processID = proceso.id;
-    const processSelected = event.checked as ProcesosOT[]
+    const processSelected = event.checked as ProcesosOT[];
+    const indexProcess = this.selectedProcess?.findIndex(p => p.id === processID);
 
-    const processActivity = proceso.actividades;
+    if (indexProcess === -1) {
+      const removeAct = this.selectedActivity?.filter(a => a.proceso != processID);
+      this.selectedActivity = removeAct;
+    };
 
-    // proceso.actividades.forEach( act => {
-    //   if(this.selectedActivity){
-    //     this.selectedActivity = [...new Set(this.selectedActivity), act];
-
-    //   } else {
-
-    //     this.selectedActivity = [act];
-
-    //   };
-    // });
-
-
-
-    if (processSelected.length !==0) {
+    if (processSelected.length !== 0) {
       const activitySelectd = processSelected.find(p => p.id === processID)?.actividades;
       if (!this.selectedActivity) {
         this.selectedActivity = activitySelectd;
-      }
+      };
       if (activitySelectd) {
-        // console.log(activitySelectd);
         this.selectedActivity = [...new Set(this.selectedActivity), ...activitySelectd!];
-      }
-    } else {
-      const removeAct = this.selectedActivity?.filter(a => a.proceso != processID);
-      this.selectedActivity = removeAct;
+      };
+    };
 
-      console.log(event);
-    }
-
-
-    // if (!activitySelectd) {
-    //   const removeAct = this.selectedActivity?.filter(a => a.proceso != processID);
-    //   this.selectedActivity = removeAct;
-
-    // };
-
-
-
-  }
+  };
 
 }
