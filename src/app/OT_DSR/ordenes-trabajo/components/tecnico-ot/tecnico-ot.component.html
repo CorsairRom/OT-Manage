@@ -2,15 +2,19 @@
   <div class="col-6">
     <div class="grid">
       <div class="col-12">
-        <div class="">
-          <label for="ac1">Username</label>
-          <p-autoComplete inputId="ac1"></p-autoComplete>
+        <div class="field grid">
+          <label htmlFor="tec1" class="col-6 mb-2 md:col-2 md:mb-0">Técnico</label>
+          <div class="col-6 md:col-10">
+            <p-autoComplete inputId="tec1" style="width: 100%;" ></p-autoComplete>
+          </div>
         </div>
       </div>
       <div class="col-12">
-        <div class="p-inputgroup">
-          <span class="p-inputgroup-addon"> Correo Electrónico </span>
-          <p pInputText>Corsair Garage</p>
+        <div class="field grid">
+          <label htmlFor="email1" class="col-6 mb-2 md:col-2 md:mb-0">Correo</label>
+          <div class="col-6 md:col-10">
+            <input pInputText id="email1" [disabled]="true" type="text" />
+          </div>
         </div>
       </div>
     </div>
@@ -18,17 +22,23 @@
   <div class="col-6">
     <div class="grid">
       <div class="col-12">
-        <div class="p-inputgroup">
-          <span class="p-inputgroup-addon"> Subrogante </span>
-          <p pInputText>Scania</p>
+        <div class="field grid">
+          <label htmlFor="tec2" class="col-6 mb-2 md:col-2 md:mb-0">Subrogante</label>
+          <div class="col-6 md:col-10">
+            <p-autoComplete inputId="tec2" style="width: 100%;" ></p-autoComplete>
+          </div>
         </div>
       </div>
       <div class="col-12">
-        <div class="p-inputgroup">
-          <span class="p-inputgroup-addon"> Correo Electrónico</span>
-          <p pInputText>Scania 123</p>
+        <div class="field grid">
+          <label htmlFor="email2" class="col-6 mb-2 md:col-2 md:mb-0">Correo</label>
+          <div class="col-6 md:col-10">
+            <input pInputText id="email2" [disabled]="true" type="text" />
+          </div>
         </div>
       </div>
     </div>
   </div>
+
 </div>
+
