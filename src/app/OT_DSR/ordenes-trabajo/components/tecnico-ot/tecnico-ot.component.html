@@ -4,29 +4,39 @@
 
     <div class="field col-12 md:col-6">
       <label htmlfor="selecTec">Técnico</label>
-      <p-dropdown  ></p-dropdown>
+      <p-dropdown
+      placeholder="Seleccione Técnico"
+      [options]="tecnicos!"
+      optionLabel="nombre"
+      [(ngModel)]="selectedTecnico"
+      ></p-dropdown>
     </div>
     <div  class="field col-12 md:col-6">
       <label htmlfor="selecTec">Correo</label>
-      <div class="p-inputgroup">
+      <div *ngIf="selectedTecnico"  class="p-inputgroup">
         <span class="p-inputgroup-addon">
             <i class="pi pi-at"></i>
         </span>
-        <p pInputText></p>
+        <p pInputText> {{selectedTecnico.email}} </p>
       </div>
     </div>
 
     <div class="field col-12 md:col-6">
       <label htmlfor="selecSubrog">Subrogante</label>
-      <p-dropdown  ></p-dropdown>
+      <p-dropdown
+      placeholder="Seleccione Técnico"
+      [options]="tecnicos!"
+      optionLabel="nombre"
+      [(ngModel)]="selectedSubrogante"
+      ></p-dropdown>
     </div>
     <div  class="field col-12 md:col-6">
-      <label htmlfor="selecTec">Correo</label>
-      <div class="p-inputgroup">
+      <label htmlfor="selecSub">Correo</label>
+      <div *ngIf="selectedSubrogante"  class="p-inputgroup">
         <span class="p-inputgroup-addon">
             <i class="pi pi-at"></i>
         </span>
-        <p pInputText></p>
+        <p pInputText> {{selectedSubrogante.email}} </p>
       </div>
     </div>
   </div>

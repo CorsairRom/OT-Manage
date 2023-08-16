@@ -12,12 +12,14 @@ import { map } from 'rxjs';
 export class TecnicoOTComponent implements OnInit {
 
   private usuarioService = inject(UsuariosService);
-
+  selectedTecnico?: UsuariosResponse;
+  selectedSubrogante?: UsuariosResponse;
   tecnicos?: UsuariosResponse[];
 
   ngOnInit(): void {
-    this.usuarioService.getUsuarios().subscribe(
-     u => this.tecnicos = u
+    this.usuarioService.getUsuarios().pipe(
+      map(user => user.filter(user => user.is_superuser===false)
     )
-  }
+  ).subscribe(tec => this.tecnicos = tec)}
+
 }
