@@ -1,46 +1,35 @@
-<div class="grid nested-grid">
 
-  <div class="col-6">
-    <div class="grid">
-      <div class="col-12">
-        <div class="field grid">
-          <label htmlFor="tec1" class="col-6 mb-2 md:col-2 md:mb-0">Técnico</label>
-          <div class="col-6 md:col-10">
-            <p-autoComplete inputId="tec1" style="width: 100%;" ></p-autoComplete>
-          </div>
-        </div>
+
+  <div class="p-fluid p-formgrid grid">
+
+    <div class="field col-12 md:col-6">
+      <label htmlfor="selecTec">Técnico</label>
+      <p-dropdown  ></p-dropdown>
+    </div>
+    <div  class="field col-12 md:col-6">
+      <label htmlfor="selecTec">Correo</label>
+      <div class="p-inputgroup">
+        <span class="p-inputgroup-addon">
+            <i class="pi pi-at"></i>
+        </span>
+        <p pInputText></p>
       </div>
-      <div class="col-12">
-        <div class="field grid">
-          <label htmlFor="email1" class="col-6 mb-2 md:col-2 md:mb-0">Correo</label>
-          <div class="col-6 md:col-10">
-            <input pInputText id="email1" [disabled]="true" type="text" />
-          </div>
-        </div>
+    </div>
+
+    <div class="field col-12 md:col-6">
+      <label htmlfor="selecSubrog">Subrogante</label>
+      <p-dropdown  ></p-dropdown>
+    </div>
+    <div  class="field col-12 md:col-6">
+      <label htmlfor="selecTec">Correo</label>
+      <div class="p-inputgroup">
+        <span class="p-inputgroup-addon">
+            <i class="pi pi-at"></i>
+        </span>
+        <p pInputText></p>
       </div>
     </div>
   </div>
 
-  <div class="col-6">
-    <div class="grid">
-      <div class="col-12">
-        <div class="field grid">
-          <label htmlFor="tec2" class="col-6 mb-2 md:col-2 md:mb-0">Subrogante</label>
-          <div class="col-6 md:col-10">
-            <p-autoComplete inputId="tec2" style="width: 100%;" ></p-autoComplete>
-          </div>
-        </div>
-      </div>
-      <div class="col-12">
-        <div class="field grid">
-          <label htmlFor="email2" class="col-6 mb-2 md:col-2 md:mb-0">Correo</label>
-          <div class="col-6 md:col-10">
-            <input pInputText id="email2" [disabled]="true" type="text" />
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 
-</div>
 
