@@ -13,6 +13,7 @@ import { DetalleOrdenesTrabajoPageComponent } from './pages/detalle-ordenes-trab
 import { DetalleOTComponent } from './components/detalle-ot/detalle-ot.component';
 import { SeguimientoOTComponent } from './components/seguimiento-ot/seguimiento-ot.component';
 import { TecnicoOTComponent } from './components/tecnico-ot/tecnico-ot.component';
+import { InformeOTComponent } from './components/informe-ot/informe-ot.component';
 
 
 
@@ -27,7 +28,8 @@ import { TecnicoOTComponent } from './components/tecnico-ot/tecnico-ot.component
     FormOTComponent,
     DetalleOTComponent,
     SeguimientoOTComponent,
-    TecnicoOTComponent
+    TecnicoOTComponent,
+    InformeOTComponent
   ],
   imports: [
     CommonModule,
