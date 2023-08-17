@@ -1,7 +1,4 @@
-
 <div>
-
-
 <p-table
   [tableStyle]="{'min-width': '50rem'}"
   [value]="informeOT"
@@ -22,7 +19,7 @@
   <ng-template pTemplate="body" let-editing="editing" let-rowData let-columns="columns" let-ri="rowIndex" >
     <tr [pEditableRow]="informeOT">
         <td *ngFor="let col of columns">
-          <p-cellEditor>
+          <p-cellEditor *ngIf="col" >
             <ng-template pTemplate="input">
               <input pInputText type="text" >
             </ng-template>
