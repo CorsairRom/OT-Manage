@@ -31,4 +31,9 @@ export class InformeOTComponent implements OnInit {
       { field: 'observation', header: 'Observación' }
   ];
   }
+
+  addInforme(){
+    this.informeOT.push([])
+  }
+
 }
