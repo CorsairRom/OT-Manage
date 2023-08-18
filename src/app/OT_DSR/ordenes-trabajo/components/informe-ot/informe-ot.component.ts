@@ -17,6 +17,10 @@ export class InformeOTComponent implements OnInit {
   cols!: Column[];
   informeOT: any[] = [];
 
+  visible: boolean = false;
+
+  position: string = 'center';
+
   ngOnInit(): void {
 
     this.informeOT.push([{
@@ -34,6 +38,10 @@ export class InformeOTComponent implements OnInit {
 
   addInforme(){
     this.informeOT.push([])
+  }
+  showDialog(position: string) {
+    this.position = position;
+    this.visible = true;
   }
 
 }

@@ -1,4 +1,4 @@
-<div>
+<div #tableInforme>
 <p-table
   [tableStyle]="{'min-width': '50rem'}"
   [value]="informeOT"
@@ -19,7 +19,7 @@
   <ng-template pTemplate="body" let-editing="editing" let-rowData let-columns="columns" let-ri="rowIndex" >
     <tr [pEditableRow]="informeOT">
         <td *ngFor="let col of columns">
-          <p-cellEditor *ngIf="col" >
+          <p-cellEditor>
             <ng-template pTemplate="input">
               <input pInputText type="text" >
             </ng-template>
@@ -38,7 +38,18 @@
     </tr>
   </ng-template>
 </p-table>
-<!-- <div class="flex justify-content-center mt-2">
-  <button (click)="addInforme()">mas</button>
-</div> -->
+<div class="flex justify-content-center mt-2">
+  <p-button (click)="showDialog('bottom')" icon="pi pi-plus" label="Agregar" styleClass="p-button-raised p-button-text p-button-help"></p-button>
+  <p-dialog header="Registrar Informe" [(visible)]="visible" [style]="{width: '50vw'}" [appendTo]="tableInforme">
+      <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      </p>
+      <ng-template pTemplate="footer">
+        <p-button icon="pi pi-check" (click)="visible = false" label="Guardar" styleClass="p-button-raised p-button-text p-button-success"></p-button>
+        <p-button icon="pi pi-times" (click)="visible = false" label="Cancel" styleClass="p-button-raised p-button-text p-button-danger"></p-button>
+      </ng-template>
+  </p-dialog>
 </div>
+</div>
+
