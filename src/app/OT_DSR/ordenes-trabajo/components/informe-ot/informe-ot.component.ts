@@ -1,10 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { informeOT } from '../../interfaces/informe-ot.interface';
+import { SeguimientoService } from '../../services/seguimiento.service';
+import { ProcesoOTSelect } from '../../interfaces/procesos-ot.interface';
+import { map } from 'rxjs';
 
 
 interface Column {
   field: string;
   header: string;
+}
+interface Row{
+  datetime: string;
+  state: string;
+  observation: string;
 }
 
 @Component({
@@ -15,19 +23,32 @@ interface Column {
 export class InformeOTComponent implements OnInit {
 
   cols!: Column[];
-  informeOT: any[] = [];
+  informeOT: Row[] = [];
 
   visible: boolean = false;
-
   position: string = 'center';
 
-  ngOnInit(): void {
+  valueEstadoInforme?: ProcesoOTSelect;
+  valueObsInforme?: string;
+  valueSelectProceso: ProcesoOTSelect[] = []
 
-    this.informeOT.push([{
+  private seguimientoService = inject(SeguimientoService)
+
+  ngOnInit(): void {
+    this.seguimientoService.getProcesosOT().pipe(
+      map(process => process.map(proc => {
+        return {
+          id: proc.id,
+          nombre: proc.nombre
+        }
+      }))
+    ).subscribe(proc => this.valueSelectProceso = proc);
+    console.log(new Date().toLocaleString().toString());
+    this.informeOT.push({
       datetime: '2021-01-01',
       state: 'Pendiente',
       observation: 'Prueba'
-    }])
+    })
 
     this.cols = [
       { field: 'datetime', header: 'Fecha / Hora' },
@@ -36,12 +57,28 @@ export class InformeOTComponent implements OnInit {
   ];
   }
 
-  addInforme(){
-    this.informeOT.push([])
-  }
+
   showDialog(position: string) {
     this.position = position;
     this.visible = true;
+  }
+  saveInforme(){
+    console.log(this.valueEstadoInforme);
+    console.log(this.valueObsInforme);
+
+    this.informeOT.push({
+      datetime: new Date().toLocaleString(),
+      state: this.valueEstadoInforme!.nombre,
+      observation: this.valueObsInforme!
+    })
+
+    this.cancel()
+
+  }
+  cancel(){
+    this.valueEstadoInforme = undefined;
+    this.valueObsInforme = undefined;
+    this.visible = false;
   }
 
 }

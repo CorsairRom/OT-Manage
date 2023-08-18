@@ -24,7 +24,7 @@
               <input pInputText type="text" >
             </ng-template>
             <ng-template pTemplate="output">
-              {{ rowData[ri][col?.field] }}
+              {{ rowData[col?.field] }}
             </ng-template>
           </p-cellEditor>
         </td>
@@ -40,14 +40,27 @@
 </p-table>
 <div class="flex justify-content-center mt-2">
   <p-button (click)="showDialog('bottom')" icon="pi pi-plus" label="Agregar" styleClass="p-button-raised p-button-text p-button-help"></p-button>
-  <p-dialog header="Registrar Informe" [(visible)]="visible" [style]="{width: '50vw'}" [appendTo]="tableInforme">
-      <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-      </p>
+  <p-dialog header="Registrar Informe" [(visible)]="visible" [style]="{width: '40vw'}" [appendTo]="tableInforme">
+      <div class="grid justify-content-center" >
+        <div class="col-12 md:col-6 " [style]="{width: '100%'}" >
+          <div class="p-fluid ">
+            <div class="field" >
+              <label for="estadoInforme">Estado</label>
+              <p-dropdown [options]="valueSelectProceso" [(ngModel)]="valueEstadoInforme" placeholder="Seleccione Estado"  optionLabel="nombre" id="estadoInforme"></p-dropdown>
+            </div>
+            <div class="field">
+              <label for="estadoInforme">Observación</label>
+              <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="valueObsInforme" ></textarea>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
       <ng-template pTemplate="footer">
-        <p-button icon="pi pi-check" (click)="visible = false" label="Guardar" styleClass="p-button-raised p-button-text p-button-success"></p-button>
-        <p-button icon="pi pi-times" (click)="visible = false" label="Cancel" styleClass="p-button-raised p-button-text p-button-danger"></p-button>
+        <p-button icon="pi pi-check" (click)="saveInforme()" label="Guardar" [disabled]="!valueEstadoInforme && !valueObsInforme" styleClass="p-button-raised p-button-text p-button-success"></p-button>
+        <p-button icon="pi pi-times" (click)="cancel()" label="Cancel" styleClass="p-button-raised p-button-text p-button-danger"></p-button>
       </ng-template>
   </p-dialog>
 </div>

@@ -12,3 +12,8 @@ export interface Actividades {
   proceso: number;
 }
 
+export interface ProcesoOTSelect{
+  id: number;
+  nombre: string;
+}
+
