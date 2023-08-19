@@ -9,6 +9,8 @@ import { SeguimientoService } from '../../services/seguimiento.service';
   `
   .widthLabelGroup{
     width: 130px;
+    background: whitesmoke;
+
   }
   `
   ]
