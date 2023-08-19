@@ -12,7 +12,7 @@ export class SeguimientoOTComponent implements OnInit{
 
   selectedActivity?:Actividades[];
   selectedProcess?:ProcesosOT[];
-
+  disableSeguimiento: boolean = false;
   seguimientoService = inject(SeguimientoService);
 
   ngOnInit(): void {
@@ -25,7 +25,7 @@ export class SeguimientoOTComponent implements OnInit{
     const activityProcess = actProcess?.actividades;
     const actividadProcesoSelected = actividad.proceso;
     const procesoIFind = actProcess?.id;
-
+    this.disableSeguimiento = true
     if (activitySelected?.length === activityProcess?.length && actividadProcesoSelected === procesoIFind ) {
       if (this.selectedProcess) {
         this.selectedProcess = [...this.selectedProcess, actProcess!]
@@ -42,7 +42,7 @@ export class SeguimientoOTComponent implements OnInit{
     const processID = proceso.id;
     const processSelected = event.checked as ProcesosOT[];
     const indexProcess = this.selectedProcess?.findIndex(p => p.id === processID);
-
+    this.disableSeguimiento = true
     if (indexProcess === -1) {
       const removeAct = this.selectedActivity?.filter(a => a.proceso != processID);
       this.selectedActivity = removeAct;
@@ -59,5 +59,6 @@ export class SeguimientoOTComponent implements OnInit{
     };
 
   };
-
+  saveTecnico(){}
+  editTecnico(){}
 }

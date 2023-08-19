@@ -35,4 +35,8 @@ export class DetalleOTComponent implements OnInit{
     return procesoOT.actividades.some((act: any) => act.proceso === procesoOT.proceso && act.id === actividad);
   }
 
+  editDetalle(){}
+  deleteDetalle(){}
+
+
 }

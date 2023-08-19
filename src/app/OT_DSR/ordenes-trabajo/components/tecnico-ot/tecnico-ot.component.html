@@ -9,15 +9,16 @@
       [options]="tecnicos!"
       optionLabel="nombre"
       [(ngModel)]="selectedTecnico"
+      [disabled]="disabledTecnicos"
       ></p-dropdown>
     </div>
     <div  class="field col-12 md:col-6">
       <label htmlfor="selecTec">Correo</label>
-      <div *ngIf="selectedTecnico"  class="p-inputgroup">
+      <div  class="p-inputgroup">
         <span class="p-inputgroup-addon">
             <i class="pi pi-at"></i>
         </span>
-        <p pInputText> {{selectedTecnico.email}} </p>
+        <p pInputText> {{selectedTecnico?.email}} </p>
       </div>
     </div>
 
@@ -28,17 +29,22 @@
       [options]="tecnicos!"
       optionLabel="nombre"
       [(ngModel)]="selectedSubrogante"
+      [disabled]="disabledTecnicos"
       ></p-dropdown>
     </div>
     <div  class="field col-12 md:col-6">
       <label htmlfor="selecSub">Correo</label>
-      <div *ngIf="selectedSubrogante"  class="p-inputgroup">
+      <div  class="p-inputgroup">
         <span class="p-inputgroup-addon">
             <i class="pi pi-at"></i>
         </span>
-        <p pInputText> {{selectedSubrogante.email}} </p>
+        <p pInputText> {{selectedSubrogante?.email}} </p>
       </div>
     </div>
+  </div>
+  <div class="flex justify-content-end">
+    <p-button icon="pi pi-check" (click)="saveTecnico()" label="Guardar" [disabled]="!selectedTecnico || !selectedSubrogante" styleClass="p-button-raised p-button-text p-button-success m-1"></p-button>
+    <p-button icon="pi pi-pencil" (click)="editTecnico()" label="Editar" [disabled]="!disabledTecnicos" styleClass="p-button-raised p-button-text p-button-info m-1"></p-button>
   </div>
 
 

@@ -44,4 +44,7 @@
     </p-table>
   </div>
 </div>
-
+<div class="flex justify-content-end">
+  <p-button icon="pi pi-check" (click)="saveTecnico()" label="Guardar" [disabled]="!disableSeguimiento" styleClass="p-button-raised p-button-text p-button-success m-1"></p-button>
+  <p-button icon="pi pi-pencil" (click)="editTecnico()" label="Editar"  styleClass="p-button-raised p-button-text p-button-info m-1"></p-button>
+</div>

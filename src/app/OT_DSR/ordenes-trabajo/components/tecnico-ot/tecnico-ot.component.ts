@@ -15,6 +15,7 @@ export class TecnicoOTComponent implements OnInit {
   selectedTecnico?: UsuariosResponse;
   selectedSubrogante?: UsuariosResponse;
   tecnicos?: UsuariosResponse[];
+  disabledTecnicos: boolean = false;
 
   ngOnInit(): void {
     this.usuarioService.getUsuarios().pipe(
@@ -22,4 +23,13 @@ export class TecnicoOTComponent implements OnInit {
     )
   ).subscribe(tec => this.tecnicos = tec)}
 
+  saveTecnico(
+  ){
+    this.disabledTecnicos = true
+  }
+
+  editTecnico(
+  ){
+    this.disabledTecnicos = false
+  }
 }
