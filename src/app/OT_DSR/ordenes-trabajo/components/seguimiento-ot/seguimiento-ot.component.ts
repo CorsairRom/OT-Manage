@@ -13,6 +13,7 @@ import { EstadoActividades } from '../../interfaces/seguimiento-ot.interface';
 export class SeguimientoOTComponent implements OnInit{
   @Input() procesoOT?: ProcesosOT[];
   @Input() idOT?: number;
+  @Input() ot?: OTResponse;
 
   selectedActivity?:Actividades[];
   selectedProcess?:ProcesosOT[];

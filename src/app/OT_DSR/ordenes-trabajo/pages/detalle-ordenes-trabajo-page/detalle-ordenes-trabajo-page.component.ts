@@ -28,7 +28,6 @@ export class DetalleOrdenesTrabajoPageComponent implements OnInit {
       switchMap((id) => this.otService.getOTById(id))
     ).subscribe(ot =>{
       this.OT = ot;
-      console.log(ot);
     });
   };
 
