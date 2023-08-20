@@ -18,6 +18,7 @@
               [(ngModel)]="selectedProcess"
               [inputId]="'proceso_' + proceso.id"
               (onChange)="toggleProcessSelection(proceso, $event)"
+              [disabled]="disableProcess"
               ></p-checkbox>
             <label [for]="'proceso_' + proceso.id" class="px-2">{{ proceso.nombre }}</label>
           </td>
@@ -32,6 +33,7 @@
                       [(ngModel)]="selectedActivity"
                       [inputId]="'actividad_' + actividad.id"
                       (onChange)="toggleActivitySelection(actividad)"
+                      [disabled]="isActivityDisabled(actividad) || disableProcess"
                       ></p-checkbox>
                     <label [for]="'actividad_' + actividad.id" class="px-2">{{ actividad.nombre }}</label>
                   </div>
@@ -45,6 +47,6 @@
   </div>
 </div>
 <div class="flex justify-content-end">
-  <p-button icon="pi pi-check" (click)="saveTecnico()" label="Guardar" [disabled]="!disableSeguimiento" styleClass="p-button-raised p-button-text p-button-success m-1"></p-button>
-  <p-button icon="pi pi-pencil" (click)="editTecnico()" label="Editar"  styleClass="p-button-raised p-button-text p-button-info m-1"></p-button>
+  <p-button icon="pi pi-check" (click)="saveSeguimiento()" label="Guardar" [disabled]="disableSeguimiento" styleClass="p-button-raised p-button-text p-button-success m-1"></p-button>
+  <p-button icon="pi pi-pencil" (click)="editSeguimiento()" label="Editar"  styleClass="p-button-raised p-button-text p-button-info m-1"></p-button>
 </div>

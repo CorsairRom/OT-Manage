@@ -48,6 +48,30 @@ export class OtService {
       }),
       catchError((err: HttpErrorResponse) => this.handleError(err))
   )
-  }
+  };
+
+  addSeguimiento(idOT: number, seguimiento: any): Observable<OTResponse>  {
+    return this.http.patch<OTResponse>(`${this.apiUrl}/${idOT}/`, seguimiento).pipe(
+      tap(() => {
+          this.messageService.addMessage({
+              details: ['Procesos registrados exitosamente!'],
+              role: 'success'
+          })
+      }),
+      catchError((err: HttpErrorResponse) => this.handleError(err))
+  )
+  };
+
+  addTecnico(idOT: number, tecnico: any): Observable<OTResponse>  {
+    return this.http.patch<OTResponse>(`${this.apiUrl}/${idOT}/`, tecnico).pipe(
+      tap(() => {
+          this.messageService.addMessage({
+              details: ['Responsables registrados exitosamente!'],
+              role: 'success'
+          })
+      }),
+      catchError((err: HttpErrorResponse) => this.handleError(err))
+  )
+  };
 
 }

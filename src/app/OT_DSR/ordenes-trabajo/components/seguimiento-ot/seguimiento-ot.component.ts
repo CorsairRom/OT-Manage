@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, inject } from '@angular/core';
 import { Actividades, OTResponse, ProcesosOT } from '../../interfaces/ot.interface';
-import { SeguimientoService } from '../../services/seguimiento.service';
+import { FormBuilder } from '@angular/forms';
+import { OtService } from '../../services/ot.service';
 
 @Component({
   selector: 'seguimiento-ot',
@@ -12,53 +13,42 @@ export class SeguimientoOTComponent implements OnInit{
 
   selectedActivity?:Actividades[];
   selectedProcess?:ProcesosOT[];
-  disableSeguimiento: boolean = false;
-  seguimientoService = inject(SeguimientoService);
+  disableSeguimiento: boolean = true;
+  disableProcess: boolean = false;
+
+  otService = inject(OtService);
+  fb = inject(FormBuilder)
 
   ngOnInit(): void {
 
   }
+  isActivityDisabled(actividad: any): boolean {
+    if (!this.selectedProcess) {
+      return true;
+    }
+    return !this.selectedProcess.some(sp => sp.id === actividad.proceso);
+  }
+
 
   toggleActivitySelection(actividad: Actividades){
-    const activitySelected =this.selectedActivity?.filter(a => a.proceso == actividad.proceso);
-    const actProcess=this.procesoOT!.find(a => a.id == actividad.proceso);
-    const activityProcess = actProcess?.actividades;
-    const actividadProcesoSelected = actividad.proceso;
-    const procesoIFind = actProcess?.id;
-    this.disableSeguimiento = true
-    if (activitySelected?.length === activityProcess?.length && actividadProcesoSelected === procesoIFind ) {
-      if (this.selectedProcess) {
-        this.selectedProcess = [...this.selectedProcess, actProcess!]
-      } else {
-        this.selectedProcess = [actProcess!]
-      };
-    } else {
-      const removePro = this.selectedProcess?.filter(a => a.id != actividad.proceso);
-      this.selectedProcess = removePro;
-    };
+
   };
 
   toggleProcessSelection(proceso: ProcesosOT, event:any){
     const processID = proceso.id;
     const processSelected = event.checked as ProcesosOT[];
     const indexProcess = this.selectedProcess?.findIndex(p => p.id === processID);
-    this.disableSeguimiento = true
+    this.disableSeguimiento = false
     if (indexProcess === -1) {
       const removeAct = this.selectedActivity?.filter(a => a.proceso != processID);
       this.selectedActivity = removeAct;
     };
-
-    if (processSelected.length !== 0) {
-      const activitySelectd = processSelected.find(p => p.id === processID)?.actividades;
-      if (!this.selectedActivity) {
-        this.selectedActivity = activitySelectd;
-      };
-      if (activitySelectd) {
-        this.selectedActivity = [...new Set(this.selectedActivity), ...activitySelectd!];
-      };
-    };
-
   };
-  saveTecnico(){}
-  editTecnico(){}
+
+  saveSeguimiento(){
+    this.disableProcess = true;
+  }
+  editSeguimiento(){
+    this.disableProcess = false;
+  }
 }
