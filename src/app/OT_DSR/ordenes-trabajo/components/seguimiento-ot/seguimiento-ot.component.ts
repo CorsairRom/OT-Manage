@@ -3,6 +3,7 @@ import { Actividades, OTResponse, ProcesosOT, Seguimiento } from '../../interfac
 import { FormBuilder } from '@angular/forms';
 import { OtService } from '../../services/ot.service';
 import { MensajeService } from 'src/app/OT_DSR/core/services/message.service';
+import { EstadoActividades } from '../../interfaces/seguimiento-ot.interface';
 
 @Component({
   selector: 'seguimiento-ot',
@@ -61,14 +62,19 @@ export class SeguimientoOTComponent implements OnInit{
     const procesosSinActividades = this.selectedProcess!.map(proceso => {
       return {
         proceso_id: proceso.id,
-        estado_actividades: this.selectedActivity!.filter(a => a.proceso === proceso.id)
+        estado_actividades: this.selectedActivity!.filter(a => a.proceso === proceso.id).map( act => {
+          const estado_act : EstadoActividades = {
+            actividad_id: act.id
+          }
+          return estado_act;
+        })
       };
     });
     const seguimiento = {
       seguimiento: procesosSinActividades
     }
-    // this.otService.addSeguimiento(id, seguimiento).subscribe( res => console.log(res))
-
+    this.otService.addSeguimiento(id, seguimiento).subscribe( res => console.log(res))
+    // console.log(seguimiento);
     this.disableProcess = true;
   }
   editSeguimiento(){
