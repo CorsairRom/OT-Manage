@@ -66,7 +66,7 @@
       <td>{{ ot.id }}</td>
       <td>{{ ot.cliente.nombre }}</td>
       <td>
-        <ng-container *ngIf="ot.tecnico.nombre; else sinTecnico">{{ ot.tecnico.nombre }}</ng-container>
+        <ng-container *ngIf="ot.tecnico; else sinTecnico">{{ ot.tecnico.nombre }}</ng-container>
         <ng-template #sinTecnico>Sin Tecnico</ng-template>
       </td>
       <td>

@@ -2,7 +2,7 @@
 
 export interface OTResponse {
   id:                   number;
-  tecnico:              Tecnico | {};
+  tecnico:              Tecnico | null;
   cliente:              ClienteRes;
   seguimiento?:         Seguimiento[] | [];
   fecha_inicio:         string;

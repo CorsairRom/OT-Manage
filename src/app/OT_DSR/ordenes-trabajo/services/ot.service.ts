@@ -35,9 +35,11 @@ export class OtService {
       catchError((err: HttpErrorResponse) => this.handleError(err))
     );
   };
+
   getOTById(id: number): Observable<OTResponse>{
     return this.http.get<OTResponse>(`${this.apiUrl}/${id}/`);
-  }
+  };
+
   addOT(OTData: OTForm): Observable<OTResponse>  {
     return this.http.post<OTResponse>(`${this.apiUrl}/`, OTData).pipe(
       tap(() => {
