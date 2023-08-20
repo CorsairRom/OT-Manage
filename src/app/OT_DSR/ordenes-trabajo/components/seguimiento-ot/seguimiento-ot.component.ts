@@ -1,7 +1,8 @@
 import { Component, Input, OnInit, inject } from '@angular/core';
-import { Actividades, OTResponse, ProcesosOT } from '../../interfaces/ot.interface';
+import { Actividades, OTResponse, ProcesosOT, Seguimiento } from '../../interfaces/ot.interface';
 import { FormBuilder } from '@angular/forms';
 import { OtService } from '../../services/ot.service';
+import { MensajeService } from 'src/app/OT_DSR/core/services/message.service';
 
 @Component({
   selector: 'seguimiento-ot',
@@ -10,6 +11,7 @@ import { OtService } from '../../services/ot.service';
 })
 export class SeguimientoOTComponent implements OnInit{
   @Input() procesoOT?: ProcesosOT[];
+  @Input() idOT?: number;
 
   selectedActivity?:Actividades[];
   selectedProcess?:ProcesosOT[];
@@ -17,7 +19,8 @@ export class SeguimientoOTComponent implements OnInit{
   disableProcess: boolean = false;
 
   otService = inject(OtService);
-  fb = inject(FormBuilder)
+  fb = inject(FormBuilder);
+  private messageService = inject(MensajeService);
 
   ngOnInit(): void {
 
@@ -45,7 +48,27 @@ export class SeguimientoOTComponent implements OnInit{
     };
   };
 
-  saveSeguimiento(){
+  saveSeguimiento(id:number){
+    if(!id) return;
+    if (!this.selectedProcess || !this.selectedActivity) {
+      this.messageService.addMessage({
+        details: ['Seleccione una actividad antes de guardar'],
+        role: 'warn'
+      })
+      return;
+    };
+
+    const procesosSinActividades = this.selectedProcess!.map(proceso => {
+      return {
+        proceso_id: proceso.id,
+        estado_actividades: this.selectedActivity!.filter(a => a.proceso === proceso.id)
+      };
+    });
+    const seguimiento = {
+      seguimiento: procesosSinActividades
+    }
+    // this.otService.addSeguimiento(id, seguimiento).subscribe( res => console.log(res))
+
     this.disableProcess = true;
   }
   editSeguimiento(){
