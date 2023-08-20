@@ -73,8 +73,8 @@ export class SeguimientoOTComponent implements OnInit{
     const seguimiento = {
       seguimiento: procesosSinActividades
     }
-    this.otService.addSeguimiento(id, seguimiento).subscribe( res => console.log(res))
-    // console.log(seguimiento);
+    this.otService.addSeguimiento(id, seguimiento).subscribe()
+
     this.disableProcess = true;
   }
   editSeguimiento(){
