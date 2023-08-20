@@ -31,7 +31,7 @@ export interface ActividadRes {
 }
 
 export interface Seguimiento {
-  id:                 number;
+  id?:                 number;
   ot:                 number;
   proceso:            ProcesoRes;
   proceso_id?:        number;
