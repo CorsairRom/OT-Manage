@@ -28,7 +28,7 @@ export class SeguimientoOTComponent implements OnInit{
     // console.log(this.ot?.seguimiento?.length);
     if (this.ot!.seguimiento!.length > 0) {
       this.ot?.seguimiento?.forEach( seg => {
-        console.log(this.procesoOT)
+        console.log(seg)
 
       })
     }
