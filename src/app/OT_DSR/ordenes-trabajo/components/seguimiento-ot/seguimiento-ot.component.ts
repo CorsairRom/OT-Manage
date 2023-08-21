@@ -11,7 +11,7 @@ import { EstadoActividades } from '../../interfaces/seguimiento-ot.interface';
   styleUrls: ['./seguimiento-ot.component.scss']
 })
 export class SeguimientoOTComponent implements OnInit{
-  @Input() procesoOT?: ProcesosOT[];
+  @Input() procesoOT!: ProcesosOT[];
   @Input() idOT?: number;
   @Input() ot?: OTResponse;
 
@@ -25,7 +25,13 @@ export class SeguimientoOTComponent implements OnInit{
   private messageService = inject(MensajeService);
 
   ngOnInit(): void {
+    // console.log(this.ot?.seguimiento?.length);
+    if (this.ot!.seguimiento!.length > 0) {
+      this.ot?.seguimiento?.forEach( seg => {
+        console.log(this.procesoOT)
 
+      })
+    }
   }
   isActivityDisabled(actividad: any): boolean {
     if (!this.selectedProcess) {

@@ -20,7 +20,7 @@ export class DetalleOTComponent implements OnInit{
   @Input() ot?: OTResponse;
   seguimientoService = inject(SeguimientoService)
   allActividades: any[] = [];
-  procesoOT?:ProcesosOT[];
+  procesoOT!:ProcesosOT[];
 
 
 
