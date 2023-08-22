@@ -32,7 +32,7 @@ export class SeguimientoOTComponent implements OnInit{
       this.ot?.seguimiento?.forEach( seg => {
         this.chargeProcess(seg.proceso.id)
         seg.estado_actividades.forEach(act=>{
-          console.log(act.actividad.id);
+
           this.chargeActivities(act.actividad.id, seg.proceso.id)
         })
       })
@@ -40,15 +40,15 @@ export class SeguimientoOTComponent implements OnInit{
   }
 
   chargeProcess(id:number){
-    this.serviceSeguimiento.getProcesoOTById(id).subscribe(p=> this.selectedProcess = [p])
+    this.serviceSeguimiento.getProcesoOTById(id).subscribe(p=> {
+      this.selectedProcess = [p]
+      console.log(this.selectedProcess);
+  })
   }
 
   chargeActivities(idAct:number, idProcess:number){
-
-
     this.serviceSeguimiento.getProcesoOTById(idProcess).subscribe(res => {
       const activity = res.actividades.find(a=> a.id === idAct)
-      console.log(this.selectedActivity.length === 0);
       if (this.selectedActivity.length === 0) {
         this.selectedActivity = [activity!]
       }else{
