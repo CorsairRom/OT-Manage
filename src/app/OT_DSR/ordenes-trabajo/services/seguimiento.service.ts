@@ -26,6 +26,9 @@ export class SeguimientoService {
   };
 
   getProcesosOT(){
-    return this.http.get<ProcesosOT[]>(`${this.apiUrlProcesosOT}/`)
+    return this.http.get<ProcesosOT[]>(`${this.apiUrlProcesosOT}/`);
+  }
+  getProcesoOTById(id:number){
+    return this.http.get<ProcesosOT>(`${this.apiUrlProcesosOT}/${id}/`);
   }
 }

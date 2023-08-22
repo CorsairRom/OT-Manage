@@ -4,6 +4,7 @@ import { FormBuilder } from '@angular/forms';
 import { OtService } from '../../services/ot.service';
 import { MensajeService } from 'src/app/OT_DSR/core/services/message.service';
 import { EstadoActividades } from '../../interfaces/seguimiento-ot.interface';
+import { SeguimientoService } from '../../services/seguimiento.service';
 
 @Component({
   selector: 'seguimiento-ot',
@@ -11,7 +12,7 @@ import { EstadoActividades } from '../../interfaces/seguimiento-ot.interface';
   styleUrls: ['./seguimiento-ot.component.scss']
 })
 export class SeguimientoOTComponent implements OnInit{
-  @Input() procesoOT!: ProcesosOT[];
+  @Input() procesoOT?: ProcesosOT[];
   @Input() idOT?: number;
   @Input() ot?: OTResponse;
 
@@ -20,19 +21,26 @@ export class SeguimientoOTComponent implements OnInit{
   disableSeguimiento: boolean = true;
   disableProcess: boolean = false;
 
-  otService = inject(OtService);
-  fb = inject(FormBuilder);
+  private otService = inject(OtService);
+  private fb = inject(FormBuilder);
   private messageService = inject(MensajeService);
+  private serviceSeguimiento = inject(SeguimientoService);
 
   ngOnInit(): void {
     // console.log(this.ot?.seguimiento?.length);
     if (this.ot!.seguimiento!.length > 0) {
       this.ot?.seguimiento?.forEach( seg => {
-        console.log(seg)
+        this.chargeProcess(seg.proceso.id)
 
       })
     }
   }
+
+  chargeProcess(id:number){
+    this.serviceSeguimiento.getProcesoOTById(id).subscribe(p=> this.selectedProcess = [p])
+  }
+
+
   isActivityDisabled(actividad: any): boolean {
     if (!this.selectedProcess) {
       return true;

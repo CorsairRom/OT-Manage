@@ -26,10 +26,7 @@ export class DetalleOTComponent implements OnInit{
 
   ngOnInit(): void {
     this.seguimientoService.getProcesosOT().subscribe(res => {
-      this.procesoOT = res
-      this.procesoOT.forEach(actividades => {
-        this.allActividades.push(actividades)
-      })
+      this.procesoOT = res;
   }
 )}
 
