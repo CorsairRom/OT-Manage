@@ -31,7 +31,10 @@ export class SeguimientoOTComponent implements OnInit{
     if (this.ot!.seguimiento!.length > 0) {
       this.ot?.seguimiento?.forEach( seg => {
         this.chargeProcess(seg.proceso.id)
-
+        seg.estado_actividades.forEach(act=>{
+          console.log(act.actividad.id);
+          this.chargeActivities(act.actividad.id, seg.proceso.id)
+        })
       })
     }
   }
@@ -40,6 +43,12 @@ export class SeguimientoOTComponent implements OnInit{
     this.serviceSeguimiento.getProcesoOTById(id).subscribe(p=> this.selectedProcess = [p])
   }
 
+  chargeActivities(idAct:number, idProcess:number){
+    this.serviceSeguimiento.getProcesoOTById(idProcess).subscribe(res => {
+      const activity = res.actividades.find(a=> a.id === idAct)
+      this.selectedActivity = [activity!]
+    })
+  }
 
   isActivityDisabled(actividad: any): boolean {
     if (!this.selectedProcess) {
