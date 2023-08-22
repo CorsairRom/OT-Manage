@@ -16,7 +16,7 @@ export class SeguimientoOTComponent implements OnInit{
   @Input() idOT?: number;
   @Input() ot?: OTResponse;
 
-  selectedActivity?:Actividades[];
+  selectedActivity:Actividades[] = [];
   selectedProcess?:ProcesosOT[];
   disableSeguimiento: boolean = true;
   disableProcess: boolean = false;
@@ -44,10 +44,18 @@ export class SeguimientoOTComponent implements OnInit{
   }
 
   chargeActivities(idAct:number, idProcess:number){
+
+
     this.serviceSeguimiento.getProcesoOTById(idProcess).subscribe(res => {
       const activity = res.actividades.find(a=> a.id === idAct)
-      this.selectedActivity = [activity!]
+      console.log(this.selectedActivity.length === 0);
+      if (this.selectedActivity.length === 0) {
+        this.selectedActivity = [activity!]
+      }else{
+        this.selectedActivity = [...this.selectedActivity, activity!]
+      }
     })
+
   }
 
   isActivityDisabled(actividad: any): boolean {
