@@ -1,5 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { informeOT } from '../../interfaces/informe-ot.interface';
+import { informeOTResponse } from '../../interfaces/informe-ot.interface';
 import { SeguimientoService } from '../../services/seguimiento.service';
 import { ProcesoOTSelect } from '../../interfaces/procesos-ot.interface';
 import { map } from 'rxjs';
@@ -45,16 +45,7 @@ export class InformeOTComponent implements OnInit {
       }))
     ).subscribe(proc => this.valueSelectProceso = proc);
     console.log(new Date().toLocaleString().toString());
-    this.informeOT.push({
-      datetime: '2021-01-01',
-      state: 'Pendiente',
-      observation: 'Prueba'
-    })
-    this.informeOT.push({
-      datetime: '2022-02-02',
-      state: 'Pendiente2',
-      observation: 'Prueba2'
-    })
+
 
     this.cols = [
       { field: 'datetime', header: 'Fecha / Hora' },
