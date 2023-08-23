@@ -4,6 +4,7 @@
   [value]="informeOT"
   [columns]="cols"
   editMode="row"
+  dataKey="datetime"
 >
   <ng-template pTemplate="header" let-columns>
     <tr>
@@ -15,11 +16,11 @@
         </th>
     </tr>
   </ng-template>
-  <ng-template pTemplate="body" let-editing="editing" let-rowData let-columns="columns" let-ri="rowIndex" >
-    <tr [pEditableRow]="informeOT">
-        <td *ngFor="let col of columns">
+  <ng-template pTemplate="body" let-editing="editing"  let-rowData let-columns="columns" let-ri="rowIndex" >
+    <tr [pEditableRow]="rowData" >
+        <td  *ngFor="let col of columns">
           <p-cellEditor>
-            <ng-template pTemplate="input">
+            <ng-template pTemplate="input"  >
               <input pInputText type="text" >
             </ng-template>
             <ng-template pTemplate="output">
@@ -29,9 +30,9 @@
         </td>
         <td>
           <div class="flex align-items-center  gap-2">
-              <button *ngIf="!editing" pButton pRipple type="button" pInitEditableRow icon="pi pi-pencil" class="p-button-rounded p-button-text"></button>
-              <button *ngIf="editing" pButton pRipple type="button" pSaveEditableRow icon="pi pi-check"  class="p-button-rounded p-button-text p-button-success mr-2"></button>
-              <button *ngIf="editing" pButton pRipple type="button" pCancelEditableRow icon="pi pi-times"  class="p-button-rounded p-button-text p-button-danger"></button>
+            <button *ngIf="!editing" pButton pRipple type="button" (onClick) ="onRowEditInit(ri)" pInitEditableRow icon="pi pi-pencil" class="p-button-rounded p-button-text"></button>
+            <button *ngIf="editing" pButton pRipple type="button"  (onClick) ="onRowEditSave(rowData, ri)" pSaveEditableRow icon="pi pi-check"  class="p-button-rounded p-button-text p-button-success mr-2"></button>
+            <button *ngIf="editing" pButton pRipple type="button"  (onClick) ="onRowEditCancel(rowData, ri)" pCancelEditableRow icon="pi pi-times"  class="p-button-rounded p-button-text p-button-danger"></button>
           </div>
         </td>
     </tr>

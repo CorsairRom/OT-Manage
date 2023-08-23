@@ -23,7 +23,7 @@ interface Row{
 export class InformeOTComponent implements OnInit {
 
   cols!: Column[];
-  informeOT: Row[] = [];
+  informeOT!: Row[];
 
   visible: boolean = false;
   position: string = 'center';
@@ -35,6 +35,7 @@ export class InformeOTComponent implements OnInit {
   private seguimientoService = inject(SeguimientoService)
 
   ngOnInit(): void {
+    this.informeOT = []
     this.seguimientoService.getProcesosOT().pipe(
       map(process => process.map(proc => {
         return {
@@ -49,12 +50,26 @@ export class InformeOTComponent implements OnInit {
       state: 'Pendiente',
       observation: 'Prueba'
     })
+    this.informeOT.push({
+      datetime: '2022-02-02',
+      state: 'Pendiente2',
+      observation: 'Prueba2'
+    })
 
     this.cols = [
       { field: 'datetime', header: 'Fecha / Hora' },
       { field: 'state', header: 'Estado' },
       { field: 'observation', header: 'Observación' }
   ];
+  }
+
+  onRowEditInit(index:number) {
+  }
+
+  onRowEditCancel(data:Row, index:number) {
+  }
+
+  onRowEditSave(data:Row, index: number) {
   }
 
 
