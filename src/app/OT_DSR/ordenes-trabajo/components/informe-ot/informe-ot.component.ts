@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, Input, OnInit, inject } from '@angular/core';
 import { informeOTResponse } from '../../interfaces/informe-ot.interface';
 import { SeguimientoService } from '../../services/seguimiento.service';
 import { ProcesoOTSelect } from '../../interfaces/procesos-ot.interface';
@@ -22,6 +22,8 @@ interface Row{
 })
 export class InformeOTComponent implements OnInit {
 
+  @Input() otID!: number;
+
   cols!: Column[];
   informeOT!: Row[];
 
@@ -35,6 +37,7 @@ export class InformeOTComponent implements OnInit {
   private seguimientoService = inject(SeguimientoService)
 
   ngOnInit(): void {
+
     this.informeOT = []
     this.seguimientoService.getProcesosOT().pipe(
       map(process => process.map(proc => {
