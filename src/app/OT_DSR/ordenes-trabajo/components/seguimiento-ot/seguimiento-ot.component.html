@@ -47,6 +47,6 @@
   </div>
 </div>
 <div class="flex justify-content-end">
-  <p-button icon="pi pi-check" (click)="saveSeguimiento(idOT!)" label="Guardar" [disabled]="disableSeguimiento" styleClass="p-button-raised p-button-text p-button-success m-1"></p-button>
-  <p-button icon="pi pi-pencil" (click)="editSeguimiento()" label="Editar"  styleClass="p-button-raised p-button-text p-button-info m-1"></p-button>
+  <p-button icon="pi pi-check" (onClick)="saveSeguimiento(idOT!)" label="Guardar" [disabled]="disableSeguimiento" styleClass="p-button-raised p-button-text p-button-success m-1"></p-button>
+  <p-button icon="pi pi-pencil" (onClick)="editSeguimiento()" [disabled]="!disableSeguimiento" label="Editar"  styleClass="p-button-raised p-button-text p-button-info m-1"></p-button>
 </div>

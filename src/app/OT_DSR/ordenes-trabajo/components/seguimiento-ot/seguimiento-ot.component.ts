@@ -17,7 +17,7 @@ export class SeguimientoOTComponent implements OnInit{
   @Input() ot?: OTResponse;
 
   selectedActivity:Actividades[] = [];
-  selectedProcess?:ProcesosOT[];
+  selectedProcess?:ProcesosOT[] = [];
   disableSeguimiento: boolean = true;
   disableProcess: boolean = false;
 
@@ -41,8 +41,12 @@ export class SeguimientoOTComponent implements OnInit{
 
   chargeProcess(id:number){
     this.serviceSeguimiento.getProcesoOTById(id).subscribe(p=> {
-      this.selectedProcess = [p]
-      console.log(this.selectedProcess);
+      if (this.selectedProcess?.length === 0) {
+        this.selectedProcess = [p]
+      }else{
+        this.selectedProcess = [...this.selectedProcess!, p]
+      }
+
   })
   }
 
@@ -67,7 +71,7 @@ export class SeguimientoOTComponent implements OnInit{
 
 
   toggleActivitySelection(actividad: Actividades){
-
+    this.disableSeguimiento = false
   };
 
   toggleProcessSelection(proceso: ProcesosOT, event:any){
