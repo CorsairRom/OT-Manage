@@ -3,7 +3,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { MensajeService } from '../../core/services/message.service';
 import { environment } from 'src/environments/environment';
 import { BehaviorSubject, Observable, catchError, tap, throwError } from 'rxjs';
-import { informeOTResponse, informeOTForm } from '../interfaces/informe-ot.interface';
+import { informeOTResponse, informeOTForm, PatchInformeOT } from '../interfaces/informe-ot.interface';
 
 @Injectable({providedIn: 'root'})
 export class InformeOTService {
@@ -46,5 +46,25 @@ export class InformeOTService {
       catchError((err: HttpErrorResponse) => this.handleError(err))
   )
   }
+  updateServicio(informeData: PatchInformeOT) {
+    return this.http.patch<informeOTResponse>(`${this.apiUrl}/${informeData.id}/`, informeData).pipe(
+      tap((updatedInforme: informeOTResponse) => {
+        this.messageService.addMessage({
+          details: ['Informe actualizado exitosamente!'],
+          role: 'success'
+        });
 
+        // Actualizar los datos del servicio con el servicio actualizado
+        const informe = this.otSubject.getValue();
+        const informeIndex = informe.findIndex(i => i.id === updatedInforme.id);
+        if (informeIndex !== -1) {
+          informe[informeIndex] = updatedInforme;
+          this.otSubject.next(informe);
+        }
+      }),
+      catchError((err: HttpErrorResponse) => this.handleError(err))
+    );
+  }
 }
+
+

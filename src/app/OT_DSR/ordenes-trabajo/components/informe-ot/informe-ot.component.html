@@ -24,26 +24,17 @@
             <p-cellEditor>
 
               <ng-template pTemplate="input">
-
-                <ng-container *ngIf="col.field === 'estado_orden' || col.field === 'informe'">
-                  <ng-container *ngIf="col.field === 'estado_orden'; else informeTemplate">
-                    <!-- Renderizar el dropdown para 'estado_orden' -->
-                    <p-dropdown
-                        [options]="valueSelectProceso"
-                        [(ngModel)]="valueEstadoInforme"
-                        placeholder="Seleccione Estado"
-                        optionLabel="nombre"
-                        id="estadoInforme"
-                        appendTo="body"
-                        ></p-dropdown>
+                <ng-container *ngIf=" col.field === 'informe'">
+                  <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="rowData[col?.field]" ></textarea>
+                </ng-container>
+                <ng-container *ngIf="col.field !== 'informe'">
+                  <ng-container *ngIf="col.field === 'add_date'; else estado">
+                    {{ rowData[col?.field] |  date: 'dd/MM/yyyy, HH:mm \'hrs\''}}
                   </ng-container>
-                  <ng-template #informeTemplate>
-                    <!-- Renderizar el input para 'informe' -->
-                    <input pInputText type="text" [value]="rowData[col?.field]">
+                  <ng-template #estado>
+                    {{ rowData[col?.field] }}
                   </ng-template>
                 </ng-container>
-
-
               </ng-template>
 
               <ng-template pTemplate="output">
@@ -58,9 +49,9 @@
           </td>
           <td>
             <div class="flex align-items-center  gap-2">
-              <button *ngIf="!editing" pButton pRipple type="button" (onClick) ="onRowEditInit(ri)" pInitEditableRow icon="pi pi-pencil" class="p-button-rounded p-button-text"></button>
-              <button *ngIf="editing" pButton pRipple type="button"  (onClick) ="onRowEditSave(rowData, ri)" pSaveEditableRow icon="pi pi-check"  class="p-button-rounded p-button-text p-button-success mr-2"></button>
-              <button *ngIf="editing" pButton pRipple type="button"  (onClick) ="onRowEditCancel(rowData, ri)" pCancelEditableRow icon="pi pi-times"  class="p-button-rounded p-button-text p-button-danger"></button>
+              <button *ngIf="!editing" pButton pRipple type="button" (click) ="onRowEditInit(ri)" pInitEditableRow icon="pi pi-pencil" class="p-button-rounded p-button-text"></button>
+              <button *ngIf="editing" pButton pRipple type="button"  (click) ="onRowEditSave(rowData, ri)" pSaveEditableRow icon="pi pi-check"  class="p-button-rounded p-button-text p-button-success mr-2"></button>
+              <button *ngIf="editing" pButton pRipple type="button"  (click) ="onRowEditCancel(rowData, ri)" pCancelEditableRow icon="pi pi-times"  class="p-button-rounded p-button-text p-button-danger"></button>
             </div>
           </td>
       </tr>

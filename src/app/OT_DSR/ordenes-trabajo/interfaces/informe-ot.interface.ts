@@ -10,9 +10,15 @@ export interface informeOTResponse {
 }
 
 export interface informeOTForm {
+  id?: number;
   ot: number;
   estado_orden: string;
   informe: string;
   add_date?: Date;
+}
+
+export interface PatchInformeOT {
+  id: number;
+  informe: string;
 }
 

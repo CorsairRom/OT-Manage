@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, inject } from '@angular/core';
-import { informeOTResponse, informeOTForm } from '../../interfaces/informe-ot.interface';
+import { informeOTResponse, informeOTForm, PatchInformeOT } from '../../interfaces/informe-ot.interface';
 import { SeguimientoService } from '../../services/seguimiento.service';
 import { ProcesoOTSelect } from '../../interfaces/procesos-ot.interface';
 import { map } from 'rxjs';
@@ -20,15 +20,15 @@ export class InformeOTComponent implements OnInit {
 
   @Input() otID!: number;
 
-  cols!: Column[];
-
   infoOT$: informeOTResponse[] = [];
+  cols!: Column[];
+  valueEstadoInforme?: ProcesoOTSelect;
+  valueSelectProceso: ProcesoOTSelect[] = []
+
   visible: boolean = false;
   position: string = 'center';
-
-  valueEstadoInforme?: ProcesoOTSelect;
   valueObsInforme?: string;
-  valueSelectProceso: ProcesoOTSelect[] = []
+  textArea: any = '';
 
   private seguimientoService = inject(SeguimientoService)
   private informeService = inject(InformeOTService)
@@ -59,12 +59,22 @@ export class InformeOTComponent implements OnInit {
   }
 
   onRowEditInit(index:number) {
+
   }
 
   onRowEditCancel(data:informeOTForm, index:number) {
+
   }
 
   onRowEditSave(data:informeOTForm, index: number) {
+
+    const pathInforme:PatchInformeOT = {
+      id: data.id!,
+      informe: data.informe
+    }
+    this.informeService.updateServicio(pathInforme).subscribe();
+    console.log(pathInforme);
+
   }
 
 
@@ -83,13 +93,7 @@ export class InformeOTComponent implements OnInit {
       estado_orden: this.valueEstadoInforme.nombre,
       informe: this.valueObsInforme
     }
-    console.log(informeData);
 
-    // this.informeOT.push({
-    //   datetime: new Date().toLocaleString(),
-    //   state: this.valueEstadoInforme!.nombre,
-    //   observation: this.valueObsInforme!
-    // })
     this.informeService.addInforme_OT(informeData).subscribe(informe => {
       this.infoOT$.push(informe)
     })
@@ -100,6 +104,10 @@ export class InformeOTComponent implements OnInit {
     this.valueEstadoInforme = undefined;
     this.valueObsInforme = undefined;
     this.visible = false;
+  }
+
+  getObservacion(id: number){
+    console.log(id);
   }
 
 }
