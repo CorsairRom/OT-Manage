@@ -8,11 +8,11 @@
 
   >
     <ng-template pTemplate="header" let-columns>
-      <tr>
-          <th *ngFor="let col of columns">
+      <tr class="backheader" >
+          <th *ngFor="let col of columns" class="backheader">
               {{ col.header }}
           </th>
-          <th>
+          <th class="backheader">
             Editar
           </th>
       </tr>
