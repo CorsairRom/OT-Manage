@@ -2,8 +2,8 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { MensajeService } from '../../core/services/message.service';
 import { environment } from 'src/environments/environment';
-import { BehaviorSubject, catchError, tap, throwError } from 'rxjs';
-import { informeOTResponse } from '../interfaces/informe-ot.interface';
+import { BehaviorSubject, Observable, catchError, tap, throwError } from 'rxjs';
+import { informeOTResponse, informeOTForm } from '../interfaces/informe-ot.interface';
 
 @Injectable({providedIn: 'root'})
 export class InformeOTService {
@@ -34,5 +34,17 @@ export class InformeOTService {
       catchError((err: HttpErrorResponse) => this.handleError(err))
     );
   };
+
+  addInforme_OT(informeData: informeOTForm): Observable<informeOTResponse>  {
+    return this.http.post<informeOTResponse>(`${this.apiUrl}/`, informeData).pipe(
+      tap(() => {
+          this.messageService.addMessage({
+              details: ['Informe OT registrado exitosamente!'],
+              role: 'success'
+          })
+      }),
+      catchError((err: HttpErrorResponse) => this.handleError(err))
+  )
+  }
 
 }

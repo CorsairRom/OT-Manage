@@ -1,7 +1,7 @@
 <div #tableInforme>
 <p-table
   [tableStyle]="{'min-width': '50rem'}"
-  [value]="informeOT"
+  [value]="infoOT$"
   [columns]="cols"
   editMode="row"
   dataKey="datetime"
@@ -19,11 +19,15 @@
   <ng-template pTemplate="body" let-editing="editing"  let-rowData let-columns="columns" let-ri="rowIndex" >
     <tr [pEditableRow]="rowData" >
         <td  *ngFor="let col of columns">
+
           <p-cellEditor>
             <ng-template pTemplate="input"  >
               <input pInputText type="text" >
             </ng-template>
-            <ng-template pTemplate="output">
+            <ng-template pTemplate="output" *ngIf="col.field === 'add_date'" >
+              {{ rowData[col?.field] |  date: 'dd/MM/yyyy, HH:mm \'hrs\''}}
+            </ng-template>
+            <ng-template pTemplate="output" *ngIf="col.field !== 'add_date'">
               {{ rowData[col?.field] }}
             </ng-template>
           </p-cellEditor>
@@ -59,8 +63,8 @@
       </div>
 
       <ng-template pTemplate="footer">
-        <p-button icon="pi pi-check" (click)="saveInforme()" label="Guardar" [disabled]="!valueEstadoInforme && !valueObsInforme" styleClass="p-button-raised p-button-text p-button-success"></p-button>
-        <p-button icon="pi pi-times" (click)="cancel()" label="Cancel" styleClass="p-button-raised p-button-text p-button-danger"></p-button>
+        <p-button icon="pi pi-check" (onClick)="saveInforme()" label="Guardar" [disabled]="!valueEstadoInforme && !valueObsInforme" styleClass="p-button-raised p-button-text p-button-success"></p-button>
+        <p-button icon="pi pi-times" (onClick)="cancel()" label="Cancel" styleClass="p-button-raised p-button-text p-button-danger"></p-button>
       </ng-template>
   </p-dialog>
 </div>
