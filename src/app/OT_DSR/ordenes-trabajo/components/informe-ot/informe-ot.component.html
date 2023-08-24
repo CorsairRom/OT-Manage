@@ -1,72 +1,96 @@
-<div #tableInforme>
-<p-table
-  [tableStyle]="{'min-width': '50rem'}"
-  [value]="infoOT$"
-  [columns]="cols"
-  editMode="row"
-  dataKey="datetime"
->
-  <ng-template pTemplate="header" let-columns>
-    <tr>
-        <th *ngFor="let col of columns">
-            {{ col.header }}
-        </th>
-        <th>
-          Editar
-        </th>
-    </tr>
-  </ng-template>
-  <ng-template pTemplate="body" let-editing="editing"  let-rowData let-columns="columns" let-ri="rowIndex" >
-    <tr [pEditableRow]="rowData" >
-        <td  *ngFor="let col of columns">
+<div  #tableInforme>
+  <p-table
+    [tableStyle]="{'min-width': '50rem'}"
+    [value]="infoOT$"
+    [columns]="cols"
+    editMode="row"
+    dataKey="id"
 
-          <p-cellEditor>
-            <ng-template pTemplate="input"  >
-              <input pInputText type="text" >
-            </ng-template>
-            <ng-template pTemplate="output" *ngIf="col.field === 'add_date'" >
-              {{ rowData[col?.field] |  date: 'dd/MM/yyyy, HH:mm \'hrs\''}}
-            </ng-template>
-            <ng-template pTemplate="output" *ngIf="col.field !== 'add_date'">
-              {{ rowData[col?.field] }}
-            </ng-template>
-          </p-cellEditor>
-        </td>
-        <td>
-          <div class="flex align-items-center  gap-2">
-            <button *ngIf="!editing" pButton pRipple type="button" (onClick) ="onRowEditInit(ri)" pInitEditableRow icon="pi pi-pencil" class="p-button-rounded p-button-text"></button>
-            <button *ngIf="editing" pButton pRipple type="button"  (onClick) ="onRowEditSave(rowData, ri)" pSaveEditableRow icon="pi pi-check"  class="p-button-rounded p-button-text p-button-success mr-2"></button>
-            <button *ngIf="editing" pButton pRipple type="button"  (onClick) ="onRowEditCancel(rowData, ri)" pCancelEditableRow icon="pi pi-times"  class="p-button-rounded p-button-text p-button-danger"></button>
-          </div>
-        </td>
-    </tr>
-  </ng-template>
-</p-table>
-<div class="flex justify-content-center mt-2">
-  <p-button (click)="showDialog('bottom')" icon="pi pi-plus" label="Agregar" styleClass="p-button-raised p-button-text p-button-help"></p-button>
-  <p-dialog header="Registrar Informe" [(visible)]="visible" [style]="{width: '40vw'}" [appendTo]="tableInforme">
-      <div class="grid justify-content-center" >
-        <div class="col-12 md:col-6 " [style]="{width: '100%'}" >
-          <div class="p-fluid ">
-            <div class="field" >
-              <label for="estadoInforme">Estado</label>
-              <p-dropdown [options]="valueSelectProceso" [(ngModel)]="valueEstadoInforme" placeholder="Seleccione Estado"  optionLabel="nombre" id="estadoInforme"></p-dropdown>
+  >
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+          <th *ngFor="let col of columns">
+              {{ col.header }}
+          </th>
+          <th>
+            Editar
+          </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-editing="editing"  let-rowData let-columns="columns" let-ri="rowIndex" >
+      <tr [pEditableRow]="rowData" >
+          <td  *ngFor="let col of columns">
+
+            <p-cellEditor>
+
+              <ng-template pTemplate="input">
+
+                <ng-container *ngIf="col.field === 'estado_orden' || col.field === 'informe'">
+                  <ng-container *ngIf="col.field === 'estado_orden'; else informeTemplate">
+                    <!-- Renderizar el dropdown para 'estado_orden' -->
+                    <p-dropdown
+                        [options]="valueSelectProceso"
+                        [(ngModel)]="valueEstadoInforme"
+                        placeholder="Seleccione Estado"
+                        optionLabel="nombre"
+                        id="estadoInforme"
+                        appendTo="body"
+                        ></p-dropdown>
+                  </ng-container>
+                  <ng-template #informeTemplate>
+                    <!-- Renderizar el input para 'informe' -->
+                    <input pInputText type="text" [value]="rowData[col?.field]">
+                  </ng-template>
+                </ng-container>
+
+
+              </ng-template>
+
+              <ng-template pTemplate="output">
+                <ng-container *ngIf="col.field === 'add_date'">
+                  {{ rowData[col?.field] |  date: 'dd/MM/yyyy, HH:mm \'hrs\''}}
+                </ng-container>
+                <ng-container *ngIf="col.field !== 'add_date'">
+                  {{ rowData[col?.field] }}
+                </ng-container>
+              </ng-template>
+            </p-cellEditor>
+          </td>
+          <td>
+            <div class="flex align-items-center  gap-2">
+              <button *ngIf="!editing" pButton pRipple type="button" (onClick) ="onRowEditInit(ri)" pInitEditableRow icon="pi pi-pencil" class="p-button-rounded p-button-text"></button>
+              <button *ngIf="editing" pButton pRipple type="button"  (onClick) ="onRowEditSave(rowData, ri)" pSaveEditableRow icon="pi pi-check"  class="p-button-rounded p-button-text p-button-success mr-2"></button>
+              <button *ngIf="editing" pButton pRipple type="button"  (onClick) ="onRowEditCancel(rowData, ri)" pCancelEditableRow icon="pi pi-times"  class="p-button-rounded p-button-text p-button-danger"></button>
             </div>
-            <div class="field">
-              <label for="estadoInforme">Observación</label>
-              <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="valueObsInforme" ></textarea>
+          </td>
+      </tr>
+    </ng-template>
+  </p-table>
+  <div class="flex justify-content-center mt-2">
+    <p-button (click)="showDialog('bottom')" icon="pi pi-plus" label="Agregar" styleClass="p-button-raised p-button-text p-button-help"></p-button>
+    <p-dialog header="Registrar Informe" [(visible)]="visible" [style]="{width: '40vw'}" [appendTo]="tableInforme">
+        <div class="grid justify-content-center" >
+          <div class="col-12 md:col-6 " [style]="{width: '100%'}" >
+            <div class="p-fluid ">
+              <div class="field" >
+                <label for="estadoInforme">Estado</label>
+                <p-dropdown [options]="valueSelectProceso" [(ngModel)]="valueEstadoInforme" placeholder="Seleccione Estado"  optionLabel="nombre" id="estadoInforme"></p-dropdown>
+              </div>
+              <div class="field">
+                <label for="estadoInforme">Observación</label>
+                <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="valueObsInforme" ></textarea>
+              </div>
+
             </div>
 
           </div>
-
         </div>
-      </div>
 
-      <ng-template pTemplate="footer">
-        <p-button icon="pi pi-check" (onClick)="saveInforme()" label="Guardar" [disabled]="!valueEstadoInforme && !valueObsInforme" styleClass="p-button-raised p-button-text p-button-success"></p-button>
-        <p-button icon="pi pi-times" (onClick)="cancel()" label="Cancel" styleClass="p-button-raised p-button-text p-button-danger"></p-button>
-      </ng-template>
-  </p-dialog>
-</div>
+        <ng-template pTemplate="footer">
+          <p-button icon="pi pi-check" (onClick)="saveInforme()" label="Guardar" [disabled]="!valueEstadoInforme && !valueObsInforme" styleClass="p-button-raised p-button-text p-button-success"></p-button>
+          <p-button icon="pi pi-times" (onClick)="cancel()" label="Cancel" styleClass="p-button-raised p-button-text p-button-danger"></p-button>
+        </ng-template>
+    </p-dialog>
+  </div>
 </div>
 
