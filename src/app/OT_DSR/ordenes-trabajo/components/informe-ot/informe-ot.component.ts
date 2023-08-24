@@ -35,8 +35,8 @@ export class InformeOTComponent implements OnInit {
 
   ngOnInit(): void {
 
-
-    this.informeService.getInforme_OT().subscribe(informe => {
+    console.log(this.otID);
+    this.informeService.getInformeByIdOT(this.otID).subscribe(informe => {
       this.infoOT$ = informe
     })
     this.seguimientoService.getProcesosOT().pipe(

@@ -35,6 +35,13 @@ export class InformeOTService {
     );
   };
 
+  getInformeByIdOT(idOT: number){
+    return this.http.get<informeOTResponse[]>(`${this.apiUrl}?ot=${idOT}`).pipe(
+      catchError((err: HttpErrorResponse) => this.handleError(err))
+    );
+  };
+
+
   addInforme_OT(informeData: informeOTForm): Observable<informeOTResponse>  {
     return this.http.post<informeOTResponse>(`${this.apiUrl}/`, informeData).pipe(
       tap(() => {
