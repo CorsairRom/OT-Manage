@@ -40,7 +40,7 @@ export class FormularioClienteComponent implements OnInit {
       ],
     ),
     sitio_web: this.fb.control<string | null>(null, []),
-    telefono: this.fb.nonNullable.control<number>(0, [Validators.required]),
+    telefono: this.fb.nonNullable.control<number | null >( null, [Validators.required, Validators.pattern(/^(?!(\d)\1{7,}$)\d{9,}$/)]),
     direccion: this.fb.nonNullable.control<string>('', [Validators.required, Validators.maxLength(240)]),
   });
 
@@ -74,7 +74,7 @@ export class FormularioClienteComponent implements OnInit {
       rut: values.rut,
 
       sitio_web: this.valueSitioWeb(values.sitio_web),
-      telefono: values.telefono,
+      telefono: values.telefono!,
       direccion: values.direccion
     };
     if (this.cliente?.id) {
