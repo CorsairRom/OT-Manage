@@ -13,6 +13,7 @@ export class ClientSelectorComponent implements OnInit {
 
   @Input() initialClientId?: number | null;
   @Output() selectedClientIdEvent = new EventEmitter<number | null>();
+  @Output() createClientEvent = new EventEmitter<boolean>();
 
   currentClient: ClienteRES | null = null;
   clients: ClienteRES[] = [];
@@ -30,6 +31,9 @@ export class ClientSelectorComponent implements OnInit {
     const client = event.value as ClienteRES;
     this.currentClient = client;
     this.selectedClientIdEvent.emit(client.id)
+  }
+  crearNuevoCliente(){
+    this.createClientEvent.emit(true);
   }
 
 }

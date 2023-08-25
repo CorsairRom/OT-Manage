@@ -10,7 +10,19 @@
         (onChange)="handleClientChanges($event)"
         [filter]="true"
         filterBy="razon_social"
-    ></p-dropdown>
+    >
+    <ng-template let-clients pTemplate="item" *ngIf="clients.length !== 0">
+      {{ clients.razon_social }}
+    </ng-template>
+    <ng-template pTemplate="empty">
+      <ng-container >
+        <p>No se a encontrado un cliente relacionado con esta busqueda</p>
+        <button pButton type="button" (click)="crearNuevoCliente()">Crear</button>
+      </ng-container>
+    </ng-template>
+  </p-dropdown>
+
+
     <label>Cliente *</label>
 </span>
 

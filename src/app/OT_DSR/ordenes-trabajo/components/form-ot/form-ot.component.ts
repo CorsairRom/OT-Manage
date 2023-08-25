@@ -3,6 +3,7 @@ import { OTForm, OTResponse } from '../../interfaces/ot.interface';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ClienteRES } from 'src/app/OT_DSR/clientes/interfaces/clientes.interface';
 
+
 @Component({
   selector: 'form-ot',
   templateUrl: './form-ot.component.html',
@@ -14,7 +15,7 @@ export class FormOTComponent {
   @Output() submitEvent = new EventEmitter<OTForm>();
   @Output() cancelEvent = new EventEmitter<void>();
 
-
+  newCliente:boolean = false;
 
   private fb = inject(FormBuilder)
 
@@ -51,6 +52,9 @@ export class FormOTComponent {
     this.submitEvent.emit(otForm);
   };
 
+  createCliente( newCliente: boolean){
+    this.newCliente = newCliente;
+  }
 
 
   cancel(){

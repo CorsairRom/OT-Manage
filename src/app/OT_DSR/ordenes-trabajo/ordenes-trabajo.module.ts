@@ -14,6 +14,8 @@ import { DetalleOTComponent } from './components/detalle-ot/detalle-ot.component
 import { SeguimientoOTComponent } from './components/seguimiento-ot/seguimiento-ot.component';
 import { TecnicoOTComponent } from './components/tecnico-ot/tecnico-ot.component';
 import { InformeOTComponent } from './components/informe-ot/informe-ot.component';
+import { FormularioClienteModule } from '../clientes/components/formulario-cliente/formulario-cliente.module';
+
 
 
 
@@ -36,7 +38,8 @@ import { InformeOTComponent } from './components/informe-ot/informe-ot.component
     OrdenesTrabajoRoutingModule,
     PrimeNGModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    FormularioClienteModule
   ]
 })
 export class OrdenesTrabajoModule { }
