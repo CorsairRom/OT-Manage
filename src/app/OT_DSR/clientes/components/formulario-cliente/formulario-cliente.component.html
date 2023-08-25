@@ -61,21 +61,7 @@
     </div>
   </div>
 
-  <div class="grid mb-3">
-    <div class="col-6">
-      <p-dropdown
-      formControlName="pais"
-      [options]="opcionesPais"
-      optionLabel="nombre"
-      placeholder="Seleccione país"
-      (onChange)="onPaisSelect($event)"
-      [filter]="true"
-      filterBy="nombre"
-    ></p-dropdown>
-    </div>
-  </div>
-
-  <app-ubicacion-form *ngIf="componentComunaRegion"  [initialComunaId]="cliente?.comuna?.id" (selectedComunaIdEvent)="handleSelectedComuna($event)"></app-ubicacion-form>
+  <app-ubicacion-form  [initialComunaId]="cliente?.comuna?.id" (selectedComunaIdEvent)="handleSelectedComuna($event)"></app-ubicacion-form>
 
   <div class="grid mb-3">
     <div class="col">
@@ -88,18 +74,6 @@
           [style]="{ width: '100%' }"
         />
         <label>Direccion*</label>
-      </span>
-    </div>
-    <div class="col">
-      <span class="p-float-label">
-        <input
-          type="text"
-          pInputText
-          formControlName="codigo_postal"
-          placeholder="403000"
-          [style]="{ width: '100%' }"
-        />
-        <label>Codigo Postal</label>
       </span>
     </div>
   </div>

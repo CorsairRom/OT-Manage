@@ -26,19 +26,12 @@ export class FormularioClienteComponent implements OnInit {
   @Output() submitEvent = new EventEmitter<ClienteForm>();
   @Output() cancelEvent = new EventEmitter<void>();
 
-  opcionesPais:Pais[] = [
-    { id: 45, nombre: 'Chile' }, // Opción con id 45 (Chile)
-    // Otras opciones de países si las tienes
-  ];
-  paisActual:Pais | null = null
 
-  componentComunaRegion: boolean = false;
 
   fb = inject(FormBuilder)
 
   form = this.fb.group({
     comuna_id: this.fb.nonNullable.control<number | null>(null, [Validators.required, Validators.maxLength(50)]),
-    pais: this.fb.control<Pais | null >(null, [Validators.required]),
     razon_social: this.fb.nonNullable.control<string>('', [Validators.required, Validators.maxLength(50)]),
     rut: this.fb.nonNullable.control<string>('',
       [
@@ -49,7 +42,6 @@ export class FormularioClienteComponent implements OnInit {
     sitio_web: this.fb.control<string | null>(null, []),
     telefono: this.fb.nonNullable.control<number>(0, [Validators.required]),
     direccion: this.fb.nonNullable.control<string>('', [Validators.required, Validators.maxLength(240)]),
-    codigo_postal: this.fb.control<number | null>(null, [])
   });
 
   ngOnInit(): void {
@@ -61,19 +53,8 @@ export class FormularioClienteComponent implements OnInit {
         rut: this.cliente.rut,
         sitio_web: this.cuttHttp(this.cliente.sitio_web),
         telefono: this.cliente.telefono,
-        direccion: this.cliente.direccion,
-        codigo_postal: this.cliente.codigo_postal
+        direccion: this.cliente.direccion
       })
-      if(this.cliente.pais){
-        this.paisActual = { id: this.cliente.pais.id, nombre: this.cliente.pais.name };
-        // Buscar el objeto Pais que coincide con el id del cliente
-        const selectedPais = this.opcionesPais.find((pais) => pais.id === this.cliente?.pais.id);
-        if (selectedPais) {
-          this.form.get('pais')?.setValue(selectedPais); // Establecer el valor del control pais
-          this.componentComunaRegion = true;
-        }
-      };
-
     };
   }
 
@@ -81,15 +62,6 @@ export class FormularioClienteComponent implements OnInit {
     this.form.patchValue({ comuna_id: comunaId })
   }
 
-  onPaisSelect(event: any) {
-
-    if (event.value.id === 45) {
-
-      this.form.patchValue({pais: {id: event.value.id, nombre: event.value.nombre}})
-      this.componentComunaRegion = true;
-
-    };
-  }
 
   submit(){
     if(this.form.invalid) return;
@@ -97,14 +69,13 @@ export class FormularioClienteComponent implements OnInit {
     const values = this.form.getRawValue();
     const clienteForm:ClienteForm  = {
       comuna_id: values.comuna_id!,
-      pais_id: values.pais?.id,
+
       razon_social: values.razon_social,
       rut: values.rut,
-      // sitio_web: values.sitio_web,
+
       sitio_web: this.valueSitioWeb(values.sitio_web),
       telefono: values.telefono,
-      direccion: values.direccion,
-      codigo_postal: values.codigo_postal!
+      direccion: values.direccion
     };
     if (this.cliente?.id) {
       clienteForm.id=this.cliente.id;
