@@ -2,10 +2,10 @@
   <div *ngIf="procesoOT" class="col-12">
     <p-table [value]="procesoOT">
       <ng-template pTemplate="header">
-        <tr >
-          <th>ID</th>
-          <th style="min-width: 150px;">Proceso</th>
-          <th >Actividades</th>
+        <tr class="backheader" >
+          <th class="backheader">ID</th>
+          <th class="backheader" style="min-width: 150px;">Proceso</th>
+          <th class="backheader" >Actividades</th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-proceso>

@@ -70,7 +70,7 @@
         <ng-template #sinTecnico>Sin Tecnico</ng-template>
       </td>
       <td>
-        <ng-container *ngIf="ot.subrogante; else sinSubrogante">{{ ot.subrogante }}</ng-container>
+        <ng-container *ngIf="ot.subrogante; else sinSubrogante">{{ ot.subrogante.nombre }}</ng-container>
         <ng-template #sinSubrogante>Sin subrogante</ng-template>
       </td>
       <td>{{ ot.marca_equipo }}
