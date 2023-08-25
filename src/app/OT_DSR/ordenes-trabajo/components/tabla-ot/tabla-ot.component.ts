@@ -11,7 +11,7 @@ export class TablaOTComponent {
   @Input() ot: OTResponse[] = [];
   @Output() eliminarEvent = new EventEmitter<string>();
 
-  filterFields: string[] = ['rut', 'nombre']
+  filterFields: string[] = ['id', 'cliente.nombre']
 
 
 
