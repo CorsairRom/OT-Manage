@@ -17,6 +17,12 @@ import { AuthService } from './OT_DSR/core/services/auth.service';
                     canActivate: [authGuard],
                     children: [
                         {
+                            path: '',
+                            redirectTo: 'dashboard',
+                            pathMatch: 'full',
+
+                        },
+                        {
                             path: 'dashboard',
                             canActivate: [
                                 () => inject(AuthService).isStaff()
