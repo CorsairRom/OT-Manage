@@ -45,11 +45,12 @@ export class ClientesService {
 
   addCliente(ClienteForm: ClienteForm): Observable<ClienteRES>  {
     return this.http.post<ClienteRES>(`${this.apiUrl}/`, ClienteForm).pipe(
-      tap(() => {
+      tap((newClient) => {
           this.messageService.addMessage({
               details: ['Cliente registrado exitosamente!'],
               role: 'success'
           })
+          this.clientesSubject.next([ newClient, ...this.clientesSubject.value,]);
       }),
       catchError((err: HttpErrorResponse) => this.handleError(err))
   )

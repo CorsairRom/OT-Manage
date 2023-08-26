@@ -15,15 +15,24 @@ export class ClientSelectorComponent implements OnInit {
   @Output() selectedClientIdEvent = new EventEmitter<number | null>();
   @Output() createClientEvent = new EventEmitter<boolean>();
 
-  currentClient: ClienteRES | null = null;
-  clients: ClienteRES[] = [];
+  currentClient?: ClienteRES | null = null;
+  clients$: ClienteRES[] = [];
 
   private clientService = inject(ClientesService);
 
   ngOnInit(): void {
-    this.clientService.getClientes().subscribe(clients => this.clients = clients);
+    this.clientService.getClientes().subscribe();
+    this.clientService.clientes$.subscribe(
+      res => this.clients$ = res
+    )
+
     if(this.initialClientId) {
-      this.clientService.getClienteById(this.initialClientId).subscribe(client => this.currentClient = client);
+      // this.clientService.getClienteById(this.initialClientId).subscribe(client => this.currentClient = client);
+      this.clientService.clientes$.subscribe(res => {
+        this.currentClient = res.find(c => c.id === this.initialClientId)
+        console.log(this.currentClient);
+        console.log(res);
+      })
     }
   }
 

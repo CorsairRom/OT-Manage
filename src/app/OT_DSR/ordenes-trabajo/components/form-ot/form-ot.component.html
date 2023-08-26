@@ -1,6 +1,6 @@
 <div class="card shadow-3" *ngIf="newCliente" >
   <h4>Registro Cliente</h4>
-  <formulario-cliente></formulario-cliente>
+  <formulario-cliente (cancelEvent)="cancelEventCliente()" (submitEvent)="submitEventCliente($event)"></formulario-cliente>
 
 </div>
 
@@ -19,7 +19,7 @@
       </span>
     </div>
     <div class="col-6">
-      <app-client-selector [initialClientId]="ot?.cliente?.id" (selectedClientIdEvent)="handleSelectedClient($event)" (createClientEvent)="createCliente($event)" ></app-client-selector>
+      <app-client-selector [initialClientId]="clienteID" (selectedClientIdEvent)="handleSelectedClient($event)" (createClientEvent)="createCliente($event)" ></app-client-selector>
     </div>
   </div>
 

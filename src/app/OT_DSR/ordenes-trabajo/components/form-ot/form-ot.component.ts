@@ -1,7 +1,8 @@
-import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
 import { OTForm, OTResponse } from '../../interfaces/ot.interface';
 import { FormBuilder, Validators } from '@angular/forms';
-import { ClienteRES } from 'src/app/OT_DSR/clientes/interfaces/clientes.interface';
+import { ClienteForm, ClienteRES } from 'src/app/OT_DSR/clientes/interfaces/clientes.interface';
+import { ClientesService } from 'src/app/OT_DSR/clientes/services/clientes.service';
 
 
 @Component({
@@ -9,7 +10,7 @@ import { ClienteRES } from 'src/app/OT_DSR/clientes/interfaces/clientes.interfac
   templateUrl: './form-ot.component.html',
   styleUrls: ['./form-ot.component.scss']
 })
-export class FormOTComponent {
+export class FormOTComponent implements OnInit {
 
   @Input() ot? : OTResponse
   @Output() submitEvent = new EventEmitter<OTForm>();
@@ -17,7 +18,11 @@ export class FormOTComponent {
 
   newCliente:boolean = false;
 
+  clienteID?: number;
+
+
   private fb = inject(FormBuilder)
+  private clientService = inject(ClientesService);
 
   form = this.fb.group({
     fecha_inicio: this.fb.control<Date>(new Date(), [Validators.required]),
@@ -29,6 +34,12 @@ export class FormOTComponent {
     num_parte_componente: this.fb.control<string>('', [Validators.required, Validators.maxLength(50)]),
     serie_componente: this.fb.control<string>('', [Validators.required, Validators.maxLength(50)]),
   })
+
+  ngOnInit(): void {
+    if (this.ot) {
+      this.clienteID = this.ot.cliente.id;
+    }
+  }
 
 
   handleSelectedClient(clienteId: number | null) {
@@ -51,6 +62,14 @@ export class FormOTComponent {
     }
     this.submitEvent.emit(otForm);
   };
+
+  submitEventCliente(clienteForm:ClienteForm){
+    this.clientService.addCliente(clienteForm).subscribe(res => this.clienteID = res.id)
+    this.cancelEventCliente();
+  }
+  cancelEventCliente(){
+    this.newCliente = false;
+  }
 
   createCliente( newCliente: boolean){
     this.newCliente = newCliente;
