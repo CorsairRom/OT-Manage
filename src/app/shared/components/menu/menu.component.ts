@@ -42,34 +42,34 @@ export class MenuComponent {
         //     routerLink: ['/facturas/listado'],
         // }
 
-        const catalogo = {
-            label: 'Catálogo',
-            icon: 'bi bi-archive',
-            items:[
-              {
-                label: 'Productos',
-                icon: 'bi bi-upc-scan',
-                routerLink: ['catalogo/productos/listado']
-              },
-              {
-                label: 'Servicios',
-                icon: 'bi bi-clipboard-minus',
-                routerLink: ['catalogo/servicios/listado']
-              },
-              {
-                label: 'Unidades',
-                icon: 'bi bi-box-seam',
-                routerLink: ['catalogo/unidades/listado']
-              }
-            ]
+        // const catalogo = {
+        //     label: 'Catálogo',
+        //     icon: 'bi bi-archive',
+        //     items:[
+        //       {
+        //         label: 'Productos',
+        //         icon: 'bi bi-upc-scan',
+        //         routerLink: ['catalogo/productos/listado']
+        //       },
+        //       {
+        //         label: 'Servicios',
+        //         icon: 'bi bi-clipboard-minus',
+        //         routerLink: ['catalogo/servicios/listado']
+        //       },
+        //       {
+        //         label: 'Unidades',
+        //         icon: 'bi bi-box-seam',
+        //         routerLink: ['catalogo/unidades/listado']
+        //       }
+        //     ]
 
-        }
+        // }
 
-        const fabricantes = {
-            label: 'Fabricantes',
-            icon: 'bi bi-briefcase',
-            routerLink: ['/fabricantes/listado'],
-        }
+        // const fabricantes = {
+        //     label: 'Fabricantes',
+        //     icon: 'bi bi-briefcase',
+        //     routerLink: ['/fabricantes/listado'],
+        // }
 
         const clientes = {
             label: 'Clientes',
@@ -90,11 +90,11 @@ export class MenuComponent {
 
         }
 
-        const configuracion = {
-          label: 'Configuración',
-          icon: 'bi bi-gear',
-          routerLink: ['/configuraciones/profile'],
-        }
+        // const configuracion = {
+        //   label: 'Configuración',
+        //   icon: 'bi bi-gear',
+        //   routerLink: ['/configuraciones/profile'],
+        // }
 
         const administrar = {
           label: 'Administrar accesos',
@@ -105,11 +105,11 @@ export class MenuComponent {
               icon: 'bi bi-person',
               routerLink: ['administrar-accesos/usuarios/listado']
             },
-            {
-              label: 'Grupos de usuarios',
-              icon: 'bi bi-people',
-              routerLink: ['administrar-accesos/Grupo-usuarios/listado']
-            },
+            // {
+            //   label: 'Grupos de usuarios',
+            //   icon: 'bi bi-people',
+            //   routerLink: ['administrar-accesos/Grupo-usuarios/listado']
+            // },
           ]
         }
 
@@ -118,11 +118,11 @@ export class MenuComponent {
             return [
                 {
                     label: 'Administracion',
-                    items: [dashboard, ot,  catalogo, fabricantes, clientes, reportes]
+                    items: [dashboard, ot, clientes, reportes]
                 },
                 {
                     label: 'Seguridad',
-                    items: [administrar, configuracion]
+                    items: [administrar]
                 }
             ]
         }
@@ -130,7 +130,7 @@ export class MenuComponent {
             return [
                 {
                     label: 'Administracion',
-                    items: [dashboard, ot,  catalogo, fabricantes, clientes, reportes]
+                    items: [dashboard, ot, clientes, reportes]
                 },
             ]
         } else {

@@ -104,7 +104,7 @@ export class FormularioUsuarioComponent implements OnInit {
       is_staff : false,
       is_superuser : false,
       nombre : values.nombre,
-      rut : values.nombre
+      rut : values.rut
     };
 
     const permisoSelected = this.form.controls['permiso'].value;

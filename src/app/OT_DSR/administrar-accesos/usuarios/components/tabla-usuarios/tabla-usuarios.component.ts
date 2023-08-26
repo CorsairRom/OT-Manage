@@ -16,7 +16,7 @@ export class TablaUsuariosComponent {
   @Input() usuarios:UsuariosResponse[] = [];
   @Output() eliminarEvent = new EventEmitter<string>();
 
-  filterFields: string[] = ['usuario', 'nombre']
+  filterFields: string[] = ['username', 'nombre']
 
   btnDisabled: boolean = true;
   ref: DynamicDialogRef | undefined;
