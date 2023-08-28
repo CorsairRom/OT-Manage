@@ -19,7 +19,12 @@
       </span>
     </div>
     <div class="col-6">
-      <app-client-selector [initialClientId]="clienteID" (selectedClientIdEvent)="handleSelectedClient($event)" (createClientEvent)="createCliente($event)" ></app-client-selector>
+      <app-client-selector
+        [initialClientId]="clienteID"
+        (selectedClientIdEvent)="handleSelectedClient($event)"
+        (createClientEvent)="createCliente($event)"
+
+        ></app-client-selector>
     </div>
   </div>
 

@@ -64,11 +64,15 @@ export class FormOTComponent implements OnInit {
   };
 
   submitEventCliente(clienteForm:ClienteForm){
-    this.clientService.addCliente(clienteForm).subscribe(res => this.clienteID = res.id)
+    this.clientService.addCliente(clienteForm).subscribe(res => this.clienteChange(res))
     this.cancelEventCliente();
   }
   cancelEventCliente(){
     this.newCliente = false;
+  }
+
+  clienteChange(newCliente: ClienteRES){
+    this.clientService.changeIdCliente(newCliente)
   }
 
   createCliente( newCliente: boolean){

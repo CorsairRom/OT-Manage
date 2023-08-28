@@ -14,6 +14,9 @@ export class ClientesService {
   private clientesSubject = new BehaviorSubject<ClienteRES[]>([]);
   clientes$ = this.clientesSubject.asObservable();
 
+  newClienteSubject = new BehaviorSubject<ClienteRES | null>(null);
+  newCliente$ = this.newClienteSubject.asObservable();
+
   private handleError(error: HttpErrorResponse) {
     const msg = JSON.stringify(error.error);
     if (error.status == 400 || error.status == 404) {
@@ -25,6 +28,14 @@ export class ClientesService {
     }
     return throwError(() => new Error(msg));
   };
+
+  // setNuevoClienteId(id: number): void {
+  //   this.nuevoClienteIdSubject.next(id);
+  // }
+
+  changeIdCliente(newCliente: ClienteRES) {
+    this.newClienteSubject.next(newCliente);
+  }
 
   getClientes(query: {} = {}) {
 
