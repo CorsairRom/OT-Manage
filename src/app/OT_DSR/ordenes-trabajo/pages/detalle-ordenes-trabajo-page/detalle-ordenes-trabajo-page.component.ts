@@ -5,6 +5,7 @@ import { OtService } from '../../services/ot.service';
 import { OTResponse } from '../../interfaces/ot.interface';
 import { map, switchMap } from 'rxjs';
 import { SeguimientoService } from '../../services/seguimiento.service';
+import { ReporteService } from '../../services/reporte.service';
 
 @Component({
   selector: 'app-detalle-ordenes-trabajo-page',
@@ -18,6 +19,7 @@ export class DetalleOrdenesTrabajoPageComponent implements OnInit {
   activatedRoute = inject(ActivatedRoute);
   location = inject(Location);
   router = inject(Router);
+  reporteService = inject(ReporteService)
 
   otService = inject(OtService)
   seguimientoServices = inject(SeguimientoService)
@@ -30,5 +32,15 @@ export class DetalleOrdenesTrabajoPageComponent implements OnInit {
       this.OT = ot;
     });
   };
+
+  generarReporte(idOT: number){
+    this.reporteService.getReporteOT({idOT: idOT}).subscribe(
+      response => {
+        const blob = new Blob([response], { type: 'application/pdf' });
+        const pdfUrl = URL.createObjectURL(blob);
+        window.open(pdfUrl);
+    })
+
+  }
 
 }

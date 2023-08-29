@@ -11,7 +11,7 @@ export class TablaClientesComponent {
   @Input() clientes: ClienteRES[] = [];
   @Output() eliminarEvent = new EventEmitter<string>();
 
-  filterFields: string[] = ['rut', 'nombre']
+  filterFields: string[] = ['rut', 'razon_social']
 
   clear(table: Table) {
     table.clear();

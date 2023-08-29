@@ -1,4 +1,7 @@
 <div class="card shadow-3">
-  <h4 class="text-center">Orden N°: {{OT?.id}}</h4>
+  <div class="">
+    <h4 class="text-center">Orden N°: {{OT?.id}}</h4>
+    <p-button label="Imprimir" icon="pi pi-print" (onClick)="generarReporte(OT!.id)"></p-button>
+  </div>
   <detalle-ot *ngIf="OT"  [ot]="OT"></detalle-ot>
 </div>
