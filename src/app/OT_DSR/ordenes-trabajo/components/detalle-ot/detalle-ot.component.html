@@ -93,6 +93,16 @@
   <seguimiento-ot [procesoOT]="procesoOT" [idOT]="ot!.id" [ot]="ot"></seguimiento-ot>
 
 </p-fieldset>
+<!-- SaveDocument -->
+<p-fieldset>
+  <ng-template pTemplate="header">
+    <div class="flex align-items-center text-primary">
+      <span class="pi pi-comment mr-2"></span>
+      <span class="font-bold text-lg">Subir documentos</span>
+    </div>
+  </ng-template>
+  <save-document [otID]="ot!.id" ></save-document>
+</p-fieldset>
 <!-- informe -->
 <p-fieldset>
   <ng-template pTemplate="header">
