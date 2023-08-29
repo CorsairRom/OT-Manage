@@ -2,6 +2,7 @@ import { Component, Input, OnInit, inject } from '@angular/core';
 import { SaveDocumentServices } from '../../services/save-document.service';
 import { MessageService } from 'primeng/api';
 import { SaveDocumentRes } from '../../interfaces/save-document.interface';
+import { ReporteService } from '../../services/reporte.service';
 
 
 interface UploadEvent {
@@ -21,7 +22,7 @@ export class SaveDocumentComponent implements OnInit{
   uploadedFiles: any[] = [];
   private saveDocument = inject(SaveDocumentServices)
   private messageService = inject(MessageService)
-
+  private reporteService = inject(ReporteService)
   ngOnInit(): void {
     if (this.otID) {
       const query = {
@@ -55,6 +56,11 @@ export class SaveDocumentComponent implements OnInit{
     }
 
     this.messageService.add({severity: 'info', summary: 'File Uploaded', detail: ''});
+  }
+  viewDocument(idOT: number){
+    this.uploadedFiles.forEach(res => window.open(res.file))
+
+
   }
 
 }
