@@ -15,6 +15,7 @@ import { SeguimientoOTComponent } from './components/seguimiento-ot/seguimiento-
 import { TecnicoOTComponent } from './components/tecnico-ot/tecnico-ot.component';
 import { InformeOTComponent } from './components/informe-ot/informe-ot.component';
 import { FormularioClienteModule } from '../clientes/components/formulario-cliente/formulario-cliente.module';
+import { SaveDocumentComponent } from './components/save-document/save-document.component';
 
 
 
@@ -31,7 +32,8 @@ import { FormularioClienteModule } from '../clientes/components/formulario-clien
     DetalleOTComponent,
     SeguimientoOTComponent,
     TecnicoOTComponent,
-    InformeOTComponent
+    InformeOTComponent,
+    SaveDocumentComponent
   ],
   imports: [
     CommonModule,

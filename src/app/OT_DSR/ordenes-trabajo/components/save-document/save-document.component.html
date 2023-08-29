@@ -1,0 +1,18 @@
+
+    <p-fileUpload
+       (uploadHandler)="onUpload($event)"
+       [multiple]="true"
+       chooseLabel="Agregar"
+       uploadLabel="Guardar"
+       cancelLabel="Cancelar"
+       [customUpload]="true"
+       accept=".xlsx,.pdf,.csv,.xls" >
+        <ng-template pTemplate="content">
+            <p>Documentos Almacenados</p>
+            <ul *ngIf="uploadedFiles.length">
+                <div *ngFor="let file of uploadedFiles" class="pt-1">
+                  <p-button  icon="pi pi-search" label="{{file.name}}" styleClass="p-button-sm" (onClick)="viewDocument(otID!)"></p-button>
+                </div>
+            </ul>
+        </ng-template>
+    </p-fileUpload>
