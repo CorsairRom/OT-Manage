@@ -3,6 +3,7 @@ import { OTForm, OTResponse } from '../../interfaces/ot.interface';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ClienteForm, ClienteRES } from 'src/app/OT_DSR/clientes/interfaces/clientes.interface';
 import { ClientesService } from 'src/app/OT_DSR/clientes/services/clientes.service';
+import { AuthService } from 'src/app/OT_DSR/core/services/auth.service';
 
 
 @Component({
@@ -19,10 +20,12 @@ export class FormOTComponent implements OnInit {
   newCliente:boolean = false;
 
   clienteID?: number;
+  userID?: number;
 
 
   private fb = inject(FormBuilder)
   private clientService = inject(ClientesService);
+  private authService = inject(AuthService)
 
   form = this.fb.group({
     fecha_inicio: this.fb.control<Date>(new Date(), [Validators.required]),
@@ -39,6 +42,7 @@ export class FormOTComponent implements OnInit {
     if (this.ot) {
       this.clienteID = this.ot.cliente.id;
     }
+    this.authService.user$.subscribe(user => this.userID = user?.usuario.id)
   }
 
 
@@ -58,6 +62,7 @@ export class FormOTComponent implements OnInit {
       serie_equipo: values.serie_equipo!,
       num_parte_componente: values.num_parte_componente!,
       serie_componente: values.serie_componente!,
+      usuario_id: this.userID!,
       seguimiento: []
     }
     this.submitEvent.emit(otForm);
