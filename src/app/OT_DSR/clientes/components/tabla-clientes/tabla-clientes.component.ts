@@ -12,9 +12,11 @@ export class TablaClientesComponent {
   @Output() eliminarEvent = new EventEmitter<string>();
 
   filterFields: string[] = ['rut', 'razon_social']
+  searchText: string = '';
 
   clear(table: Table) {
     table.clear();
+    this.searchText = '';
   }
 
   agregar(){

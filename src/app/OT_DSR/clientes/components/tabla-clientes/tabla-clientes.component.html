@@ -28,6 +28,7 @@
           <input
             pInputText
             type="text"
+            [(ngModel)]="searchText"
             (input)="
               clientesTable.filterGlobal($any($event.target).value, 'contains')
             "
