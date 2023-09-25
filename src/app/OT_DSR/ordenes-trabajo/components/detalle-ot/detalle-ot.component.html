@@ -23,6 +23,12 @@
         </div>
         <div class="col-12 py-1">
           <div class="p-inputgroup">
+            <span class="p-inputgroup-addon widthLabelGroup"> Ingresada Por: </span>
+            <p pInputText> {{ot?.usuario?.username}} </p>
+          </div>
+        </div>
+        <div class="col-12 py-1">
+          <div class="p-inputgroup">
             <span class="p-inputgroup-addon widthLabelGroup"> Observacion </span>
             <textarea rows="5" cols="30" pInputTextarea [autoResize]="true" [disabled]="true"> {{ot?.observaciones}} </textarea>
           </div>

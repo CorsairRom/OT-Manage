@@ -6,6 +6,8 @@
   [globalFilterFields]="filterFields"
   [paginator]="true"
   [rows]="20"
+  sortField="id"
+  [sortOrder]="-1"
 >
   <ng-template pTemplate="caption">
     <div class="caption-table">
@@ -26,6 +28,7 @@
           <input
             pInputText
             type="text"
+            [(ngModel)]="searchText"
             (input)="
               clientesTable.filterGlobal($any($event.target).value, 'contains')
             "

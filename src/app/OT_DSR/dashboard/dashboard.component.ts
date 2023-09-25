@@ -24,13 +24,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
     dataDashboard!: DashboardData;
 
+
     constructor(
         private productService: ProductService,
         public layoutService: LayoutService,
 
-        // private detalleArriendoService: DetalleArriendoService,
-        // private gastoComunService: GastoComunService,
-        // private servicioExtraService: ServicioExtraService,
+
     ) {
         this.subscription = this.layoutService.configUpdate$.subscribe(() => {
             this.initChart();
@@ -41,11 +40,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this.initChart();
 
         this.productService.getProductsSmall().then(data => this.products = data);
-
-
-        // this.detalleArriendoService.getDetallesArriendo().subscribe(res => console.log('DetalleArriendo',res))
-        // this.gastoComunService.getGastosComunes().subscribe(res => console.log('GastosComunes',res))
-        // this.servicioExtraService.getServiciosExtras().subscribe(res => console.log('ServiciosExtras',res))
         this.productService.getDataDashboard().subscribe(res => this.dataDashboard= res);
 
         this.items = [

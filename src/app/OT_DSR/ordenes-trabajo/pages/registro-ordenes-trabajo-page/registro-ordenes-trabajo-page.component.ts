@@ -21,7 +21,7 @@ export class RegistroOrdenesTrabajoPageComponent {
 
   submitEvent(otForm: OTForm){
     console.log(otForm);
-    this.otService.addOT(otForm).subscribe(()=> this.router.navigate(['ordenes-trabajo/listado']))
+    this.otService.addOT(otForm).subscribe((res)=> this.router.navigate([`ordenes-trabajo/${res.id}/detalle`]))
 
   }
 }
