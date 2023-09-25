@@ -15,7 +15,7 @@ export class RegistroClientePageComponent {
   clienteService = inject(ClientesService)
 
   submit(clienteForm:ClienteForm){
-    this.clienteService.addCliente(clienteForm).subscribe(()=> this.router.navigate(['clientes/listado']))
+    this.clienteService.addCliente(clienteForm).subscribe((res)=> this.router.navigate([`clientes/${res.id}/detalle`]))
   }
 
   cancel() {

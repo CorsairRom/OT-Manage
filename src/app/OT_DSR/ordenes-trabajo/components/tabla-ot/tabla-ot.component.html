@@ -30,6 +30,7 @@
           <input
             pInputText
             type="text"
+            [(ngModel)]="searchText"
             (input)="
               otTable.filterGlobal($any($event.target).value, 'contains')
             "

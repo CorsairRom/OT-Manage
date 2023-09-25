@@ -12,12 +12,15 @@ export class TablaOTComponent {
   @Output() eliminarEvent = new EventEmitter<string>();
 
   filterFields: string[] = ['id', 'cliente.nombre']
+  searchText: string = '';
 
 
 
   clear(table: Table) {
     table.clear();
+    this.searchText = '';
   }
+
 
 
 }
