@@ -77,18 +77,18 @@ export class MenuComponent {
             routerLink: ['/clientes/listado'],
         }
 
-        const reportes = {
-            label: 'Reportes',
-            icon: 'bi bi-clipboard2-pulse',
-            items:[
-              {
-                label: 'Ordenes de trabajo',
-                icon: 'bi bi-clipboard-check',
-                routerLink: ['reportes/reporte-ot/listado']
-              }
-            ]
+        // const reportes = {
+        //     label: 'Reportes',
+        //     icon: 'bi bi-clipboard2-pulse',
+        //     items:[
+        //       {
+        //         label: 'Ordenes de trabajo',
+        //         icon: 'bi bi-clipboard-check',
+        //         routerLink: ['reportes/reporte-ot/listado']
+        //       }
+        //     ]
 
-        }
+        // }
 
         // const configuracion = {
         //   label: 'Configuración',
@@ -118,7 +118,7 @@ export class MenuComponent {
             return [
                 {
                     label: 'Administracion',
-                    items: [dashboard, ot, clientes, reportes]
+                    items: [dashboard, ot, clientes]
                 },
                 {
                     label: 'Seguridad',
@@ -130,7 +130,7 @@ export class MenuComponent {
             return [
                 {
                     label: 'Administracion',
-                    items: [dashboard, ot, clientes, reportes]
+                    items: [dashboard, ot, clientes]
                 },
             ]
         } else {

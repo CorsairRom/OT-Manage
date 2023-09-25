@@ -19,8 +19,8 @@ export interface Product {
 export interface DashboardData {
   tot_serv:        number;
   tot_prod:        number;
-  tot_ot:          number;
-  tot_cli:         number;
+  total_ot:          number;
+  total_clientes:         number;
   current_ot:      CurrentOt[];
 }
 

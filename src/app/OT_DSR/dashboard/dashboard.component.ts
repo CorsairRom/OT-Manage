@@ -24,6 +24,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
     dataDashboard!: DashboardData;
 
+
     constructor(
         private productService: ProductService,
         public layoutService: LayoutService,
